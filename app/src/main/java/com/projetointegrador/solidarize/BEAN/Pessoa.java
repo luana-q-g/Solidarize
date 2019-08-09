@@ -1,13 +1,14 @@
 package com.projetointegrador.solidarize.BEAN;
 
-public class Pessoa {
+public class Pessoa extends Usuario{
     private String cpf;
     private String email_usuario;
     private String data_nasc;
     private String cidade;
     private String estado;
 
-    public Pessoa(String cpf, String email_usuario, String data_nasc, String cidade, String estado){
+    public Pessoa(String email, String nome, String senha, String cpf, String email_usuario, String data_nasc, String cidade, String estado){
+        super(email, nome, senha);
         this.cpf= cpf;
         this.email_usuario= email_usuario;
         this.data_nasc= data_nasc;
