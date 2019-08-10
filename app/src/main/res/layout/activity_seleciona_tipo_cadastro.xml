@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".VIEW.SelecionaTipoCadastro">
+
+    <ImageView
+        android:id="@+id/img_logo"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="56dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo_solidarize" />
+
+    <TextView
+        android:id="@+id/lbl_escolha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:text="Escolha seu tipo de usuário:"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_logo" />
+
+    <RadioGroup
+        android:id="@+id/rad_group_escolha"
+        android:layout_width="200dp"
+        android:layout_height="101dp"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="104dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_escolha">
+
+        <RadioButton
+            android:id="@+id/rad_instituicao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Pessoa" />
+
+        <RadioButton
+            android:id="@+id/rad_pessoa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Instituição" />
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btn_continuar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Continuar"
+        app:layout_constraintEnd_toEndOf="@+id/lbl_escolha"
+        app:layout_constraintStart_toStartOf="@+id/lbl_escolha"
+        app:layout_constraintTop_toBottomOf="@+id/rad_group_escolha" />
+
+
+</android.support.constraint.ConstraintLayout>
