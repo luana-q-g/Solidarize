@@ -10,9 +10,11 @@
         android:id="@+id/lbl_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="36dp"
         android:text="Email: "
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_logo" />
 
@@ -20,8 +22,9 @@
         android:id="@+id/txt_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="12dp"
         android:ems="10"
+        android:hint="digite o email cadastrado"
         android:inputType="textEmailAddress"
         app:layout_constraintBaseline_toBaselineOf="@+id/lbl_email"
         app:layout_constraintStart_toEndOf="@+id/lbl_email" />
@@ -30,10 +33,11 @@
         android:id="@+id/lbl_senha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
         android:layout_marginTop="50dp"
         android:text="Senha: "
-        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/lbl_email"
         app:layout_constraintTop_toBottomOf="@+id/lbl_email" />
 
     <EditText
@@ -42,6 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:ems="10"
+        android:hint="digite a senha"
         android:inputType="textPassword"
         app:layout_constraintBaseline_toBaselineOf="@+id/lbl_senha"
         app:layout_constraintStart_toEndOf="@+id/lbl_senha" />
@@ -50,29 +55,38 @@
         android:id="@+id/btn_entrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="144dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="ENTRAR"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lbl_esquecisenha" />
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/lbl_registrar"
+        app:layout_constraintStart_toStartOf="@+id/lbl_registrar"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_esqueci_senha" />
 
     <TextView
-        android:id="@+id/lbl_esquecisenha"
+        android:id="@+id/lbl_esqueci_senha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="124dp"
-        android:layout_marginTop="8dp"
-        android:text="esqueci minha senha:"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="12dp"
+        android:clickable="true"
+        android:text="esqueci minha senha"
+        android:textColor="@color/colorPrimaryDark"
+        android:textColorLink="@color/colorPrimary"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/btn_entrar"
+        app:layout_constraintHorizontal_bias="0.511"
+        app:layout_constraintStart_toStartOf="@+id/btn_entrar"
         app:layout_constraintTop_toBottomOf="@+id/txt_senha" />
 
     <TextView
         android:id="@+id/lbl_registrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="152dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="156dp"
+        android:layout_marginTop="12dp"
         android:text="Registrar-se"
+        android:textColor="@color/colorPrimaryDark"
+        android:textColorLink="@color/colorPrimaryDark"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_entrar" />
 
@@ -80,8 +94,8 @@
         android:id="@+id/img_logo"
         android:layout_width="300"
         android:layout_height="300"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="56dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo_solidarize" />
