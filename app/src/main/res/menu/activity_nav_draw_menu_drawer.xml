@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group
+        android:id="@+id/nav_menu_parte1"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_perfil"
+            android:title="Perfil" />
+        <item android:title="Ações do Usuário">
+            <menu>
+                <item
+                    android:id="@+id/nav_acoes_eventos"
+                    android:title="Seus eventos" />
+                <item
+                    android:id="@+id/nav_acoes_pedidos_doacao"
+                    android:title="Seus pedidos de doação" />
+            </menu>
+        </item>
+    </group>
+
+    <group android:id="@+id/nav_menu_parte2">
+        <item
+            android:id="@+id/nav_eventos"
+            android:title="Eventos" />
+        <item android:title="Instituições">
+            <menu>
+                <item
+                    android:id="@+id/nav_inst_todas"
+                    android:title="Ver todas" />
+                <item
+                    android:id="@+id/nav_inst_pedidos"
+                    android:title="Pedidos de doação" />
+            </menu>
+        </item>
+    </group>
+
+    <group android:id="@+id/nav_menu_parte3">
+        <item
+            android:id="@+id/nav_config"
+            android:title="Configurações" />
+        <item
+            android:id="@+id/nav_sobre_app"
+            android:title="Sobre o App" />
+        <item
+            android:id="@+id/nav_sair"
+            android:title="Sair" />
+    </group>
+
+</menu>
