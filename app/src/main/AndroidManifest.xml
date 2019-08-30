@@ -20,11 +20,17 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".VIEW.CadastroPessoa" />
         <activity android:name=".VIEW.SelecionaTipoCadastro" />
-        <activity android:name=".VIEW.EsqueciSenha" />
-        <activity android:name=".VIEW.MainActivity" />
-        <activity
-            android:name=".LoginActivity"
-            android:label="@string/title_activity_login" />
+        <activity android:name=".VIEW.EsqueciSenha" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".VIEW.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
