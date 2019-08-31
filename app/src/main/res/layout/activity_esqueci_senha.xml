@@ -19,7 +19,7 @@
         app:srcCompat="@drawable/logo_solidarize" />
 
     <TextView
-        android:id="@+id/lbl_email"
+        android:id="@+id/lbl_cidade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="68dp"
@@ -39,9 +39,9 @@
         android:ems="10"
         android:hint="digite o email para envio"
         android:inputType="textEmailAddress"
-        app:layout_constraintBaseline_toBaselineOf="@+id/lbl_email"
+        app:layout_constraintBaseline_toBaselineOf="@+id/lbl_cidade"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/lbl_email" />
+        app:layout_constraintStart_toEndOf="@+id/lbl_cidade" />
 
     <Button
         android:id="@+id/btn_enviar"
