@@ -19,7 +19,7 @@
         app:srcCompat="@drawable/logo_solidarize" />
 
     <TextView
-        android:id="@+id/lbl_cidade"
+        android:id="@+id/lbl_confirma_senha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="68dp"
@@ -31,7 +31,7 @@
         app:layout_constraintTop_toBottomOf="@+id/lbl_explicacao" />
 
     <EditText
-        android:id="@+id/txt_email"
+        android:id="@+id/txt_confirma_senha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -39,9 +39,9 @@
         android:ems="10"
         android:hint="digite o email para envio"
         android:inputType="textEmailAddress"
-        app:layout_constraintBaseline_toBaselineOf="@+id/lbl_cidade"
+        app:layout_constraintBaseline_toBaselineOf="@+id/lbl_confirma_senha"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/lbl_cidade" />
+        app:layout_constraintStart_toEndOf="@+id/lbl_confirma_senha" />
 
     <Button
         android:id="@+id/btn_enviar"
@@ -51,7 +51,7 @@
         android:text="Enviar email"
         app:layout_constraintEnd_toEndOf="@+id/img_logo"
         app:layout_constraintStart_toStartOf="@+id/img_logo"
-        app:layout_constraintTop_toBottomOf="@+id/txt_email" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_confirma_senha" />
 
     <TextView
         android:id="@+id/lbl_explicacao"

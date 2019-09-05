@@ -6,4 +6,37 @@
     android:layout_height="match_parent"
     tools:context=".VIEW.CadastroInstituicao">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".VIEW.CadastroPessoa">
+
+        <ImageView
+            android:id="@+id/img_logo"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="24dp"
+            app:srcCompat="@drawable/logo_solidarize" />
+
+        <TextView
+            android:id="@+id/lbl_titulo_cadastro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|center"
+            android:text="Cadastro de Instituição"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <FrameLayout
+            android:id="@+id/place_holder_info_cadastro_instituicao"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </FrameLayout>
+
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
