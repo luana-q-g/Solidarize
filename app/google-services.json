@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "143447826017",
+    "firebase_url": "https://solidarize-c082c.firebaseio.com",
+    "project_id": "solidarize-c082c",
+    "storage_bucket": "solidarize-c082c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:143447826017:android:0aae5e2ae65885b08bd420",
+        "android_client_info": {
+          "package_name": "com.projetointegrador.solidarize"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "143447826017-t3m3v56k5a70rngea1ujtjlts86gsede.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB41RFJ5gj_dvft9IsHbQ9zyDOT3Nuw4iY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "143447826017-t3m3v56k5a70rngea1ujtjlts86gsede.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
