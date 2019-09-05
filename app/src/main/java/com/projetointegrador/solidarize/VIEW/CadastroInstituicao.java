@@ -1,6 +1,6 @@
 package com.projetointegrador.solidarize.VIEW;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.projetointegrador.solidarize.R;
