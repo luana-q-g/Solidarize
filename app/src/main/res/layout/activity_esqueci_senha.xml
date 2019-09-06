@@ -39,7 +39,7 @@
         android:ems="10"
         android:hint="digite o email para envio"
         android:inputType="textEmailAddress"
-        app:layout_constraintBaseline_toBaselineOf="@+id/lbl_cidade"
+        app:layout_constraintBaseline_toBaselineOf="@+id/lbl_email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/lbl_cidade" />
 
@@ -47,11 +47,11 @@
         android:id="@+id/btn_enviar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:text="Enviar email"
         app:layout_constraintEnd_toEndOf="@+id/img_logo"
         app:layout_constraintStart_toStartOf="@+id/img_logo"
-        app:layout_constraintTop_toBottomOf="@+id/txt_confirma_senha" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_email" />
 
     <TextView
         android:id="@+id/lbl_explicacao"
