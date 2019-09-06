@@ -18,6 +18,9 @@ public class Evento {
     private String rua;
     private String numero;
 
+    public Evento(){
+    }
+
     public Evento(String email, String nome, String descricao, String tipo, Date dt_i, Date dt_f, Time hra_i, Time hra_f, int max_p, String cidade, String estado, String rua, String numero){
         this.email_usuario= email;
         this.nome= nome;

@@ -5,6 +5,9 @@ public class Usuario {
     protected String nome;
     protected String senha;
 
+    public Usuario(){
+    }
+
     public Usuario(String email, String nome, String senha){
         this.email= email;
         this.nome= nome;

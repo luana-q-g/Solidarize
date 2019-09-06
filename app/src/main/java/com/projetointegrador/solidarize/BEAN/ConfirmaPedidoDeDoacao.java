@@ -9,6 +9,9 @@ public class ConfirmaPedidoDeDoacao {
     private Date dt_pedido;
     private Time hra_pedido;
 
+    public ConfirmaPedidoDeDoacao(){
+    }
+
     public ConfirmaPedidoDeDoacao(String email_u, String cnpj, Date dt, Time hra){
         this.email_usuario= email_u;
         this.cnpj_pedido= cnpj;
