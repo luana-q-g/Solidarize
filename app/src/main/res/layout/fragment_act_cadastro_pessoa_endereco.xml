@@ -39,7 +39,7 @@
         android:padding="5dp">
 
         <TextView
-            android:id="@+id/lbl_confirma_senha"
+            android:id="@+id/lbl_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
