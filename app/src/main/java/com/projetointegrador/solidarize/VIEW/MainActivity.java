@@ -2,15 +2,33 @@ package com.projetointegrador.solidarize.VIEW;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
+import com.projetointegrador.solidarize.BEAN.Usuario;
+import com.projetointegrador.solidarize.DAO.UsuarioDAO;
 import com.projetointegrador.solidarize.R;
 
 public class MainActivity extends AppCompatActivity {
+    private EditText txt_email;
+    private EditText txt_senha;
+    private TextView lbl_esqueci_senha;
+    private Button btn_entrar;
+    private TextView lbl_registrar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        txt_email= (EditText) findViewById(R.id.txt_email);
+        txt_senha= (EditText) findViewById(R.id.txt_senha);
+        lbl_esqueci_senha= (TextView) findViewById(R.id.lbl_esqueci_senha);
+        lbl_registrar= (TextView) findViewById(R.id.lbl_registrar);
+
+        Usuario user= new Usuario("lulu", "luana", "9809809");
+        UsuarioDAO u= new UsuarioDAO();
+        u.inserirUsuario(user);
     }
 }
