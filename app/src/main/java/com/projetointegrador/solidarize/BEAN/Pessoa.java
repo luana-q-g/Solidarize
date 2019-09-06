@@ -10,10 +10,9 @@ public class Pessoa extends Usuario{
     public Pessoa(){
     }
 
-    public Pessoa(String email, String nome, String senha, String cpf, String email_usuario, String data_nasc, String cidade, String estado){
+    public Pessoa(String email, String nome, String senha, String cpf, String data_nasc, String cidade, String estado){
         super(email, nome, senha);
         this.cpf= cpf;
-        this.email_usuario= email_usuario;
         this.data_nasc= data_nasc;
         this.cidade= cidade;
         this.estado= estado;

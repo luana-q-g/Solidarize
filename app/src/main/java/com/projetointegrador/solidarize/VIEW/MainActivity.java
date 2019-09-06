@@ -6,8 +6,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.projetointegrador.solidarize.BEAN.Usuario;
-import com.projetointegrador.solidarize.DAO.UsuarioDAO;
+import com.projetointegrador.solidarize.BEAN.Pessoa;
+import com.projetointegrador.solidarize.DAO.PessoaDAO;
 import com.projetointegrador.solidarize.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
         lbl_esqueci_senha= (TextView) findViewById(R.id.lbl_esqueci_senha);
         lbl_registrar= (TextView) findViewById(R.id.lbl_registrar);
 
-        Usuario user= new Usuario("lulu", "luana", "9809809");
-        UsuarioDAO u= new UsuarioDAO();
-        u.inserirUsuario(user);
+        Pessoa user= new Pessoa("lulu@gmail.com", "luana", "9809809", "298929293", "28/11/2002", "SBC", "SP");
+        PessoaDAO p= new PessoaDAO();
+        p.inserirUsuarioPessoa(user);
     }
 }

@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.projetointegrador.solidarize.R;
+
 public class CadastroEventoActivity extends AppCompatActivity {
 
     @Override

@@ -11,12 +11,12 @@ public class UsuarioDAO {
 
     public UsuarioDAO(){};
 
-    public void inserirUsuario(Usuario usuario){
-        DatabaseReference u= usuarioDao.child("us1"); // rever como fazer isso
+    /*public void inserirUsuario(Usuario usuario){
+        DatabaseReference u= usuarioDao.child(); // rever como fazer isso
 
         u.child("email").setValue(usuario.getEmail());
         u.child("nome").setValue(usuario.getNome());
         u.child("senha").setValue(usuario.getSenha());
-    }
+    }*/
 
 }
