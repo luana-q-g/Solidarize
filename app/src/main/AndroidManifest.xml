@@ -13,14 +13,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".VIEW.CadastroInstituicao"></activity>
+        <activity android:name=".VIEW.CadastroEventoActivity"></activity>
+        <activity android:name=".VIEW.CadastroInstituicao" />
         <activity
             android:name=".VIEW.NavDrawMenu"
             android:label="@string/title_activity_nav_draw_menu"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".VIEW.CadastroPessoa" />
         <activity android:name=".VIEW.SelecionaTipoCadastro" />
-        <activity android:name=".VIEW.EsqueciSenha" >
+        <activity android:name=".VIEW.EsqueciSenha">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
@@ -28,6 +29,7 @@
         <activity android:name=".VIEW.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
