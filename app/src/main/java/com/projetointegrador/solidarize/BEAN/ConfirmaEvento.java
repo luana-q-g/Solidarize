@@ -5,6 +5,9 @@ public class ConfirmaEvento {
     private String nome_evento;
     private String email_usuario_evento;
 
+    public ConfirmaEvento(){
+    }
+
     public ConfirmaEvento(String email_u, String nome_evento, String email_u_e){
         this.email_usuario= email_u;
         this.nome_evento= nome_evento;

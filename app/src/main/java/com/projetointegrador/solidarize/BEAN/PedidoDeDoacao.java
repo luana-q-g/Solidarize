@@ -11,6 +11,9 @@ public class PedidoDeDoacao {
     private int nivel_urgencia;
     private String item;
 
+    public PedidoDeDoacao(){
+    }
+
     public PedidoDeDoacao(String cnpj, Date dt_c, Time hra_c, Date dt_v, int nivel, String item){
         this.cnpj_instituicao= cnpj;
         this.dt_cadastro= dt_c;

@@ -13,6 +13,9 @@ public class LocalArrecadacaoPedido {
     private String rua;
     private String numero;
 
+    public LocalArrecadacaoPedido(){
+    }
+
     public LocalArrecadacaoPedido(String cnpj, Date dt_c, Time hra_c, String nome, String cidade, String estado, String rua, String numero){
         this.cnpj_instituicao_pedido= cnpj;
         this.dt_cadastro_pedido= dt_c;

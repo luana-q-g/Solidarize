@@ -9,6 +9,10 @@ public class Instituicao extends Usuario{
     private String rua;
     private String numero;
 
+    public Instituicao(){
+        super();
+    }
+
     public Instituicao(String email, String nome, String senha, String cnpj, String descricao, String cidade, String estado, String rua, String numero){
         super(email, nome, senha);
         this.cnpj= cnpj;

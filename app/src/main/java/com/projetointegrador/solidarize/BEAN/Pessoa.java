@@ -7,6 +7,9 @@ public class Pessoa extends Usuario{
     private String cidade;
     private String estado;
 
+    public Pessoa(){
+    }
+
     public Pessoa(String email, String nome, String senha, String cpf, String email_usuario, String data_nasc, String cidade, String estado){
         super(email, nome, senha);
         this.cpf= cpf;
