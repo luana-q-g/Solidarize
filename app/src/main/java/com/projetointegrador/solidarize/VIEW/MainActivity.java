@@ -1,6 +1,8 @@
 package com.projetointegrador.solidarize.VIEW;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -44,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //vai para SelecionaTipoCadastro
+                Intent i_seleciona_tipo= new Intent(getApplicationContext(), SelecionaTipoCadastro.class);
+                startActivity(i_seleciona_tipo);
             }
         });
 
@@ -51,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //vai para EsqueciSenha
+                Intent i_esqueci_senha= new Intent(getApplicationContext(), EsqueciSenha.class);
+                startActivity(i_esqueci_senha);
             }
         });
     }
