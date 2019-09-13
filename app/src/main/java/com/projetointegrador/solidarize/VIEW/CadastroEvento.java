@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.projetointegrador.solidarize.R;
 
-public class CadastroEventoActivity extends AppCompatActivity {
+public class CadastroEvento extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

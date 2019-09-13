@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        app:srcCompat="@drawable/logo_solidarize" />
+
+    <TextView
+        android:id="@+id/lbl_titulo_evento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|center"
+        android:text="Passeio Com Criancinhas"
+        android:textSize="18dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/salva_ou_confirma"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_weight="40dp"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/salvar_evento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_weight="1"
+            android:text="Salvar" />
+
+        <CheckBox
+            android:id="@+id/confirma_presenca"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="24dp"
+            android:layout_weight="0.5"
+            android:text="Confirmar presença" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/data_e_hora"
+        android:layout_width="match_parent"
+        android:layout_height="103dp"
+        android:orientation="horizontal"></LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/descricao"
+        android:layout_width="match_parent"
+        android:layout_height="92dp"
+        android:orientation="horizontal"></LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/perfil_inst"
+        android:layout_width="match_parent"
+        android:layout_height="88dp"
+        android:orientation="horizontal"></LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/endereco"
+        android:layout_width="match_parent"
+        android:layout_height="87dp"
+        android:orientation="horizontal"></LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="92dp"
+        android:orientation="horizontal"></LinearLayout>
+</LinearLayout>
