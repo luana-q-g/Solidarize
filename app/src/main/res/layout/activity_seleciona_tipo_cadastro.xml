@@ -44,14 +44,14 @@
         app:layout_constraintTop_toBottomOf="@+id/lbl_escolha">
 
         <RadioButton
-            android:id="@+id/rad_instituicao"
+            android:id="@+id/rad_pessoa"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Pessoa" />
 
         <RadioButton
-            android:id="@+id/rad_pessoa"
+            android:id="@+id/rad_instituicao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -63,7 +63,7 @@
         android:id="@+id/btn_continuar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:text="Continuar"
         app:layout_constraintEnd_toEndOf="@+id/lbl_escolha"
         app:layout_constraintStart_toStartOf="@+id/lbl_escolha"
