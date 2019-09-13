@@ -29,7 +29,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/datainic"
+        android:id="@+id/datainicio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -40,12 +40,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_weight="1"
-            android:text="data início:" />
+            android:text="Data início:" />
 
         <EditText
             android:id="@+id/datainicio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="24dp"
             android:layout_weight="1"
             android:ems="10"
             android:inputType="date" />
@@ -64,12 +65,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_weight="1"
-            android:text="data final:" />
+            android:text="Data final:" />
 
         <EditText
             android:id="@+id/datafinal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="24dp"
             android:layout_weight="1"
             android:ems="10"
             android:inputType="date" />
@@ -94,6 +96,7 @@
             android:id="@+id/horarioevento"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="24dp"
             android:layout_weight="1"
             android:ems="10"
             android:inputType="time" />
@@ -118,6 +121,7 @@
             android:id="@+id/horarioeventofim"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="24dp"
             android:layout_weight="1"
             android:ems="10"
             android:inputType="time" />
@@ -132,7 +136,7 @@
 
         <TextView
             android:id="@+id/lbl_tipo"
-            android:layout_width="10dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_weight="1"
@@ -142,6 +146,7 @@
             android:id="@+id/tipoevento"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="24dp"
             android:layout_weight="1" />
 
     </LinearLayout>
