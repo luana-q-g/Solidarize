@@ -36,8 +36,8 @@ public class CadastroPessoaEnderecoFragment extends Fragment {
 
         estado= view.findViewById(R.id.spin_estados);
         cidade= view.findViewById(R.id.spin_cidades);
-        btn_voltar= view.findViewById(R.id.btn_voltar_endereco);
-        btn_continuar= view.findViewById(R.id.btn_continuar_endereco);
+        btn_voltar= view.findViewById(R.id.btn_voltar_endereco_pessoa);
+        btn_continuar= view.findViewById(R.id.btn_continuar_endereco_pessoa);
 
         btn_continuar.setOnClickListener(new View.OnClickListener() {
             @Override

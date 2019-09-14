@@ -62,14 +62,14 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btn_voltar_endereco"
+            android:id="@+id/btn_voltar_endereco_pessoa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Voltar" />
 
         <Button
-            android:id="@+id/btn_continuar_endereco"
+            android:id="@+id/btn_continuar_endereco_pessoa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

@@ -30,7 +30,7 @@ public class CadastroPessoaSenhaFragment extends Fragment {
         //inflando fragment com seu layout
         View view= inflater.inflate(R.layout.fragment_act_cadastro_pessoa_senha, container, false);
 
-        btn_voltar= view.findViewById(R.id.btn_voltar_senha);
+        btn_voltar= view.findViewById(R.id.btn_voltar_senha_pessoa);
         btn_cadastrar= view.findViewById(R.id.btn_cadastrar_pessoa);
 
         btn_cadastrar.setOnClickListener(new View.OnClickListener() {

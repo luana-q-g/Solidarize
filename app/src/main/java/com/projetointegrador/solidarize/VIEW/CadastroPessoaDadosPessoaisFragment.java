@@ -42,7 +42,7 @@ public class CadastroPessoaDadosPessoaisFragment extends Fragment {
         cpf= view.findViewById(R.id.txt_cpf);
         telefone= view.findViewById(R.id.txt_telefone);
         dt_nasc= view.findViewById(R.id.txt_dt_nasc);
-        btn_continuar= view.findViewById(R.id.btn_continuar_dados_pessoais);
+        btn_continuar= view.findViewById(R.id.btn_continuar_dados_pessoais_pessoa);
 
         btn_continuar.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -64,7 +64,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btn_voltar_senha"
+            android:id="@+id/btn_voltar_senha_pessoa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

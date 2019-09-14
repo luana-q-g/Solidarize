@@ -103,7 +103,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btn_continuar_endereco"
+        android:id="@+id/btn_continuar_dados_pessoais_instituicao"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
