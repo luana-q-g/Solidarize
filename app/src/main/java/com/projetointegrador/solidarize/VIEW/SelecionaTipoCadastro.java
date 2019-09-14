@@ -26,7 +26,7 @@ public class SelecionaTipoCadastro extends AppCompatActivity {
         rad_group= (RadioGroup) findViewById(R.id.rad_group_escolha);
         rad_institu= (RadioButton) findViewById(R.id.rad_instituicao);
         rad_pessoa= (RadioButton) findViewById(R.id.rad_pessoa);
-        btn_continuar= (Button) findViewById(R.id.btn_continuar);
+        btn_continuar= (Button) findViewById(R.id.btn_continuar_escolha_tipo_cadastro);
 
         btn_continuar.setOnClickListener(new View.OnClickListener() {
             @Override

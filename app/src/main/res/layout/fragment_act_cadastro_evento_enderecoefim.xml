@@ -125,7 +125,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btn_continuar"
+        android:id="@+id/btn_continuar_endereco"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"

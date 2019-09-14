@@ -57,10 +57,24 @@
             android:inputType="textPassword" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_cadastrar"
+    <LinearLayout
+        android:id="@+id/buttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:text="Cadastrar" />
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_voltar_senha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Voltar" />
+
+        <Button
+            android:id="@+id/btn_cadastrar_pessoa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Cadastrar" />
+    </LinearLayout>
 </LinearLayout>
