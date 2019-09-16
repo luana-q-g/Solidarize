@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //verificacao dos dados email e senha
+                Intent i_nav_draw= new Intent(getApplicationContext(), NavDrawMenu.class);
+                startActivity(i_nav_draw);
             }
         });
 

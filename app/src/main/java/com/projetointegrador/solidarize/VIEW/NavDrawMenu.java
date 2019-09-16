@@ -8,10 +8,20 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.MenuItem;
 
 import com.projetointegrador.solidarize.R;
+import com.projetointegrador.solidarize.VIEW.NavDrawer.AcoesUsuarioEventosFragment;
+import com.projetointegrador.solidarize.VIEW.NavDrawer.AcoesUsuarioPedidosDoacaoFragment;
+import com.projetointegrador.solidarize.VIEW.NavDrawer.ConfiguracoesFragment;
+import com.projetointegrador.solidarize.VIEW.NavDrawer.FeedEventosFragment;
+import com.projetointegrador.solidarize.VIEW.NavDrawer.FeedInstituicoesFragment;
+import com.projetointegrador.solidarize.VIEW.NavDrawer.FeedPedidosDoacaoFragment;
+import com.projetointegrador.solidarize.VIEW.NavDrawer.PerfilUsuarioFragment;
+import com.projetointegrador.solidarize.VIEW.NavDrawer.SobreAppFragment;
 
 public class NavDrawMenu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -31,6 +41,12 @@ public class NavDrawMenu extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        FragmentManager fm= getSupportFragmentManager();
+        FragmentTransaction ft= fm.beginTransaction();
+        FeedEventosFragment fef= new FeedEventosFragment();
+        ft.replace(R.id.place_holder_nav_draw, fef);
+        ft.commit();
     }
 
     @Override
@@ -49,41 +65,60 @@ public class NavDrawMenu extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        FragmentManager fm= getSupportFragmentManager();
+        FragmentTransaction ft= fm.beginTransaction();
+
         switch (id) {
             case R.id.nav_perfil:
-
+                PerfilUsuarioFragment puf= new PerfilUsuarioFragment();
+                ft.replace(R.id.place_holder_nav_draw, puf);
+                ft.commit();
                 break;
 
             case R.id.nav_acoes_eventos:
-
+                AcoesUsuarioEventosFragment auef= new AcoesUsuarioEventosFragment();
+                ft.replace(R.id.place_holder_nav_draw, auef);
+                ft.commit();
                 break;
 
             case R.id.nav_acoes_pedidos_doacao:
-
+                AcoesUsuarioPedidosDoacaoFragment aupdf= new AcoesUsuarioPedidosDoacaoFragment();
+                ft.replace(R.id.place_holder_nav_draw, aupdf);
+                ft.commit();
                 break;
 
             case R.id.nav_eventos:
-
+                FeedEventosFragment fef= new FeedEventosFragment();
+                ft.replace(R.id.place_holder_nav_draw, fef);
+                ft.commit();
                 break;
 
             case R.id.nav_inst_todas:
-
+                FeedInstituicoesFragment fif= new FeedInstituicoesFragment();
+                ft.replace(R.id.place_holder_nav_draw, fif);
+                ft.commit();
                 break;
 
             case R.id.nav_inst_pedidos:
-
+                FeedPedidosDoacaoFragment fpdf= new FeedPedidosDoacaoFragment();
+                ft.replace(R.id.place_holder_nav_draw, fpdf);
+                ft.commit();
                 break;
 
             case R.id.nav_config:
-
+                ConfiguracoesFragment cf= new ConfiguracoesFragment();
+                ft.replace(R.id.place_holder_nav_draw, cf);
+                ft.commit();
                 break;
 
             case R.id.nav_sobre_app:
-
+                SobreAppFragment saf= new SobreAppFragment();
+                ft.replace(R.id.place_holder_nav_draw, saf);
+                ft.commit();
                 break;
 
             case R.id.nav_sair:
-
+                //sair
                 break;
         }
 

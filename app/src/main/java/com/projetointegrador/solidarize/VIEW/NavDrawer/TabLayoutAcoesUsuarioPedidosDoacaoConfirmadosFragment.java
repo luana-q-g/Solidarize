@@ -1,14 +1,17 @@
 package com.projetointegrador.solidarize.VIEW.NavDrawer;
 
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class SobreApp extends Fragment {
+import com.projetointegrador.solidarize.R;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+public class TabLayoutAcoesUsuarioPedidosDoacaoConfirmadosFragment extends Fragment {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -18,6 +21,8 @@ public class SobreApp extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+        View view= inflater.inflate(R.layout.fragment_tab_layout_acoes_usuario_pedidos_doacao_confirmados, container, false);
+
+        return view;
     }
 }

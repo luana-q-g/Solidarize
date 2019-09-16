@@ -15,7 +15,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.projetointegrador.solidarize.R;
 import com.projetointegrador.solidarize.VIEW.NavDrawMenu;
 
-public class AcoesUsuarioEventosFragment extends Fragment {
+public class AcoesUsuarioPedidosDoacaoFragment extends Fragment {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -25,18 +25,18 @@ public class AcoesUsuarioEventosFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view= inflater.inflate(R.layout.fragment_acoes_usuario_eventos, container, false);
+        View view= inflater.inflate(R.layout.fragment_acoes_usuario_pedidos_doacao, container, false);
 
-        AppBarLayout appBarLayout = (AppBarLayout) view.findViewById(R.id.appBar_acoes_usuario_eventos);
+        AppBarLayout appBarLayout = (AppBarLayout) view.findViewById(R.id.appBar_acoes_usuario_pedidos_doacao);
 
-        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tab_layout_acoes_usuario_eventos);
+        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tab_layout_acoes_usuario_pedidos_doacao);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        final ViewPager pager = (ViewPager) view.findViewById(R.id.view_pager_acoes_usuario_eventos);
+        final ViewPager pager = (ViewPager) view.findViewById(R.id.view_pager_acoes_usuario_pedidos_doacao);
 
         NavDrawMenu act = (NavDrawMenu) getActivity();
 
-        TabAdapterAcoesUsuarioEventos tabsAdapter = new TabAdapterAcoesUsuarioEventos(act.getSupportFragmentManager());
+        TabAdapterAcoesUsuarioPedidosDoacao tabsAdapter = new TabAdapterAcoesUsuarioPedidosDoacao(act.getSupportFragmentManager());
 
         pager.setAdapter(tabsAdapter);
 
