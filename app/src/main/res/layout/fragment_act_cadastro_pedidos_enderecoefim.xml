@@ -99,11 +99,26 @@
             android:inputType="phone" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_continuar_endereco"
+    <LinearLayout
+        android:id="@+id/buttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:text="Enviar" />
+        android:orientation="horizontal"
+        android:layout_marginTop="25dp">
+
+        <Button
+            android:id="@+id/btn_voltar_enderecoefim_pedidos_doacao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Voltar" />
+
+        <Button
+            android:id="@+id/btn_cadastrar_enderecoefim_pedidos_doacao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Cadastrar" />
+    </LinearLayout>
 
 </LinearLayout>

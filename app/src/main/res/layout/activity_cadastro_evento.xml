@@ -30,7 +30,7 @@
             android:textStyle="bold" />
 
         <FrameLayout
-            android:id="@+id/place_holder_info_cadastro_instituicao"
+            android:id="@+id/place_holder_info_cadastro_evento"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 

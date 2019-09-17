@@ -28,14 +28,13 @@ public class AcoesUsuarioPedidosDoacaoFragment extends Fragment {
         View view= inflater.inflate(R.layout.fragment_acoes_usuario_pedidos_doacao, container, false);
 
         AppBarLayout appBarLayout = (AppBarLayout) view.findViewById(R.id.appBar_acoes_usuario_pedidos_doacao);
-
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tab_layout_acoes_usuario_pedidos_doacao);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-
         final ViewPager pager = (ViewPager) view.findViewById(R.id.view_pager_acoes_usuario_pedidos_doacao);
 
         NavDrawMenu act = (NavDrawMenu) getActivity();
 
+        //constroi o tab layout
         TabAdapterAcoesUsuarioPedidosDoacao tabsAdapter = new TabAdapterAcoesUsuarioPedidosDoacao(act.getSupportFragmentManager());
 
         pager.setAdapter(tabsAdapter);

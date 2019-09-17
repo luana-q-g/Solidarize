@@ -11,7 +11,7 @@
 
         <TextView
             android:id="@+id/lbl_nome_pedido"
-            android:layout_width="76dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_weight="1"
@@ -36,28 +36,29 @@
 
         <TextView
             android:id="@+id/lbl_meta_qtd"
-            android:layout_width="140dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_weight="0"
             android:text="Meta de quantidade:" />
 
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="180dp"
-            android:layout_height="match_parent"
-            android:layout_marginRight="24dp"
-            android:layout_weight="1" />
+        <EditText
+            android:id="@+id/txt_meta_qtd"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_weight="0"
+            android:inputType="number" />
 
         <EditText
-            android:id="@+id/qtd"
+            android:id="@+id/txt_tipo_meta_qtd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="24dp"
             android:layout_weight="1"
             android:ems="10"
             android:hint="L, mL, kg, ..."
-            android:inputType="textPersonName" />
+            android:inputType="text" />
 
     </LinearLayout>
 
@@ -69,14 +70,14 @@
 
         <TextView
             android:id="@+id/lbl_tipo_pedido"
-            android:layout_width="10dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_weight="1"
             android:text="Tipo: " />
 
         <Spinner
-            android:id="@+id/tipo_pedido"
+            android:id="@+id/txt_tipo_pedido"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="24dp"
@@ -85,21 +86,21 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/data_finalp"
+        android:id="@+id/dt_final"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/lbl_data_final"
-            android:layout_width="14dp"
+            android:id="@+id/lbl_dt_final"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_weight="1"
             android:text="Pedir até:" />
 
         <EditText
-            android:id="@+id/data_final"
+            android:id="@+id/txt_dt_final"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="24dp"
@@ -124,7 +125,7 @@
             android:text="Nível de urgência:" />
 
         <EditText
-            android:id="@+id/nivel_urg"
+            android:id="@+id/txt_nivel_urgencia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="24dp"
@@ -135,7 +136,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btn_continuar_endereco"
+        android:id="@+id/btn_continuar_infos_pedidos_doacao"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"

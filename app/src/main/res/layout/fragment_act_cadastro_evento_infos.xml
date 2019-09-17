@@ -4,13 +4,13 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/nome"
+        android:id="@+id/nome_evento"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/lbl_nome"
+            android:id="@+id/lbl_nome_evento"
             android:layout_width="76dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -18,7 +18,7 @@
             android:text="Nome do evento: " />
 
         <EditText
-            android:id="@+id/txt_nome"
+            android:id="@+id/txt_nome_evento"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
@@ -29,13 +29,13 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/datainicio"
+        android:id="@+id/dt_inicio_evento"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/lbl_datainicio"
+            android:id="@+id/lbl_dt_inicio_evento"
             android:layout_width="14dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -43,7 +43,7 @@
             android:text="Data início:" />
 
         <EditText
-            android:id="@+id/datainicio"
+            android:id="@+id/txt_dt_inicio_evento"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="24dp"
@@ -54,13 +54,13 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/datafin"
+        android:id="@+id/dt_fim_evento"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/lbl_datafinal"
+            android:id="@+id/lbl_dt_fim_evento"
             android:layout_width="14dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -68,7 +68,7 @@
             android:text="Data final:" />
 
         <EditText
-            android:id="@+id/datafinal"
+            android:id="@+id/txt_dt_fim_evento"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="24dp"
@@ -79,13 +79,13 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/horarioinicio"
+        android:id="@+id/hra_inicio_evento"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/lbl_horarioinicio"
+            android:id="@+id/lbl_hra_inicio_evento"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -93,7 +93,7 @@
             android:text="Horário início:" />
 
         <EditText
-            android:id="@+id/horarioevento"
+            android:id="@+id/txt_hra_inicio_evento"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="24dp"
@@ -104,13 +104,13 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/horariofinal"
+        android:id="@+id/hra_fim_evento"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/lbl_horariofinal"
+            android:id="@+id/lbl_hra_fim_evento"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -118,24 +118,23 @@
             android:text="Horário final:" />
 
         <EditText
-            android:id="@+id/horarioeventofim"
+            android:id="@+id/txt_hra_fim_evento"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="24dp"
             android:layout_weight="1"
             android:ems="10"
             android:inputType="time" />
-
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/tipo"
+        android:id="@+id/tipo_evento"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/lbl_tipo"
+            android:id="@+id/lbl_tipo_evento"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -143,7 +142,7 @@
             android:text="Tipo: " />
 
         <Spinner
-            android:id="@+id/tipoevento"
+            android:id="@+id/txt_tipo_evento"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="24dp"
@@ -152,7 +151,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btn_continuar_endereco"
+        android:id="@+id/btn_continuar_infos_eventos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"

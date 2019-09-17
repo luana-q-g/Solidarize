@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.projetointegrador.solidarize.R;
+
 public class FeedPedidosDoacaoFragment extends Fragment {
 
     @Override
@@ -18,6 +20,8 @@ public class FeedPedidosDoacaoFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+        View view= inflater.inflate(R.layout.fragment_feed_pedidos_doacao, container, false);
+
+        return view;
     }
 }

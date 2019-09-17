@@ -8,10 +8,10 @@ public class Evento {
     private String nome;
     private String descricao;
     private String tipo;
-    private Date dt_inicio;
-    private Date dt_fim;
-    private Time hra_inicio;
-    private Time hra_fim;
+    private String dt_inicio;
+    private String dt_fim;
+    private String hra_inicio;
+    private String hra_fim;
     private int max_participantes;
     private String cidade;
     private String estado;
@@ -21,7 +21,7 @@ public class Evento {
     public Evento(){
     }
 
-    public Evento(String email, String nome, String descricao, String tipo, Date dt_i, Date dt_f, Time hra_i, Time hra_f, int max_p, String cidade, String estado, String rua, String numero){
+    public Evento(String email, String nome, String descricao, String tipo, String dt_i, String dt_f, String hra_i, String hra_f, int max_p, String cidade, String estado, String rua, String numero){
         this.email_usuario= email;
         this.nome= nome;
         this.descricao= descricao;
@@ -69,35 +69,35 @@ public class Evento {
         this.tipo = tipo;
     }
 
-    public Date getDt_inicio() {
+    public String getDt_inicio() {
         return dt_inicio;
     }
 
-    public void setDt_inicio(Date dt_inicio) {
+    public void setDt_inicio(String dt_inicio) {
         this.dt_inicio = dt_inicio;
     }
 
-    public Date getDt_fim() {
+    public String getDt_fim() {
         return dt_fim;
     }
 
-    public void setDt_fim(Date dt_fim) {
+    public void setDt_fim(String dt_fim) {
         this.dt_fim = dt_fim;
     }
 
-    public Time getHra_inicio() {
+    public String getHra_inicio() {
         return hra_inicio;
     }
 
-    public void setHra_inicio(Time hra_inicio) {
+    public void setHra_inicio(String hra_inicio) {
         this.hra_inicio = hra_inicio;
     }
 
-    public Time getHra_fim() {
+    public String getHra_fim() {
         return hra_fim;
     }
 
-    public void setHra_fim(Time hra_fim) {
+    public void setHra_fim(String hra_fim) {
         this.hra_fim = hra_fim;
     }
 

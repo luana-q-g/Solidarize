@@ -8,7 +8,7 @@
     tools:context=".VIEW.CadastroPessoaSenhaFragment">
 
     <LinearLayout
-        android:id="@+id/nome"
+        android:id="@+id/senha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -22,7 +22,7 @@
             android:text="Senha: " />
 
         <EditText
-            android:id="@+id/txt_nome"
+            android:id="@+id/txt_senha"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
@@ -33,21 +33,21 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/email"
+        android:id="@+id/confirma_senha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/lbl_email"
+            android:id="@+id/lbl_confirma_senha"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="24dp"
             android:layout_weight="1"
             android:text="Confirmação da senha: " />
 
         <EditText
-            android:id="@+id/txt_email"
+            android:id="@+id/txt_confirma_senha"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
@@ -61,7 +61,8 @@
         android:id="@+id/buttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="25dp">
 
         <Button
             android:id="@+id/btn_voltar_senha_pessoa"
