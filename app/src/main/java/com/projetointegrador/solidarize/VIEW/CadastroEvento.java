@@ -11,14 +11,15 @@ import com.projetointegrador.solidarize.BEAN.Evento;
 import com.projetointegrador.solidarize.R;
 
 public class CadastroEvento extends AppCompatActivity {
-    private String nome_evento;
+    private FrameLayout place_holder;
+
+    private Evento evento= new Evento();
+    /*private String nome_evento;
     private String dt_inicio;
     private String dt_final;
     private String hra_inicio;
     private String hra_final;
-    private String tipo;
-
-    private FrameLayout place_holder;
+    private String tipo;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,36 +36,20 @@ public class CadastroEvento extends AppCompatActivity {
         ft.commit();
     }
 
-    public void setInfos(Evento evento){
-        this.nome_evento= evento.getNome();
-        this.dt_inicio= evento.getDt_inicio();
-        this.dt_final= evento.getDt_fim();
-        this.hra_inicio= evento.getHra_inicio();
-        this.hra_final= evento.getHra_fim();
-        this.tipo= evento.getTipo();
+    public void setInfos(String nome_evento, String dt_inicio, String dt_final, String hra_inicio, String hra_final, String tipo){
+        this.evento.setNome(nome_evento);
+        this.evento.setDt_inicio(dt_inicio);
+        this.evento.setDt_fim(dt_final);
+        this.evento.setHra_inicio(hra_inicio);
+        this.evento.setHra_fim(hra_final);
+        this.evento.setTipo(tipo);
     }
 
-    public String getNome_evento() {
-        return nome_evento;
+    public Evento getEvento() {
+        return evento;
     }
 
-    public String getDt_inicio() {
-        return dt_inicio;
-    }
-
-    public String getDt_final() {
-        return dt_final;
-    }
-
-    public String getHra_inicio() {
-        return hra_inicio;
-    }
-
-    public String getHra_final() {
-        return hra_final;
-    }
-
-    public String getTipo() {
-        return tipo;
+    public void setEvento(Evento evento) {
+        this.evento = evento;
     }
 }

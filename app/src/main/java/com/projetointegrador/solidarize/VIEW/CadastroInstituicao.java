@@ -14,14 +14,8 @@ import com.projetointegrador.solidarize.R;
 public class CadastroInstituicao extends AppCompatActivity {
     private FrameLayout place_holder;
 
-    private String nome;
-    private String email;
-    private String cnpj;
-    private String telefone;
-    private String cidade;
-    private String estado;
-    private String rua;
-    private String complemento;
+    private Instituicao instituicao= new Instituicao();
+    private TelefoneUsuario tel= new TelefoneUsuario();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,49 +32,34 @@ public class CadastroInstituicao extends AppCompatActivity {
         ft.commit();
     }
 
-    public void setDadosPessoais(Instituicao inst, TelefoneUsuario tel){
-        this.nome= inst.getNome();
-        this.email= inst.getEmail();
-        this.cnpj= inst.getCnpj();
-        this.telefone= tel.getTelefone();
+    public void setDadosPessoais(String nome, String email, String cnpj, String telefone){
+        this.instituicao.setNome(nome);
+        this.instituicao.setEmail(email);
+        this.instituicao.setCnpj(cnpj);
+        this.tel.setTelefone(telefone);
+        this.tel.setEmail_usuario(email);
     }
 
-    public void setEndereco(String c, String e, String r, String com){
-        this.estado= e;
-        this.cidade= c;
-        this.rua= r;
-        this.complemento= com;
+    public void setEndereco(String cidade, String estado, String rua, String complemento){
+        this.instituicao.setEstado(estado);
+        this.instituicao.setCidade(cidade);
+        this.instituicao.setRua(rua);
+        this.instituicao.setNumero(complemento);
     }
 
-    public String getNome() {
-        return nome;
+    public Instituicao getInstituicao() {
+        return instituicao;
     }
 
-    public String getEmail() {
-        return email;
+    public void setInstituicao(Instituicao instituicao) {
+        this.instituicao = instituicao;
     }
 
-    public String getCnpj() {
-        return cnpj;
+    public TelefoneUsuario getTel() {
+        return tel;
     }
 
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public String getCidade() {
-        return cidade;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public String getRua() {
-        return rua;
-    }
-
-    public String getComplemento() {
-        return complemento;
+    public void setTel(TelefoneUsuario tel) {
+        this.tel = tel;
     }
 }

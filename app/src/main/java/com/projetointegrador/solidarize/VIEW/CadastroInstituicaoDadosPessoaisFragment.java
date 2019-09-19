@@ -45,21 +45,14 @@ public class CadastroInstituicaoDadosPessoaisFragment extends Fragment {
         btn_continuar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*String n, e, c, t, d;
+                String n, e, c, t, d;
                 n= nome.getText().toString();
                 e= email.getText().toString();
                 c= cnpj.getText().toString();
                 t= telefone.getText().toString();
 
-                Instituicao inst= new Instituicao();
-                inst.setNome(n);
-                inst.setEmail(e);
-                inst.setCnpj(c);
-
-                TelefoneUsuario tel= new TelefoneUsuario(e, t);
-
                 CadastroInstituicao act= (CadastroInstituicao) getActivity();
-                act.setDadosPessoais(inst, tel);*/
+                act.setDadosPessoais(n, e, c, t);
 
                 FragmentManager fm= getActivity().getSupportFragmentManager();
                 FragmentTransaction ft= fm.beginTransaction();

@@ -22,7 +22,6 @@ import com.projetointegrador.solidarize.R;
 public class CadastroPessoaSenhaFragment extends Fragment {
     private EditText txt_senha;
     private EditText txt_confirma_senha;
-
     private Button btn_voltar;
     private Button btn_cadastrar;
 
@@ -59,6 +58,8 @@ public class CadastroPessoaSenhaFragment extends Fragment {
 
                     PessoaDAO pessoaDao= new PessoaDAO();
                     pessoaDao.inserirUsuarioPessoa(pessoa);
+
+                    //inserir telefone
                 }
                 else{
                     Toast.makeText(getContext(), "Coloque a mesma senha em ambos os campos!", Toast.LENGTH_LONG).show();

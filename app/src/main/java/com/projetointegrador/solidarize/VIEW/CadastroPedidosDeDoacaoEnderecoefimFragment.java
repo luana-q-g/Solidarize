@@ -8,8 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.projetointegrador.solidarize.BEAN.Evento;
-import com.projetointegrador.solidarize.DAO.EventoDAO;
+import com.projetointegrador.solidarize.BEAN.PedidoDeDoacao;
+import com.projetointegrador.solidarize.DAO.PedidosDeDoacaoDAO;
 import com.projetointegrador.solidarize.R;
 
 import androidx.annotation.NonNull;
@@ -18,14 +18,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-public class CadastroEventoEnderecoefimFragment extends Fragment {
-
+public class CadastroPedidosDeDoacaoEnderecoefimFragment extends Fragment {
     private Spinner txt_estado;
     private Spinner txt_cidade;
     private EditText txt_rua;
     private EditText txt_complemento;
-    private EditText txt_descricao;
-    private EditText txt_max_participantes;
 
     private Button btn_voltar;
     private Button btn_cadastrar;
@@ -44,39 +41,33 @@ public class CadastroEventoEnderecoefimFragment extends Fragment {
         txt_cidade= view.findViewById(R.id.spin_cidades);
         txt_rua= view.findViewById(R.id.txt_rua);
         txt_complemento= view.findViewById(R.id.txt_complemento);
-        txt_descricao= view.findViewById(R.id.txt_descricao_evento);
-        txt_max_participantes= view.findViewById(R.id.txt_max_participantes);
-        btn_voltar= view.findViewById(R.id.btn_voltar_enderecoefim_eventos);
-        btn_cadastrar= view.findViewById(R.id.btn_cadastrar_enderecoefim_eventos);
+        btn_voltar= view.findViewById(R.id.btn_voltar_enderecoefim_pedidos_doacao);
+        btn_cadastrar= view.findViewById(R.id.btn_cadastrar_enderecoefim_pedidos_doacao);
 
         btn_cadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String e, c, r, com, d, m;
+                String e, c, r, com;
                 //e= txt_estado.getSelectedItem().toString();
                 //c= txt_cidade.getSelectedItem().toString();
                 e= "";
                 c= "";
                 r= txt_rua.getText().toString();
                 com= txt_complemento.getText().toString();
-                d= txt_descricao.getText().toString();
-                m= txt_max_participantes.getText().toString();
 
                 //cadastro
-                CadastroEvento cadastro= (CadastroEvento) getActivity();
-                Evento evento= cadastro.getEvento();
+                CadastroPedidosDeDoacao cadastro= (CadastroPedidosDeDoacao) getActivity();
+                PedidoDeDoacao pedido= cadastro.getPedido_de_doacao();
 
-                evento.setEstado(e);
-                evento.setCidade(c);
-                evento.setRua(r);
-                evento.setNumero(com);
-                evento.setDescricao(d);
-                evento.setMax_participantes(m);
+                pedido.setEstado(e);
+                pedido.setCidade(c);
+                pedido.setRua(r);
+                pedido.setComplemento(com);
 
-                //colocar id do usuario que cadastra tambem!!!
+                //colocar id da instituicao que cadastra tambem!!!
 
-                EventoDAO eventoDao= new EventoDAO();
-                eventoDao.inserirEvento(evento);
+                PedidosDeDoacaoDAO pedidoDao= new PedidosDeDoacaoDAO();
+                pedidoDao.inserirPedidoDeDoacao(pedido);
             }
         });
 
@@ -86,8 +77,8 @@ public class CadastroEventoEnderecoefimFragment extends Fragment {
                 FragmentManager fm= getActivity().getSupportFragmentManager();
                 FragmentTransaction ft= fm.beginTransaction();
 
-                CadastroEventoInfosFragment cadastro_infos= new CadastroEventoInfosFragment();
-                ft.replace(R.id.place_holder_info_cadastro_evento, cadastro_infos);
+                CadastroPedidosDeDoacaoInfosFragment cadastro_infos= new CadastroPedidosDeDoacaoInfosFragment();
+                ft.replace(R.id.place_holder_info_cadastro_pedidos_de_doacao, cadastro_infos);
                 ft.commit();
             }
         });

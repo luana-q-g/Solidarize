@@ -1,8 +1,10 @@
 package com.projetointegrador.solidarize.BEAN;
 
 public class Instituicao extends Usuario{
+    private String id;
     private String cnpj;
     private String email_usuario;
+    private String senha;
     private String descricao;
     private String cidade;
     private String estado;
@@ -78,5 +80,23 @@ public class Instituicao extends Usuario{
 
     public void setNumero(String numero) {
         this.numero = numero;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    @Override
+    public String getSenha() {
+        return senha;
+    }
+
+    @Override
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 }

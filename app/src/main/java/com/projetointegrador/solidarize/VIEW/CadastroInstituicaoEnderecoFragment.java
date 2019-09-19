@@ -46,16 +46,18 @@ public class CadastroInstituicaoEnderecoFragment extends Fragment {
         btn_continuar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*String c, e, r, com;
+                String c, e, r, com;
 
                 //????
-                c= cidade.getSelectedItem().toString();
-                e= estado.getSelectedItem().toString();
+                //c= cidade.getSelectedItem().toString();
+                c= "São Carlos";
+                e= "SP";
+                //e= estado.getSelectedItem().toString();
                 r= rua.getText().toString();
                 com= complemento.getText().toString();
 
                 CadastroInstituicao act= (CadastroInstituicao) getActivity();
-                act.setEndereco(c, e, r, com);*/
+                act.setEndereco(c, e, r, com);
 
                 FragmentManager fm= getActivity().getSupportFragmentManager();
                 FragmentTransaction ft= fm.beginTransaction();

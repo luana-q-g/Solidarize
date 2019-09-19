@@ -4,6 +4,7 @@ import java.sql.Time;
 import java.util.Date;
 
 public class Evento {
+    private String id;
     private String email_usuario;
     private String nome;
     private String descricao;
@@ -12,7 +13,7 @@ public class Evento {
     private String dt_fim;
     private String hra_inicio;
     private String hra_fim;
-    private int max_participantes;
+    private String max_participantes;
     private String cidade;
     private String estado;
     private String rua;
@@ -21,7 +22,7 @@ public class Evento {
     public Evento(){
     }
 
-    public Evento(String email, String nome, String descricao, String tipo, String dt_i, String dt_f, String hra_i, String hra_f, int max_p, String cidade, String estado, String rua, String numero){
+    public Evento(String email, String nome, String descricao, String tipo, String dt_i, String dt_f, String hra_i, String hra_f, String max_p, String cidade, String estado, String rua, String numero){
         this.email_usuario= email;
         this.nome= nome;
         this.descricao= descricao;
@@ -101,11 +102,11 @@ public class Evento {
         this.hra_fim = hra_fim;
     }
 
-    public int getMax_participantes() {
+    public String getMax_participantes() {
         return max_participantes;
     }
 
-    public void setMax_participantes(int max_participantes) {
+    public void setMax_participantes(String max_participantes) {
         this.max_participantes = max_participantes;
     }
 
@@ -139,5 +140,13 @@ public class Evento {
 
     public void setNumero(String numero) {
         this.numero = numero;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

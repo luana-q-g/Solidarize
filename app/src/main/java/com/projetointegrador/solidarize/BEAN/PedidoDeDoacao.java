@@ -4,23 +4,44 @@ import java.sql.Time;
 import java.util.Date;
 
 public class PedidoDeDoacao {
+    private String id;
     private String cnpj_instituicao;
-    private Date dt_cadastro;
-    private Time hra_cadastro;
-    private Date dt_validade;
-    private int nivel_urgencia;
     private String item;
+    private String meta_qtd;
+    private String tipo_pedido;
+    private String dt_validade;
+    private String nivel_urgencia;
+    private String estado;
+    private String cidade;
+    private String rua;
+    private String complemento;
 
     public PedidoDeDoacao(){
     }
 
-    public PedidoDeDoacao(String cnpj, Date dt_c, Time hra_c, Date dt_v, int nivel, String item){
-        this.cnpj_instituicao= cnpj;
-        this.dt_cadastro= dt_c;
-        this.hra_cadastro= hra_c;
-        this.dt_validade= dt_v;
-        this.nivel_urgencia= nivel;
-        this.item= item;
+    public PedidoDeDoacao(String item, String meta_qtd, String tipo_pedido, String dt_validade, String nivel_urgencia, String estado, String cidade, String rua, String complemento) {
+        this.item = item;
+        this.meta_qtd = meta_qtd;
+        this.tipo_pedido = tipo_pedido;
+        this.dt_validade = dt_validade;
+        this.nivel_urgencia = nivel_urgencia;
+        this.estado = estado;
+        this.cidade = cidade;
+        this.rua = rua;
+        this.complemento = complemento;
+    }
+
+    public PedidoDeDoacao(String cnpj_instituicao, String item, String meta_qtd, String tipo_pedido, String dt_validade, String nivel_urgencia, String estado, String cidade, String rua, String complemento) {
+        this.cnpj_instituicao = cnpj_instituicao;
+        this.item = item;
+        this.meta_qtd = meta_qtd;
+        this.tipo_pedido = tipo_pedido;
+        this.dt_validade = dt_validade;
+        this.nivel_urgencia = nivel_urgencia;
+        this.estado = estado;
+        this.cidade = cidade;
+        this.rua = rua;
+        this.complemento = complemento;
     }
 
     public String getCnpj_instituicao() {
@@ -31,43 +52,83 @@ public class PedidoDeDoacao {
         this.cnpj_instituicao = cnpj_instituicao;
     }
 
-    public Date getDt_cadastro() {
-        return dt_cadastro;
-    }
-
-    public void setDt_cadastro(Date dt_cadastro) {
-        this.dt_cadastro = dt_cadastro;
-    }
-
-    public Time getHra_cadastro() {
-        return hra_cadastro;
-    }
-
-    public void setHra_cadastro(Time hra_cadastro) {
-        this.hra_cadastro = hra_cadastro;
-    }
-
-    public Date getDt_validade() {
-        return dt_validade;
-    }
-
-    public void setDt_validade(Date dt_validade) {
-        this.dt_validade = dt_validade;
-    }
-
-    public int getNivel_urgencia() {
-        return nivel_urgencia;
-    }
-
-    public void setNivel_urgencia(int nivel_urgencia) {
-        this.nivel_urgencia = nivel_urgencia;
-    }
-
     public String getItem() {
         return item;
     }
 
     public void setItem(String item) {
         this.item = item;
+    }
+
+    public String getTipo_pedido() {
+        return tipo_pedido;
+    }
+
+    public void setTipo_pedido(String tipo_pedido) {
+        this.tipo_pedido = tipo_pedido;
+    }
+
+    public String getMeta_qtd() {
+        return meta_qtd;
+    }
+
+    public void setMeta_qtd(String meta_qtd) {
+        this.meta_qtd = meta_qtd;
+    }
+
+    public String getDt_validade() {
+        return dt_validade;
+    }
+
+    public void setDt_validade(String dt_validade) {
+        this.dt_validade = dt_validade;
+    }
+
+    public String getNivel_urgencia() {
+        return nivel_urgencia;
+    }
+
+    public void setNivel_urgencia(String nivel_urgencia) {
+        this.nivel_urgencia = nivel_urgencia;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getRua() {
+        return rua;
+    }
+
+    public void setRua(String rua) {
+        this.rua = rua;
+    }
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
