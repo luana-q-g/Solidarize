@@ -42,16 +42,18 @@ public class CadastroPessoaEnderecoFragment extends Fragment {
         btn_continuar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*String c, e;
+                String c, e;
 
                 //????
-                c= cidade.getSelectedItem().toString();
-                e= estado.getSelectedItem().toString();
+                //c= cidade.getSelectedItem().toString();
+                //e= estado.getSelectedItem().toString();
+                c= "São Carlos";
+                e= "SP";
 
                 CadastroPessoa act= (CadastroPessoa) getActivity();
-                act.setEndereco(c, e);*/
+                act.setEndereco(c, e);
 
-                FragmentManager fm= getActivity().getSupportFragmentManager();
+                FragmentManager fm= act.getSupportFragmentManager();
                 FragmentTransaction ft= fm.beginTransaction();
 
                 CadastroPessoaSenhaFragment cadastro_senha= new CadastroPessoaSenhaFragment();

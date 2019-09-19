@@ -12,13 +12,10 @@ public class PessoaDAO {
     public PessoaDAO(){};
 
     public void inserirUsuarioPessoa(Pessoa pessoa){
-        DatabaseReference p= pessoaDao.child(pessoa.getCpf()); // rever como fazer isso
+        String id= pessoaDao.push().getKey();
 
-        p.child("email").setValue(pessoa.getEmail());
-        p.child("nome").setValue(pessoa.getNome());
-        p.child("cpf").setValue(pessoa.getSenha());
-        p.child("dt_nasc").setValue(pessoa.getData_nasc());
-        p.child("cidade").setValue(pessoa.getCidade());
-        p.child("estado").setValue(pessoa.getEstado());
+        pessoa.setId(id);
+
+        pessoaDao.child(id).setValue(pessoa);
     }
 }

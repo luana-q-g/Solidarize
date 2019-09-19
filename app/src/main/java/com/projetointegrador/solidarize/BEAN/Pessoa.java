@@ -1,11 +1,13 @@
 package com.projetointegrador.solidarize.BEAN;
 
 public class Pessoa extends Usuario{
+    private String id;
     private String cpf;
     private String email_usuario;
     private String data_nasc;
     private String cidade;
     private String estado;
+    private String senha;
 
     public Pessoa(){
     }
@@ -16,6 +18,14 @@ public class Pessoa extends Usuario{
         this.data_nasc= data_nasc;
         this.cidade= cidade;
         this.estado= estado;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getCpf() {
@@ -56,5 +66,15 @@ public class Pessoa extends Usuario{
 
     public void setCidade(String cidade) {
         this.cidade = cidade;
+    }
+
+    @Override
+    public String getSenha() {
+        return senha;
+    }
+
+    @Override
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 }

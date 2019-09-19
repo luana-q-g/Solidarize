@@ -47,23 +47,15 @@ public class CadastroPessoaDadosPessoaisFragment extends Fragment {
         btn_continuar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*String n, e, c, t, d;
+                String n, e, c, t, d;
                 n= nome.getText().toString();
                 e= email.getText().toString();
                 c= cpf.getText().toString();
                 t= telefone.getText().toString();
                 d= dt_nasc.getText().toString();
 
-                Pessoa pessoa= new Pessoa();
-                pessoa.setNome(n);
-                pessoa.setEmail(e);
-                pessoa.setCpf(c);
-                pessoa.setData_nasc(d);
-
-                TelefoneUsuario tel= new TelefoneUsuario(e, t);
-
                 CadastroPessoa act= (CadastroPessoa) getActivity();
-                act.setDadosPessoais(pessoa, tel);*/
+                act.setDadosPessoais(n, e, c, t, d);
 
                 FragmentManager fm= getActivity().getSupportFragmentManager();
                 FragmentTransaction ft= fm.beginTransaction();

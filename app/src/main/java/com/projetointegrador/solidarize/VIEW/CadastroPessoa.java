@@ -14,13 +14,8 @@ import com.projetointegrador.solidarize.R;
 public class CadastroPessoa extends AppCompatActivity {
     private FrameLayout place_holder;
 
-    private String nome;
-    private String email;
-    private String cpf;
-    private String telefone;
-    private String dt_nasc;
-    private String cidade;
-    private String estado;
+    private Pessoa pessoa= new Pessoa();
+    private TelefoneUsuario tel= new TelefoneUsuario();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,44 +32,33 @@ public class CadastroPessoa extends AppCompatActivity {
         ft.commit();
     }
 
-    public void setDadosPessoais(Pessoa pessoa, TelefoneUsuario tel){
-        this.nome= pessoa.getNome();
-        this.email= pessoa.getEmail();
-        this.cpf= pessoa.getCpf();
-        this.telefone= tel.getTelefone();
-        this.dt_nasc= pessoa.getData_nasc();
+    public void setDadosPessoais(String nome, String email, String cpf, String telefone, String dt_nasc){
+        this.pessoa.setNome(nome);
+        this.pessoa.setEmail(email);
+        this.pessoa.setCpf(cpf);
+        this.tel.setTelefone(telefone);
+        this.tel.setEmail_usuario(email);
+        this.pessoa.setData_nasc(dt_nasc);
     }
 
-    public void setEndereco(String c, String e){
-        this.estado= e;
-        this.cidade= c;
+    public void setEndereco(String cidade, String estado){
+        this.pessoa.setCidade(cidade);
+        this.pessoa.setEstado(estado);
     }
 
-    public String getNome() {
-        return nome;
+    public Pessoa getPessoa() {
+        return pessoa;
     }
 
-    public String getEmail() {
-        return email;
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 
-    public String getCpf() {
-        return cpf;
+    public TelefoneUsuario getTel() {
+        return tel;
     }
 
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public String getDt_nasc() {
-        return dt_nasc;
-    }
-
-    public String getCidade() {
-        return cidade;
-    }
-
-    public String getEstado() {
-        return estado;
+    public void setTel(TelefoneUsuario tel) {
+        this.tel = tel;
     }
 }

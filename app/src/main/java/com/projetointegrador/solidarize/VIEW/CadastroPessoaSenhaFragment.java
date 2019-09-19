@@ -11,10 +11,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
+import com.projetointegrador.solidarize.BEAN.Pessoa;
+import com.projetointegrador.solidarize.BEAN.TelefoneUsuario;
+import com.projetointegrador.solidarize.DAO.PessoaDAO;
 import com.projetointegrador.solidarize.R;
 
 public class CadastroPessoaSenhaFragment extends Fragment {
+    private EditText txt_senha;
+    private EditText txt_confirma_senha;
 
     private Button btn_voltar;
     private Button btn_cadastrar;
@@ -30,6 +37,8 @@ public class CadastroPessoaSenhaFragment extends Fragment {
         //inflando fragment com seu layout
         View view= inflater.inflate(R.layout.fragment_act_cadastro_pessoa_senha, container, false);
 
+        txt_senha= view.findViewById(R.id.txt_senha);
+        txt_confirma_senha= view.findViewById(R.id.txt_confirma_senha);
         btn_voltar= view.findViewById(R.id.btn_voltar_senha_pessoa);
         btn_cadastrar= view.findViewById(R.id.btn_cadastrar_pessoa);
 
@@ -37,6 +46,24 @@ public class CadastroPessoaSenhaFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //cadastrar
+                String senha, confirma_senha;
+                senha= txt_senha.getText().toString();
+                confirma_senha= txt_confirma_senha.getText().toString();
+
+                if(senha.equals(confirma_senha)){
+                    CadastroPessoa cadastro= (CadastroPessoa) getActivity();
+                    Pessoa pessoa= cadastro.getPessoa();
+                    pessoa.setSenha(senha);
+
+                    TelefoneUsuario tel= cadastro.getTel();
+
+                    PessoaDAO pessoaDao= new PessoaDAO();
+                    pessoaDao.inserirUsuarioPessoa(pessoa);
+                }
+                else{
+                    Toast.makeText(getContext(), "Coloque a mesma senha em ambos os campos!", Toast.LENGTH_LONG).show();
+                }
+
             }
         });
 
