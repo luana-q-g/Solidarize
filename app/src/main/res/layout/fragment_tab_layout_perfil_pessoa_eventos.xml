@@ -19,62 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/lbl_hora"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="Hora"
-        app:layout_constraintBottom_toBottomOf="@+id/lbl_endereco"
-        app:layout_constraintEnd_toStartOf="@+id/lbl_endereco"
-        app:layout_constraintStart_toEndOf="@+id/lbl_dia"
-        app:layout_constraintTop_toTopOf="@+id/lbl_endereco" />
 
-    <TextView
-        android:id="@+id/lbl_noe_evento"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:text="Nome do evento"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/img_topin"
-        app:layout_constraintTop_toBottomOf="@+id/lbl_eventos_criados" />
-
-    <TextView
-        android:id="@+id/lbl_endereco"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
-        android:text="endereço"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/lbl_hora"
-        app:layout_constraintTop_toBottomOf="@+id/lbl_noe_evento" />
-
-    <TextView
-        android:id="@+id/lbl_dia"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="8dp"
-        android:text="Dia "
-        app:layout_constraintBottom_toBottomOf="@+id/lbl_hora"
-        app:layout_constraintEnd_toStartOf="@+id/lbl_hora"
-        app:layout_constraintStart_toEndOf="@+id/img_topin" />
-
-    <ImageView
-        android:id="@+id/img_topin"
-        android:layout_width="62dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lbl_eventos_criados"
-        app:srcCompat="@drawable/ic_menu_gallery" />
 
     <Button
         android:id="@+id/button2"
