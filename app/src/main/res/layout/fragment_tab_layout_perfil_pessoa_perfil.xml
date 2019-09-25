@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="70dp"
         android:text="Nome da pessoa"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,7 +22,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:text="Nome da pessoa"
         app:layout_constraintBaseline_toBaselineOf="@+id/lbl_nome_pessoa"
         app:layout_constraintStart_toEndOf="@+id/lbl_nome_pessoa" />
 
@@ -41,26 +40,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:text="E-mail"
         app:layout_constraintBaseline_toBaselineOf="@+id/lbl_email"
         app:layout_constraintStart_toEndOf="@+id/lbl_email" />
-
-    <TextView
-        android:id="@+id/lbl_data_nasc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:text="Data de nascimento:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lbl_cpf" />
 
     <TextView
         android:id="@+id/lbl_cpf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="CPF:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lbl_email" />
@@ -70,16 +58,51 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:text="CPF"
         app:layout_constraintBaseline_toBaselineOf="@+id/lbl_cpf"
         app:layout_constraintStart_toEndOf="@+id/lbl_cpf" />
+
+    <TextView
+        android:id="@+id/lbl_data_nasc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:text="Data de nascimento:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_cpf" />
+
+    <TextView
+        android:id="@+id/txt_data_nasc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/lbl_data_nasc"
+        app:layout_constraintStart_toEndOf="@+id/lbl_data_nasc" />
+
+    <TextView
+        android:id="@+id/lbl_telefone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:text="Telefone:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_data_nasc" />
+
+    <TextView
+        android:id="@+id/txt_telefone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/lbl_telefone"
+        app:layout_constraintStart_toEndOf="@+id/lbl_telefone" />
 
     <TextView
         android:id="@+id/lbl_estado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="Estado:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lbl_telefone" />
@@ -89,80 +112,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:text="Estado"
         app:layout_constraintBaseline_toBaselineOf="@+id/lbl_estado"
         app:layout_constraintStart_toEndOf="@+id/lbl_estado" />
 
-    <Button
-        android:id="@+id/btn_editar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
-        android:text="Editar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
-
     <TextView
-        android:id="@+id/lbl_rua"
+        android:id="@+id/lbl_cidade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:text="Rua:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lbl_c" />
-
-    <TextView
-        android:id="@+id/lbl_telefone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:text="Telefone:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lbl_data_nasc" />
-
-    <TextView
-        android:id="@+id/lbl_c"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="Cidade:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lbl_estado" />
-
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:text="Complemento:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lbl_rua" />
-
-    <TextView
-        android:id="@+id/txt_data_nasc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:text="Data de nascimento"
-        app:layout_constraintBaseline_toBaselineOf="@+id/lbl_data_nasc"
-        app:layout_constraintStart_toEndOf="@+id/lbl_data_nasc" />
-
-    <TextView
-        android:id="@+id/txt_telefone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:text="Telefone"
-        app:layout_constraintBaseline_toBaselineOf="@+id/lbl_telefone"
-        app:layout_constraintStart_toEndOf="@+id/lbl_telefone" />
 
     <TextView
         android:id="@+id/txt_cidade"
@@ -170,25 +131,55 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
-        android:text="Cidade"
-        app:layout_constraintStart_toEndOf="@+id/lbl_c"
+        app:layout_constraintStart_toEndOf="@+id/lbl_cidade"
         app:layout_constraintTop_toBottomOf="@+id/txt_estado" />
+
+    <TextView
+        android:id="@+id/lbl_rua"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:text="Rua:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_cidade" />
 
     <TextView
         android:id="@+id/txt_rua"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:text="Rua"
         app:layout_constraintBaseline_toBaselineOf="@+id/lbl_rua"
         app:layout_constraintStart_toEndOf="@+id/lbl_rua" />
+
+    <TextView
+        android:id="@+id/lbl_complemento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:text="Complemento:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_rua" />
 
     <TextView
         android:id="@+id/txt_complemento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:text="Complemento"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView14"
-        app:layout_constraintStart_toEndOf="@+id/textView14" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/lbl_complemento"
+        app:layout_constraintStart_toEndOf="@+id/lbl_complemento" />
+
+    <Button
+        android:id="@+id/btn_editar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:text="Editar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_complemento" />
 </androidx.constraintlayout.widget.ConstraintLayout>
