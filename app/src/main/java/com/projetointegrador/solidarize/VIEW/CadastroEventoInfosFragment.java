@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.projetointegrador.solidarize.BEAN.Evento;
 import com.projetointegrador.solidarize.R;
@@ -22,7 +23,7 @@ public class CadastroEventoInfosFragment extends Fragment {
     private EditText txt_dt_final;
     private EditText txt_hra_inicio;
     private EditText txt_hra_final;
-    private EditText txt_tipo;
+    private Spinner txt_tipo;
 
     private Button btn_continuar;
 
@@ -47,17 +48,19 @@ public class CadastroEventoInfosFragment extends Fragment {
         btn_continuar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String n, di, df, hi, hf, t;
+
+                n= txt_nome.getText().toString();
+                di= txt_dt_inicio.getText().toString();
+                df= txt_dt_final.getText().toString();
+                hi= txt_hra_inicio.getText().toString();
+                hf= txt_dt_final.getText().toString();
+                t= "";
+                //t= txt_tipo.getSelectedItem().toString();
+
                 CadastroEvento act= (CadastroEvento) getActivity();
 
-                /*Evento evento= new Evento();
-                evento.setNome(txt_nome.getText().toString());
-                evento.setDt_inicio(txt_dt_inicio.getText().toString());
-                evento.setDt_fim(txt_dt_final.getText().toString());
-                evento.setHra_inicio(txt_hra_inicio.getText().toString());
-                evento.setHra_fim(txt_hra_final.getText().toString());
-                evento.setTipo(txt_tipo.getText().toString());
-
-                act.setInfos(evento);*/
+                act.setInfos(n, di, df, hi, hf, t);
 
                 FragmentManager fm= act.getSupportFragmentManager();
                 FragmentTransaction ft= fm.beginTransaction();

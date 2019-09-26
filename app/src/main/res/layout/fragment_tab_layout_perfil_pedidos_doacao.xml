@@ -11,17 +11,19 @@
         android:id="@+id/btn_criar_pedido_doacao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
         android:text="Criar pedido de doação"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/lista_pedido_doacao_criados"
-        app:layout_constraintStart_toStartOf="@+id/lista_pedido_doacao_criados"
-        app:layout_constraintTop_toBottomOf="@+id/lbl_existencia_pedido_doacao" />
+        app:layout_constraintStart_toStartOf="@+id/lista_pedido_doacao_criados" />
 
     <ListView
         android:id="@+id/lista_pedido_doacao_criados"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_criar_pedido_doacao"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lbl_existencia_pedido_doacao"></ListView>

@@ -30,6 +30,9 @@ public class AdapterListaPerfilEventos extends ArrayAdapter<Evento> {
 
         View itemView= li.inflate(R.layout.item_edicao_evento, parent, false);
 
+        /*if(eventos.get(position).getTipo() == "isso"){
+
+        }*/
         //ImageView img_topin= itemView.findViewById(R.id.img_topin);
         TextView lbl_nome_evento= itemView.findViewById(R.id.lbl_nome_evento);
 

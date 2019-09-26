@@ -62,24 +62,6 @@
         app:layout_constraintStart_toEndOf="@+id/lbl_cnpj" />
 
     <TextView
-        android:id="@+id/lbl_data_nasc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:text="Data de nascimento:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lbl_cnpj" />
-
-    <TextView
-        android:id="@+id/txt_data_nasc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/lbl_data_nasc"
-        app:layout_constraintStart_toEndOf="@+id/lbl_data_nasc" />
-
-    <TextView
         android:id="@+id/lbl_telefone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -87,7 +69,7 @@
         android:layout_marginTop="16dp"
         android:text="Telefone:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lbl_data_nasc" />
+        app:layout_constraintTop_toBottomOf="@+id/lbl_cnpj" />
 
     <TextView
         android:id="@+id/txt_telefone"
