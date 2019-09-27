@@ -14,6 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".VIEW.CadastroEvento"></activity>
+        <activity android:name=".VIEW.CadastroPedidosDeDoacao"></activity>
         <activity android:name=".VIEW.CadastroInstituicao" />
         <activity
             android:name=".VIEW.NavDrawMenu"

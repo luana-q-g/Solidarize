@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.projetointegrador.solidarize.BEAN.PedidoDeDoacao;
 import com.projetointegrador.solidarize.R;
@@ -19,7 +20,7 @@ import androidx.fragment.app.FragmentTransaction;
 public class CadastroPedidosDeDoacaoInfosFragment extends Fragment {
     private EditText txt_item_pedido;
     private EditText txt_meta_qtd;
-    private EditText txt_tipo_pedido;
+    private Spinner txt_tipo_pedido;
     private EditText txt_dt_validade_pedido;
     private EditText txt_nivel_urgencia;
 
@@ -40,7 +41,7 @@ public class CadastroPedidosDeDoacaoInfosFragment extends Fragment {
         txt_tipo_pedido= view.findViewById(R.id.txt_tipo_pedido);
         txt_dt_validade_pedido= view.findViewById(R.id.txt_dt_final);
         txt_nivel_urgencia= view.findViewById(R.id.txt_nivel_urgencia);
-        btn_continuar= view.findViewById(R.id.btn_continuar_infos_eventos);
+        btn_continuar= view.findViewById(R.id.btn_continuar_infos_pedidos_doacao);
 
         btn_continuar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,7 +50,8 @@ public class CadastroPedidosDeDoacaoInfosFragment extends Fragment {
 
                 item_pedido= txt_item_pedido.getText().toString();
                 meta= txt_meta_qtd.getText().toString();
-                tipo= txt_tipo_pedido.getText().toString();
+                tipo= "";
+                //tipo= txt_tipo_pedido.getSelectedItem().toString();
                 dt_validade= txt_dt_validade_pedido.getText().toString();
                 nivel_urgencia= txt_nivel_urgencia.getText().toString();
 

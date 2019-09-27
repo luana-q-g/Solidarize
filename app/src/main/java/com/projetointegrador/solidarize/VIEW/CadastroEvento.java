@@ -14,12 +14,7 @@ public class CadastroEvento extends AppCompatActivity {
     private FrameLayout place_holder;
 
     private Evento evento= new Evento();
-    /*private String nome_evento;
-    private String dt_inicio;
-    private String dt_final;
-    private String hra_inicio;
-    private String hra_final;
-    private String tipo;*/
+    //lembrar de colocar o id de quem cadastrou tambem!!!
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

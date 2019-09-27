@@ -35,7 +35,7 @@ public class CadastroPedidosDeDoacaoEnderecoefimFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view= inflater.inflate(R.layout.fragment_act_cadastro_evento_enderecoefim, container, false);
+        View view= inflater.inflate(R.layout.fragment_act_cadastro_pedidos_de_doacao_enderecoefim, container, false);
 
         txt_estado= view.findViewById(R.id.spin_estados);
         txt_cidade= view.findViewById(R.id.spin_cidades);
