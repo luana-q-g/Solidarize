@@ -8,12 +8,11 @@
 
     <TextView
         android:id="@+id/lbl_data_evento"
-        android:layout_width="120dp"
-        android:layout_height="19dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:text="Data do evento:"
+        android:text="data"
         app:layout_constraintEnd_toStartOf="@+id/lbl_hora_evento"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,12 +33,12 @@
 
     <TextView
         android:id="@+id/lbl_hora_evento"
-        android:layout_width="129dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:text="Hoário do evento:"
+        android:text="horário"
         app:layout_constraintEnd_toStartOf="@+id/lbl_endereco_evento"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/lbl_data_evento"
@@ -47,12 +46,11 @@
 
     <TextView
         android:id="@+id/lbl_endereco_evento"
-        android:layout_width="128dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:text="Endereço do evento:"
+        android:text="endereço"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/lbl_hora_evento"
