@@ -8,8 +8,8 @@ import com.firebase.ui.database.FirebaseListOptions;
 import com.projetointegrador.solidarize.BEAN.Evento;
 import com.projetointegrador.solidarize.R;
 
-public class EventosAdapter extends FirebaseListAdapter<Evento> {
-    public EventosAdapter(FirebaseListOptions options){
+public class AdapterFeedEventos extends FirebaseListAdapter<Evento> {
+    public AdapterFeedEventos(FirebaseListOptions options){
         super (options);
     }
 

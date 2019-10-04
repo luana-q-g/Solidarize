@@ -39,7 +39,7 @@ public class FeedEventosFragment extends Fragment {
                 .setLifecycleOwner(this)
                 .build();
 
-        EventosAdapter adapter= new EventosAdapter(eventos_options);
+        AdapterFeedEventos adapter= new AdapterFeedEventos(eventos_options);
 
         lista_eventos.setAdapter(adapter);
 
