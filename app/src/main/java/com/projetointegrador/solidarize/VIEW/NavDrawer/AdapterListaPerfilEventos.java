@@ -9,36 +9,32 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.firebase.ui.database.FirebaseListAdapter;
+import com.firebase.ui.database.FirebaseListOptions;
 import com.projetointegrador.solidarize.BEAN.Evento;
 import com.projetointegrador.solidarize.R;
 
 import java.util.ArrayList;
 
-public class AdapterListaPerfilEventos extends ArrayAdapter<Evento> {
-    private Context context;
-    private ArrayList<Evento> eventos;
-
-    public AdapterListaPerfilEventos(Context c, ArrayList<Evento> us){
-        super(c, R.layout.item_edicao_evento, us);
-        this.context= c;
-        this.eventos= us;
+public class AdapterListaPerfilEventos extends FirebaseListAdapter<Evento> {
+    public AdapterListaPerfilEventos(FirebaseListOptions options){
+        super (options);
     }
 
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent){
-        LayoutInflater li= LayoutInflater.from(parent.getContext());
+    protected void populateView (View v, Evento e, int position){
+        TextView lbl_nome;
+        Button btn_editar;
 
-        View itemView= li.inflate(R.layout.item_edicao_evento, parent, false);
+        lbl_nome= v.findViewById(R.id.lbl_nome_evento);
+        btn_editar= v.findViewById(R.id.btn_editar);
 
-        /*if(eventos.get(position).getTipo() == "isso"){
+        lbl_nome.setText(e.getNome());
 
-        }*/
-        //ImageView img_topin= itemView.findViewById(R.id.img_topin);
-        TextView lbl_nome_evento= itemView.findViewById(R.id.lbl_nome_evento);
+        /*btn_editar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        lbl_nome_evento.setText(eventos.get(position).getNome());
-
-        return itemView;
+            }
+        });*/
     }
-
 }

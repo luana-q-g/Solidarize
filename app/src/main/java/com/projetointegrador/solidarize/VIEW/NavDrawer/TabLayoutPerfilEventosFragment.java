@@ -9,6 +9,9 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.firebase.ui.database.FirebaseListOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.projetointegrador.solidarize.BEAN.Evento;
 import com.projetointegrador.solidarize.R;
 import com.projetointegrador.solidarize.VIEW.CadastroEvento;
@@ -25,8 +28,8 @@ public class TabLayoutPerfilEventosFragment extends Fragment {
     private ListView lista_eventos_criados;
     private Button btn_criar_evento;
 
-    private ArrayList<Evento> eventos= new ArrayList<>();
-    private AdapterListaPerfilEventos adapter;
+    private DatabaseReference BD= FirebaseDatabase.getInstance().getReference();
+    private DatabaseReference eventos= BD.child("evento");
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,10 +45,18 @@ public class TabLayoutPerfilEventosFragment extends Fragment {
         lista_eventos_criados= view.findViewById(R.id.lista_eventos_criados);
         btn_criar_evento= view.findViewById(R.id.btn_criar_evento);
 
-        adapter = new AdapterListaPerfilEventos(getActivity().getApplicationContext(), eventos);
-        lista_eventos_criados.setAdapter(adapter);
+        //fazer a autenticação de quais são os eventos criados pela pessoa!!!
+        //como verificar se tem evento para esvaziar a caixa "lbl_existencia_eventos"
 
-        //dados.addValueEventListener(new EscutadorFirebase());
+        FirebaseListOptions<Evento> eventos_options= new FirebaseListOptions.Builder<Evento>()
+                .setLayout(R.layout.item_edicao_evento)
+                .setQuery(eventos, Evento.class)
+                .setLifecycleOwner(this)
+                .build();
+
+        AdapterListaPerfilEventos adapter= new AdapterListaPerfilEventos(eventos_options);
+
+        lista_eventos_criados.setAdapter(adapter);
 
         btn_criar_evento.setOnClickListener(new View.OnClickListener() {
             @Override
