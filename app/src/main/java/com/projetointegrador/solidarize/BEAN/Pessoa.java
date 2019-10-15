@@ -5,6 +5,7 @@ public class Pessoa extends Usuario{
     private String cpf;
     private String email_usuario;
     private String data_nasc;
+    private String telefone;
     private String cidade;
     private String estado;
     private String senha;
@@ -12,10 +13,11 @@ public class Pessoa extends Usuario{
     public Pessoa(){
     }
 
-    public Pessoa(String email, String nome, String senha, String cpf, String data_nasc, String cidade, String estado){
+    public Pessoa(String email, String nome, String senha, String cpf, String data_nasc, String tel, String cidade, String estado){
         super(email, nome, senha);
         this.cpf= cpf;
         this.data_nasc= data_nasc;
+        this.telefone= tel;
         this.cidade= cidade;
         this.estado= estado;
     }
@@ -28,12 +30,40 @@ public class Pessoa extends Usuario{
         this.id = id;
     }
 
+    @Override
+    public String getEmail() {
+        return super.getEmail();
+    }
+
+    @Override
+    public void setEmail(String email) {
+        super.setEmail(email);
+    }
+
+    @Override
+    public String getNome() {
+        return super.getNome();
+    }
+
+    @Override
+    public void setNome(String nome) {
+        super.setNome(nome);
+    }
+
     public String getCpf() {
         return cpf;
     }
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
     public String getEmail_usuario() {

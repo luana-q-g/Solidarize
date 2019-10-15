@@ -15,7 +15,6 @@ public class CadastroPessoa extends AppCompatActivity {
     private FrameLayout place_holder;
 
     private Pessoa pessoa= new Pessoa();
-    private TelefoneUsuario tel= new TelefoneUsuario();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +26,7 @@ public class CadastroPessoa extends AppCompatActivity {
         FragmentManager fm= getSupportFragmentManager();
         FragmentTransaction ft= fm.beginTransaction();
 
-        CadastroPessoaDadosPessoaisFragment cadastro_dados_pessoais= new CadastroPessoaDadosPessoaisFragment();
+        CadastroPessoaDadosPessoaisFragment cadastro_dados_pessoais= new CadastroPessoaDadosPessoaisFragment(CadastroPessoaDadosPessoaisFragment.CADASTRO);
         ft.replace(R.id.place_holder_info_cadastro_pessoa, cadastro_dados_pessoais);
         ft.commit();
     }
@@ -36,8 +35,7 @@ public class CadastroPessoa extends AppCompatActivity {
         this.pessoa.setNome(nome);
         this.pessoa.setEmail(email);
         this.pessoa.setCpf(cpf);
-        this.tel.setTelefone(telefone);
-        this.tel.setEmail_usuario(email);
+        this.pessoa.setTelefone(telefone);
         this.pessoa.setData_nasc(dt_nasc);
     }
 
@@ -54,11 +52,4 @@ public class CadastroPessoa extends AppCompatActivity {
         this.pessoa = pessoa;
     }
 
-    public TelefoneUsuario getTel() {
-        return tel;
-    }
-
-    public void setTel(TelefoneUsuario tel) {
-        this.tel = tel;
-    }
 }

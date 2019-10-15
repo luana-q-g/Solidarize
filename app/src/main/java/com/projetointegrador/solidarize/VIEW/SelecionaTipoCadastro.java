@@ -42,8 +42,8 @@ public class SelecionaTipoCadastro extends AppCompatActivity {
                         startActivity(i_inst);
                     }
                     else{
-                        Intent i_inst= new Intent(getApplicationContext(), CadastroPessoa.class);
-                        startActivity(i_inst);
+                        Intent i_pesso= new Intent(getApplicationContext(), CadastroPessoa.class);
+                        startActivity(i_pesso);
                     }
                 }
             }

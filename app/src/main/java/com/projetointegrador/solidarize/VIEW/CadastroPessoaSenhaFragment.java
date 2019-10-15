@@ -20,6 +20,8 @@ import com.projetointegrador.solidarize.DAO.PessoaDAO;
 import com.projetointegrador.solidarize.R;
 
 public class CadastroPessoaSenhaFragment extends Fragment {
+    public static final String CADASTRO= "cadastro";
+
     private EditText txt_senha;
     private EditText txt_confirma_senha;
     private Button btn_voltar;
@@ -54,8 +56,6 @@ public class CadastroPessoaSenhaFragment extends Fragment {
                     Pessoa pessoa= cadastro.getPessoa();
                     pessoa.setSenha(senha);
 
-                    TelefoneUsuario tel= cadastro.getTel();
-
                     PessoaDAO pessoaDao= new PessoaDAO();
                     pessoaDao.inserirUsuarioPessoa(pessoa);
 
@@ -74,7 +74,7 @@ public class CadastroPessoaSenhaFragment extends Fragment {
                 FragmentManager fm= getActivity().getSupportFragmentManager();
                 FragmentTransaction ft= fm.beginTransaction();
 
-                CadastroPessoaEnderecoFragment cadastro_endereco= new CadastroPessoaEnderecoFragment();
+                CadastroPessoaEnderecoFragment cadastro_endereco= new CadastroPessoaEnderecoFragment(CadastroPessoaSenhaFragment.CADASTRO);
                 ft.replace(R.id.place_holder_info_cadastro_pessoa, cadastro_endereco);
                 ft.commit();
             }

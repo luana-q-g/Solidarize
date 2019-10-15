@@ -34,7 +34,7 @@ public class PerfilUsuarioFragment extends Fragment {
 
         NavDrawMenu act = (NavDrawMenu) getActivity();
 
-        int tipo_usuario= 2;
+        int tipo_usuario= 1;
         //tipo=1 pessoa, tipo=2 instituicao
         //constroi o tab layout com o tab adapter de cada tipo de usuario
         if(tipo_usuario==1){
