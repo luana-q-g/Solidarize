@@ -90,7 +90,9 @@ public class CadastroPessoaDadosPessoaisFragment extends Fragment {
 
             String id= "-LqvLtlbg9ISOM4dr8Rk";
 
+            //recuperando nó da pessoa
             DatabaseReference pessoa_dados= pessoaDAO.getUsuarioPessoaNo(id);
+
             //recuperacao de dados do firebase
             pessoa_dados.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -98,19 +100,22 @@ public class CadastroPessoaDadosPessoaisFragment extends Fragment {
                     if ( dataSnapshot.exists() ) {
                         Pessoa p1= dataSnapshot.getValue(Pessoa.class);
 
-                        String n, e, s, c, t, dt, ci, es;
+                        String n, e, i, c, t, dt, ci, es;
 
                         n= p1.getNome();
                         e= p1.getEmail();
-                        s= p1.getSenha();
+                        i= p1.getId();
                         c= p1.getCpf();
                         t= p1.getTelefone();
                         dt= p1.getData_nasc();
                         ci= p1.getCidade();
                         es= p1.getEstado();
 
-                        act.setDadosPessoais(n, e, c, t, dt);
+                        //act.setDadosPessoais(n, e, c, t, dt); nao precisa, é so alterar os dados nos campos
                         act.setEndereco(ci, es);
+                        act.setId(i);
+
+                        setDadosView(n, e, c, t, dt);
                     }
                 }
 
@@ -119,13 +124,6 @@ public class CadastroPessoaDadosPessoaisFragment extends Fragment {
 
                 }
             });
-
-            //Toast.makeText(act.getApplicationContext(), act.getPessoa().getNome(), Toast.LENGTH_SHORT).show();
-            nome.setText(act.getPessoa().getNome());
-            email.setText(act.getPessoa().getEmail());
-            cpf.setText(act.getPessoa().getCpf());
-            telefone.setText(act.getPessoa().getTelefone());
-            dt_nasc.setText(act.getPessoa().getData_nasc());
 
             btn_continuar.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -152,5 +150,18 @@ public class CadastroPessoaDadosPessoaisFragment extends Fragment {
 
 
         return view;
+    }
+
+    public void setDadosView(String n, String e, String c, String t, String dt) {
+        EdicaoCadastroPessoa act = (EdicaoCadastroPessoa) getActivity();
+        nome.setText(n);
+        email.setText(e);
+        //desabilita email, pois ele não pode ser editado
+        email.setEnabled(false);
+        //desabilita cpf, pois ele não pode ser editado
+        cpf.setText(c);
+        cpf.setEnabled(false);
+        telefone.setText(t);
+        dt_nasc.setText(dt);
     }
 }
