@@ -37,8 +37,6 @@ public class EdicaoCadastroPessoa extends AppCompatActivity {
         CadastroPessoaDadosPessoaisFragment cadastro_dados_pessoais= new CadastroPessoaDadosPessoaisFragment(CadastroPessoaDadosPessoaisFragment.EDICAO);
         ft.replace(R.id.place_holder_info_edicao_cadastro_pessoa, cadastro_dados_pessoais);
         ft.commit();
-
-
     }
 
     public void setDadosPessoais(String nome, String email, String cpf, String telefone, String dt_nasc){

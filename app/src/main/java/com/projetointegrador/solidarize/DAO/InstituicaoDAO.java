@@ -18,4 +18,14 @@ public class InstituicaoDAO {
 
         instituicaoDao.child(id).setValue(instituicao);
     }
+
+    public void alterarUsuarioInstituicao (Instituicao instituicao){
+        String id= instituicao.getId();
+
+        instituicaoDao.child(id).setValue(instituicao);
+    }
+
+    public DatabaseReference getUsuarioInstituicaoNo (String id){
+        return instituicaoDao.child(id);
+    }
 }

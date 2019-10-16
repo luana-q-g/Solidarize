@@ -20,6 +20,15 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 public class CadastroInstituicaoSenhaFragment extends Fragment {
+    //constants
+    public static final String CADASTRO= "cadastro";
+    public static final String EDICAO= "edicao";
+
+    private String tipo;
+    public CadastroInstituicaoSenhaFragment(String tipo){
+        this.tipo= tipo;
+    }
+
     private EditText txt_descricao;
     private EditText txt_senha;
     private EditText txt_confirma_senha;
@@ -43,47 +52,88 @@ public class CadastroInstituicaoSenhaFragment extends Fragment {
         btn_voltar= view.findViewById(R.id.btn_voltar_senha_instituicao);
         btn_cadastrar= view.findViewById(R.id.btn_cadastrar_instituicao);
 
-        btn_cadastrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //cadastrar
-                String senha, confirma_senha, descricao;
+        if(tipo.contentEquals(CADASTRO)){
+            btn_cadastrar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //cadastrar
+                    String senha, confirma_senha, descricao;
 
-                senha= txt_senha.getText().toString();
-                confirma_senha= txt_confirma_senha.getText().toString();
-                descricao= txt_descricao.getText().toString();
+                    senha= txt_senha.getText().toString();
+                    confirma_senha= txt_confirma_senha.getText().toString();
+                    descricao= txt_descricao.getText().toString();
 
-                if(senha.equals(confirma_senha)){
-                    CadastroInstituicao cadastro= (CadastroInstituicao) getActivity();
-                    Instituicao instituicao= cadastro.getInstituicao();
+                    if(senha.equals(confirma_senha)){
+                        CadastroInstituicao cadastro= (CadastroInstituicao) getActivity();
+                        Instituicao instituicao= cadastro.getInstituicao();
 
-                    instituicao.setSenha(senha);
+                        instituicao.setSenha(senha);
+                        instituicao.setDescricao(descricao);
+
+                        InstituicaoDAO instituicaoDao= new InstituicaoDAO();
+                        instituicaoDao.inserirUsuarioInstituicao(instituicao);
+
+                        //inserir telefone
+                    }
+                    else{
+                        Toast.makeText(getContext(), "Coloque a mesma senha em ambos os campos!", Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+
+            btn_voltar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    FragmentManager fm= getActivity().getSupportFragmentManager();
+                    FragmentTransaction ft= fm.beginTransaction();
+
+                    CadastroInstituicaoEnderecoFragment cadastro_endereco= new CadastroInstituicaoEnderecoFragment(CadastroInstituicaoEnderecoFragment.CADASTRO);
+                    ft.replace(R.id.place_holder_info_cadastro_instituicao, cadastro_endereco);
+                    ft.commit();
+                }
+            });
+        }
+
+        if(tipo.contentEquals(EDICAO)){
+            btn_cadastrar.setText("Editar");
+            txt_senha.setEnabled(false);
+            txt_confirma_senha.setEnabled(false);
+
+            final EdicaoCadastroInstituicao act= (EdicaoCadastroInstituicao) getActivity();
+
+            txt_descricao.setText(act.getInstituicao().getDescricao());
+
+            btn_cadastrar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //editar
+                    String descricao;
+
+                    descricao= txt_descricao.getText().toString();
+
+                    Instituicao instituicao= act.getInstituicao();
+
                     instituicao.setDescricao(descricao);
 
-                    TelefoneUsuario tel= cadastro.getTel();
-
                     InstituicaoDAO instituicaoDao= new InstituicaoDAO();
-                    instituicaoDao.inserirUsuarioInstituicao(instituicao);
-
-                    //inserir telefone
+                    instituicaoDao.alterarUsuarioInstituicao(instituicao);
                 }
-                else{
-                    Toast.makeText(getContext(), "Coloque a mesma senha em ambos os campos!", Toast.LENGTH_LONG).show();
+            });
+
+            btn_voltar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    FragmentManager fm= getActivity().getSupportFragmentManager();
+                    FragmentTransaction ft= fm.beginTransaction();
+
+                    CadastroInstituicaoEnderecoFragment cadastro_endereco= new CadastroInstituicaoEnderecoFragment(CadastroInstituicaoEnderecoFragment.EDICAO);
+                    ft.replace(R.id.place_holder_info_edicao_cadastro_instituicao, cadastro_endereco);
+                    ft.commit();
                 }
-            }
-        });
+            });
+        }
 
-        btn_voltar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentManager fm= getActivity().getSupportFragmentManager();
-                FragmentTransaction ft= fm.beginTransaction();
 
-                CadastroInstituicaoEnderecoFragment cadastro_endereco= new CadastroInstituicaoEnderecoFragment();
-                ft.replace(R.id.place_holder_info_cadastro_instituicao, cadastro_endereco);
-                ft.commit();
-            }
-        });
 
         return view;
     }

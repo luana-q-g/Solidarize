@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".VIEW.EdicaoCadastroPessoa">
+    tools:context=".VIEW.EdicaoCadastroInstituicao">
 
     <ImageView
         android:id="@+id/img_logo"
@@ -20,12 +20,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical|center"
-        android:text="Edição de Pessoa"
+        android:text="Edição de Instituição"
         android:textSize="18sp"
         android:textStyle="bold" />
 
     <FrameLayout
-        android:id="@+id/place_holder_info_edicao_cadastro_pessoa"
+        android:id="@+id/place_holder_info_edicao_cadastro_instituicao"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

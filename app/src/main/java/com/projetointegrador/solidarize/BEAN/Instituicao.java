@@ -4,6 +4,7 @@ public class Instituicao extends Usuario{
     private String id;
     private String cnpj;
     private String email_usuario;
+    private String telefone;
     private String senha;
     private String descricao;
     private String cidade;
@@ -15,10 +16,11 @@ public class Instituicao extends Usuario{
         super();
     }
 
-    public Instituicao(String email, String nome, String senha, String cnpj, String descricao, String cidade, String estado, String rua, String numero){
+    public Instituicao(String email, String nome, String tele, String senha, String cnpj, String descricao, String cidade, String estado, String rua, String numero){
         super(email, nome, senha);
         this.cnpj= cnpj;
         this.email_usuario= email;
+        this.telefone= tele;
         this.descricao= descricao;
         this.cidade= cidade;
         this.estado= estado;
@@ -32,6 +34,14 @@ public class Instituicao extends Usuario{
 
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
     public String getEmail_usuario() {

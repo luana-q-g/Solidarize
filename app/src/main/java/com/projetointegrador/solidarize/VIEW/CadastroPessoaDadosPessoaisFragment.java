@@ -153,7 +153,6 @@ public class CadastroPessoaDadosPessoaisFragment extends Fragment {
     }
 
     public void setDadosView(String n, String e, String c, String t, String dt) {
-        EdicaoCadastroPessoa act = (EdicaoCadastroPessoa) getActivity();
         nome.setText(n);
         email.setText(e);
         //desabilita email, pois ele não pode ser editado
