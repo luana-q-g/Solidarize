@@ -1,5 +1,6 @@
 package com.projetointegrador.solidarize.VIEW;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.navigation.NavigationView;
@@ -12,7 +13,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.projetointegrador.solidarize.R;
 import com.projetointegrador.solidarize.VIEW.NavDrawer.AcoesUsuarioEventosFragment;
 import com.projetointegrador.solidarize.VIEW.NavDrawer.AcoesUsuarioPedidosDoacaoFragment;
@@ -25,6 +28,9 @@ import com.projetointegrador.solidarize.VIEW.NavDrawer.SobreAppFragment;
 
 public class NavDrawMenu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+
+    private FirebaseAuth auth_usuario= FirebaseAuth.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,12 +124,28 @@ public class NavDrawMenu extends AppCompatActivity
                 break;
 
             case R.id.nav_sair:
-                //sair
+                //user desloga
+                auth_usuario.signOut();
+                Toast.makeText(getApplicationContext(), "Usuário deslogado", Toast.LENGTH_SHORT).show();
+
+                Intent i= new Intent();
+                setResult(RESULT_OK, i);
+
+                this.finish();
                 break;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent i) {
+        super.onActivityResult(requestCode, resultCode, i);
+
+        if(requestCode == 1){
+            if ( resultCode == RESULT_OK )
+                finish();
+        }
     }
 }

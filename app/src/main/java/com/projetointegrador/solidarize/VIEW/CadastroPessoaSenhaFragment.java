@@ -1,5 +1,6 @@
 package com.projetointegrador.solidarize.VIEW;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,10 +15,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
 import com.projetointegrador.solidarize.BEAN.Pessoa;
 import com.projetointegrador.solidarize.BEAN.TelefoneUsuario;
 import com.projetointegrador.solidarize.DAO.PessoaDAO;
 import com.projetointegrador.solidarize.R;
+
+import java.util.concurrent.Executor;
 
 public class CadastroPessoaSenhaFragment extends Fragment {
     public static final String CADASTRO= "cadastro";
@@ -26,6 +34,8 @@ public class CadastroPessoaSenhaFragment extends Fragment {
     private EditText txt_confirma_senha;
     private Button btn_voltar;
     private Button btn_cadastrar;
+
+    private FirebaseAuth auth_usuario= FirebaseAuth.getInstance();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,14 +62,34 @@ public class CadastroPessoaSenhaFragment extends Fragment {
                 confirma_senha= txt_confirma_senha.getText().toString();
 
                 if(senha.equals(confirma_senha)){
-                    CadastroPessoa cadastro= (CadastroPessoa) getActivity();
+                    final CadastroPessoa cadastro= (CadastroPessoa) getActivity();
+
+                    Toast.makeText(cadastro.getApplicationContext(), "Criando usuário...", Toast.LENGTH_SHORT).show();
+
                     Pessoa pessoa= cadastro.getPessoa();
                     pessoa.setSenha(senha);
 
                     PessoaDAO pessoaDao= new PessoaDAO();
                     pessoaDao.inserirUsuarioPessoa(pessoa);
 
-                    //inserir telefone
+                    auth_usuario.createUserWithEmailAndPassword(pessoa.getEmail(), senha).addOnCompleteListener(cadastro, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            // Testa se criou o usuário com sucesso:
+                            if ( task.isSuccessful() ) {
+                                Toast.makeText(cadastro.getApplicationContext(), "Pessoa cadastrada com sucesso!", Toast.LENGTH_LONG).show();
+
+                                Intent i_menu_nav_draw= new Intent(cadastro.getApplicationContext(), NavDrawMenu.class);
+                                startActivityForResult(i_menu_nav_draw, 1);
+                            }
+                            else {
+                                // Exibe a mensagem de erro do Firebase num Toast:
+                                FirebaseAuthException e = (FirebaseAuthException)task.getException();
+                                //String error_code= e.getErrorCode();
+                                Toast.makeText(cadastro.getApplicationContext(), "ERRO: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
                 }
                 else{
                     Toast.makeText(getContext(), "Coloque a mesma senha em ambos os campos!", Toast.LENGTH_LONG).show();

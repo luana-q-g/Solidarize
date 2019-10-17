@@ -1,6 +1,8 @@
 package com.projetointegrador.solidarize.BEAN;
 
 public class Pessoa extends Usuario{
+    final private String tipo_usuario= "pessoa";
+
     private String id;
     private String cpf;
     private String email_usuario;
@@ -28,6 +30,10 @@ public class Pessoa extends Usuario{
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getTipo_usuario(){
+        return this.tipo_usuario;
     }
 
     @Override

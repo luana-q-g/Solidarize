@@ -1,6 +1,8 @@
 package com.projetointegrador.solidarize.BEAN;
 
 public class Instituicao extends Usuario{
+    final private String tipo_usuario= "instituicao";
+
     private String id;
     private String cnpj;
     private String email_usuario;
@@ -26,6 +28,10 @@ public class Instituicao extends Usuario{
         this.estado= estado;
         this.rua= rua;
         this.numero= numero;
+    }
+
+    public String getTipo_usuario(){
+        return this.tipo_usuario;
     }
 
     public String getCnpj() {
