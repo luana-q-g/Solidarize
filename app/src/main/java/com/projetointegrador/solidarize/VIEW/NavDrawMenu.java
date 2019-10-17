@@ -139,13 +139,4 @@ public class NavDrawMenu extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
-    public void onActivityResult(int requestCode, int resultCode, Intent i) {
-        super.onActivityResult(requestCode, resultCode, i);
-
-        if(requestCode == 1){
-            if ( resultCode == RESULT_OK )
-                finish();
-        }
-    }
 }

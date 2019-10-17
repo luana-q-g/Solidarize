@@ -27,6 +27,8 @@ import com.projetointegrador.solidarize.R;
 
 import java.util.concurrent.Executor;
 
+import static android.app.Activity.RESULT_OK;
+
 public class CadastroPessoaSenhaFragment extends Fragment {
     public static final String CADASTRO= "cadastro";
 
@@ -66,19 +68,21 @@ public class CadastroPessoaSenhaFragment extends Fragment {
 
                     Toast.makeText(cadastro.getApplicationContext(), "Criando usuário...", Toast.LENGTH_SHORT).show();
 
-                    Pessoa pessoa= cadastro.getPessoa();
-                    pessoa.setSenha(senha);
-
-                    PessoaDAO pessoaDao= new PessoaDAO();
-                    pessoaDao.inserirUsuarioPessoa(pessoa);
+                    //resgata dados de pessoa da Activity
+                    final Pessoa pessoa= cadastro.getPessoa();
 
                     auth_usuario.createUserWithEmailAndPassword(pessoa.getEmail(), senha).addOnCompleteListener(cadastro, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             // Testa se criou o usuário com sucesso:
                             if ( task.isSuccessful() ) {
+                                //insere pessoa no banco de dados
+                                PessoaDAO pessoaDao= new PessoaDAO();
+                                pessoaDao.inserirUsuarioPessoa(pessoa);
+
                                 Toast.makeText(cadastro.getApplicationContext(), "Pessoa cadastrada com sucesso!", Toast.LENGTH_LONG).show();
 
+                                //entra no Navigation Drawer
                                 Intent i_menu_nav_draw= new Intent(cadastro.getApplicationContext(), NavDrawMenu.class);
                                 startActivityForResult(i_menu_nav_draw, 1);
                             }
@@ -111,5 +115,17 @@ public class CadastroPessoaSenhaFragment extends Fragment {
         });
 
         return view;
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent i) {
+        super.onActivityResult(requestCode, resultCode, i);
+
+        if(requestCode == 1){
+            if ( resultCode == RESULT_OK ){
+                getActivity().finish();
+            }
+
+
+        }
     }
 }
