@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.projetointegrador.solidarize.BEAN.UsuarioLogado;
 import com.projetointegrador.solidarize.R;
 import com.projetointegrador.solidarize.VIEW.NavDrawer.AcoesUsuarioEventosFragment;
 import com.projetointegrador.solidarize.VIEW.NavDrawer.AcoesUsuarioPedidosDoacaoFragment;
@@ -124,6 +125,9 @@ public class NavDrawMenu extends AppCompatActivity
                 break;
 
             case R.id.nav_sair:
+                //esvazia usuario
+                UsuarioLogado.getInstance().unsetUsuario();
+
                 //user desloga
                 auth_usuario.signOut();
                 Toast.makeText(getApplicationContext(), "Usuário deslogado", Toast.LENGTH_SHORT).show();

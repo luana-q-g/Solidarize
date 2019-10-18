@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.projetointegrador.solidarize.BEAN.Instituicao;
 import com.projetointegrador.solidarize.BEAN.TelefoneUsuario;
+import com.projetointegrador.solidarize.BEAN.UsuarioLogado;
 import com.projetointegrador.solidarize.DAO.InstituicaoDAO;
 import com.projetointegrador.solidarize.R;
 
@@ -91,6 +92,8 @@ public class CadastroInstituicaoSenhaFragment extends Fragment {
                                     InstituicaoDAO instituicaoDao= new InstituicaoDAO();
                                     instituicaoDao.inserirUsuarioInstituicao(instituicao);
 
+                                    UsuarioLogado.getInstance().setUsuario(instituicao);
+
                                     Toast.makeText(cadastro.getApplicationContext(), "Instituição cadastrada com sucesso!", Toast.LENGTH_LONG).show();
 
                                     //entra no Navigation Drawer
@@ -149,6 +152,8 @@ public class CadastroInstituicaoSenhaFragment extends Fragment {
 
                     InstituicaoDAO instituicaoDao= new InstituicaoDAO();
                     instituicaoDao.alterarUsuarioInstituicao(instituicao);
+
+                    UsuarioLogado.getInstance().setUsuario(instituicao);
                 }
             });
 

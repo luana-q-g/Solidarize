@@ -44,9 +44,6 @@ public class PerfilUsuarioFragment extends Fragment {
         if(auth_usuario.getCurrentUser() != null){
             NavDrawMenu act = (NavDrawMenu) getActivity();
 
-            //recupera usuario logado
-            UsuarioLogado.getInstance().getUsuario();
-
             if (UsuarioLogado.getInstance().getUsuario().getTipo_usuario().contentEquals("pessoa")) {
                 TabAdapterPerfilPessoa tabsAdapterPessoa = new TabAdapterPerfilPessoa(act.getSupportFragmentManager());
                 pager.setAdapter(tabsAdapterPessoa);

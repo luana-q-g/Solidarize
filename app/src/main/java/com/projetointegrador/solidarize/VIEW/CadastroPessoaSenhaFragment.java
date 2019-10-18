@@ -22,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.projetointegrador.solidarize.BEAN.Pessoa;
 import com.projetointegrador.solidarize.BEAN.TelefoneUsuario;
+import com.projetointegrador.solidarize.BEAN.UsuarioLogado;
 import com.projetointegrador.solidarize.DAO.PessoaDAO;
 import com.projetointegrador.solidarize.R;
 
@@ -79,6 +80,8 @@ public class CadastroPessoaSenhaFragment extends Fragment {
                                 //insere pessoa no banco de dados
                                 PessoaDAO pessoaDao= new PessoaDAO();
                                 pessoaDao.inserirUsuarioPessoa(pessoa);
+
+                                UsuarioLogado.getInstance().setUsuario(pessoa);
 
                                 Toast.makeText(cadastro.getApplicationContext(), "Pessoa cadastrada com sucesso!", Toast.LENGTH_LONG).show();
 

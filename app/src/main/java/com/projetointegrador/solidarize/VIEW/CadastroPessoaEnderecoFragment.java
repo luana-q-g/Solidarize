@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.projetointegrador.solidarize.BEAN.UsuarioLogado;
 import com.projetointegrador.solidarize.DAO.PessoaDAO;
 import com.projetointegrador.solidarize.R;
 
@@ -109,6 +110,8 @@ public class CadastroPessoaEnderecoFragment extends Fragment {
 
                     PessoaDAO pessoaDao= new PessoaDAO();
                     pessoaDao.alterarUsuarioPessoa(act.getPessoa());
+
+                    UsuarioLogado.getInstance().setUsuario(act.getPessoa());
                 }
             });
 

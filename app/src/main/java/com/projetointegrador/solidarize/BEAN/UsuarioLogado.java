@@ -19,4 +19,8 @@ public class UsuarioLogado {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
+    public void unsetUsuario() {
+        this.usuario = null;
+    }
 }
