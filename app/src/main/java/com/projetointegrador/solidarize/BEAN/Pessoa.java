@@ -10,13 +10,12 @@ public class Pessoa extends Usuario{
     private String telefone;
     private String cidade;
     private String estado;
-    private String senha;
 
     public Pessoa(){
     }
 
-    public Pessoa(String email, String nome, String senha, String cpf, String data_nasc, String tel, String cidade, String estado){
-        super(email, nome, senha);
+    public Pessoa(String email, String nome, String cpf, String data_nasc, String tel, String cidade, String estado){
+        super(email, nome);
         this.cpf= cpf;
         this.data_nasc= data_nasc;
         this.telefone= tel;
@@ -102,15 +101,5 @@ public class Pessoa extends Usuario{
 
     public void setCidade(String cidade) {
         this.cidade = cidade;
-    }
-
-    @Override
-    public String getSenha() {
-        return senha;
-    }
-
-    @Override
-    public void setSenha(String senha) {
-        this.senha = senha;
     }
 }

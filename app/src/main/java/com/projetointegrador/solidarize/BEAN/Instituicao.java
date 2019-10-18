@@ -7,7 +7,6 @@ public class Instituicao extends Usuario{
     private String cnpj;
     private String email_usuario;
     private String telefone;
-    private String senha;
     private String descricao;
     private String cidade;
     private String estado;
@@ -18,8 +17,8 @@ public class Instituicao extends Usuario{
         super();
     }
 
-    public Instituicao(String email, String nome, String tele, String senha, String cnpj, String descricao, String cidade, String estado, String rua, String numero){
-        super(email, nome, senha);
+    public Instituicao(String email, String nome, String tele, String cnpj, String descricao, String cidade, String estado, String rua, String numero){
+        super(email, nome);
         this.cnpj= cnpj;
         this.email_usuario= email;
         this.telefone= tele;
@@ -104,15 +103,5 @@ public class Instituicao extends Usuario{
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    @Override
-    public String getSenha() {
-        return senha;
-    }
-
-    @Override
-    public void setSenha(String senha) {
-        this.senha = senha;
     }
 }

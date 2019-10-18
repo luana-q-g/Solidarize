@@ -12,10 +12,19 @@ import android.view.ViewGroup;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
+import com.projetointegrador.solidarize.BEAN.Pessoa;
+import com.projetointegrador.solidarize.BEAN.UsuarioLogado;
 import com.projetointegrador.solidarize.R;
 import com.projetointegrador.solidarize.VIEW.NavDrawMenu;
 
 public class PerfilUsuarioFragment extends Fragment {
+
+    private FirebaseAuth auth_usuario= FirebaseAuth.getInstance();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,18 +41,26 @@ public class PerfilUsuarioFragment extends Fragment {
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         final ViewPager pager = (ViewPager) view.findViewById(R.id.view_pager_perfil_usuario);
 
-        NavDrawMenu act = (NavDrawMenu) getActivity();
+        if(auth_usuario.getCurrentUser() != null){
+            NavDrawMenu act = (NavDrawMenu) getActivity();
 
-        int tipo_usuario= 2;
-        //tipo=1 pessoa, tipo=2 instituicao
-        //constroi o tab layout com o tab adapter de cada tipo de usuario
-        if(tipo_usuario==1){
-            TabAdapterPerfilPessoa tabsAdapterPessoa = new TabAdapterPerfilPessoa(act.getSupportFragmentManager());
-            pager.setAdapter(tabsAdapterPessoa);
-        }
-        else{
-            TabAdapterPerfilInstituicao tabsAdapterInstituicao = new TabAdapterPerfilInstituicao(act.getSupportFragmentManager());
-            pager.setAdapter(tabsAdapterInstituicao);
+            //recupera usuario logado
+            UsuarioLogado.getInstance().getUsuario();
+
+            if (UsuarioLogado.getInstance().getUsuario().getTipo_usuario().contentEquals("pessoa")) {
+                TabAdapterPerfilPessoa tabsAdapterPessoa = new TabAdapterPerfilPessoa(act.getSupportFragmentManager());
+                pager.setAdapter(tabsAdapterPessoa);
+
+                // os dados são recuperados com:
+                // Pessoa usuario_pessoa = (Pessoa) UsuarioLogado.getInstance().getUsuario();
+            }
+            else{
+                TabAdapterPerfilInstituicao tabsAdapterInstituicao = new TabAdapterPerfilInstituicao(act.getSupportFragmentManager());
+                pager.setAdapter(tabsAdapterInstituicao);
+
+                // os dados são recuperados com:
+                // Instituicao i1 = (Instituicao) UsuarioLogado.getInstance().getUsuario();
+            }
         }
 
         tabLayout.setupWithViewPager(pager);

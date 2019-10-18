@@ -1,5 +1,6 @@
 package com.projetointegrador.solidarize.VIEW;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,7 +8,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.projetointegrador.solidarize.BEAN.Evento;
 import com.projetointegrador.solidarize.DAO.EventoDAO;
 import com.projetointegrador.solidarize.R;
@@ -29,6 +32,8 @@ public class CadastroEventoEnderecoefimFragment extends Fragment {
 
     private Button btn_voltar;
     private Button btn_cadastrar;
+
+    private FirebaseAuth auth_usuario= FirebaseAuth.getInstance();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,31 +57,39 @@ public class CadastroEventoEnderecoefimFragment extends Fragment {
         btn_cadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String e, c, r, com, d, m;
-                //e= txt_estado.getSelectedItem().toString();
-                //c= txt_cidade.getSelectedItem().toString();
-                e= "";
-                c= "";
-                r= txt_rua.getText().toString();
-                com= txt_complemento.getText().toString();
-                d= txt_descricao.getText().toString();
-                m= txt_max_participantes.getText().toString();
+                if(auth_usuario.getCurrentUser() != null){
+                    String e, c, r, com, d, m, email_usuario;
+                    //e= txt_estado.getSelectedItem().toString();
+                    //c= txt_cidade.getSelectedItem().toString();
+                    e= "";
+                    c= "";
+                    r= txt_rua.getText().toString();
+                    com= txt_complemento.getText().toString();
+                    d= txt_descricao.getText().toString();
+                    m= txt_max_participantes.getText().toString();
 
-                //cadastro
-                CadastroEvento cadastro= (CadastroEvento) getActivity();
-                Evento evento= cadastro.getEvento();
+                    email_usuario= auth_usuario.getCurrentUser().getEmail();
 
-                evento.setEstado(e);
-                evento.setCidade(c);
-                evento.setRua(r);
-                evento.setNumero(com);
-                evento.setDescricao(d);
-                evento.setMax_participantes(m);
+                    //cadastro
+                    CadastroEvento cadastro= (CadastroEvento) getActivity();
+                    Evento evento= cadastro.getEvento();
 
-                //colocar id do usuario que cadastra tambem!!!
+                    evento.setEstado(e);
+                    evento.setCidade(c);
+                    evento.setRua(r);
+                    evento.setNumero(com);
+                    evento.setDescricao(d);
+                    evento.setMax_participantes(m);
+                    //email do usuario que cadastrou
+                    evento.setEmail_usuario(email_usuario);
 
-                EventoDAO eventoDao= new EventoDAO();
-                eventoDao.inserirEvento(evento);
+                    EventoDAO eventoDao= new EventoDAO();
+                    eventoDao.inserirEvento(evento);
+
+                    Toast.makeText(getContext(), "Evento cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
+
+                    getActivity().finish();
+                }
             }
         });
 

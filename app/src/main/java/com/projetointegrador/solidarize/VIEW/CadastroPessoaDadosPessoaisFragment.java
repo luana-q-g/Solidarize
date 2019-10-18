@@ -14,11 +14,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.projetointegrador.solidarize.BEAN.Pessoa;
+import com.projetointegrador.solidarize.BEAN.UsuarioLogado;
 import com.projetointegrador.solidarize.DAO.PessoaDAO;
 import com.projetointegrador.solidarize.R;
 
@@ -26,6 +28,11 @@ public class CadastroPessoaDadosPessoaisFragment extends Fragment {
     //constants
     public static final String CADASTRO= "cadastro";
     public static final String EDICAO= "edicao";
+
+    private String tipo;
+    public CadastroPessoaDadosPessoaisFragment(String tipo){
+        this.tipo= tipo;
+    }
 
     PessoaDAO pessoaDAO= new PessoaDAO();
 
@@ -37,10 +44,7 @@ public class CadastroPessoaDadosPessoaisFragment extends Fragment {
 
     private Button btn_continuar;
 
-    private String tipo;
-    public CadastroPessoaDadosPessoaisFragment(String tipo){
-        this.tipo= tipo;
-    }
+    private FirebaseAuth auth_usuario= FirebaseAuth.getInstance();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -87,66 +91,84 @@ public class CadastroPessoaDadosPessoaisFragment extends Fragment {
         if(tipo.contentEquals(EDICAO)){
             final EdicaoCadastroPessoa act= (EdicaoCadastroPessoa) getActivity();
 
-            String id= "-LqvLtlbg9ISOM4dr8Rk";
+            if(auth_usuario.getCurrentUser() != null){
+                //recupera dados de usuario logado
+                UsuarioLogado.getInstance().getUsuario();
+                Pessoa pessoa_logada = (Pessoa) UsuarioLogado.getInstance().getUsuario();
 
-            //recuperando nó da pessoa
-            DatabaseReference pessoa_dados= pessoaDAO.getUsuarioPessoaNo(id);
+                String n, e, i, c, t, dt, ci, es;
 
-            //recuperacao de dados do firebase
-            pessoa_dados.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if ( dataSnapshot.exists() ) {
-                        Pessoa p1= dataSnapshot.getValue(Pessoa.class);
+                n= pessoa_logada.getNome();
+                e= pessoa_logada.getEmail();
+                i= pessoa_logada.getId();
+                c= pessoa_logada.getCpf();
+                t= pessoa_logada.getTelefone();
+                dt= pessoa_logada.getData_nasc();
+                ci= pessoa_logada.getCidade();
+                es= pessoa_logada.getEstado();
 
-                        String n, e, i, c, t, dt, ci, es;
+                act.setEndereco(ci, es);
+                act.setId(i);
 
-                        n= p1.getNome();
-                        e= p1.getEmail();
-                        i= p1.getId();
-                        c= p1.getCpf();
-                        t= p1.getTelefone();
-                        dt= p1.getData_nasc();
-                        ci= p1.getCidade();
-                        es= p1.getEstado();
+                setDadosView(n, e, c, t, dt);
 
-                        //act.setDadosPessoais(n, e, c, t, dt); nao precisa, é so alterar os dados nos campos
-                        act.setEndereco(ci, es);
-                        act.setId(i);
+                //recuperando nó da pessoa
+                //DatabaseReference pessoa_dados= pessoaDAO.getUsuarioPessoaNo(email_usuario);
 
-                        setDadosView(n, e, c, t, dt);
+                //recuperacao de dados do firebase
+                /*pessoa_dados.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if ( dataSnapshot.exists() ) {
+                            Pessoa p1= dataSnapshot.getValue(Pessoa.class);
+
+                            String n, e, i, c, t, dt, ci, es;
+
+                            n= p1.getNome();
+                            e= p1.getEmail();
+                            i= p1.getId();
+                            c= p1.getCpf();
+                            t= p1.getTelefone();
+                            dt= p1.getData_nasc();
+                            ci= p1.getCidade();
+                            es= p1.getEstado();
+
+                            //act.setDadosPessoais(n, e, c, t, dt); nao precisa, é so alterar os dados nos campos
+                            act.setEndereco(ci, es);
+                            act.setId(i);
+
+                            setDadosView(n, e, c, t, dt);
+                        }
                     }
-                }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                }
-            });
+                    }
+                });*/
 
-            btn_continuar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String n, e, c, t, d;
-                    n= nome.getText().toString();
-                    e= email.getText().toString();
-                    c= cpf.getText().toString();
-                    t= telefone.getText().toString();
-                    d= dt_nasc.getText().toString();
+                btn_continuar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String n, e, c, t, d;
+                        n= nome.getText().toString();
+                        e= email.getText().toString();
+                        c= cpf.getText().toString();
+                        t= telefone.getText().toString();
+                        d= dt_nasc.getText().toString();
 
-                    act.setDadosPessoais(n, e, c, t, d);
+                        act.setDadosPessoais(n, e, c, t, d);
 
-                    FragmentManager fm= getActivity().getSupportFragmentManager();
-                    FragmentTransaction ft= fm.beginTransaction();
+                        FragmentManager fm= getActivity().getSupportFragmentManager();
+                        FragmentTransaction ft= fm.beginTransaction();
 
-                    CadastroPessoaEnderecoFragment cadastro_endereco= new CadastroPessoaEnderecoFragment(CadastroPessoaEnderecoFragment.EDICAO);
-                    ft.replace(R.id.place_holder_info_edicao_cadastro_pessoa, cadastro_endereco);
-                    ft.commit();
-                }
-            });
+                        CadastroPessoaEnderecoFragment cadastro_endereco= new CadastroPessoaEnderecoFragment(CadastroPessoaEnderecoFragment.EDICAO);
+                        ft.replace(R.id.place_holder_info_edicao_cadastro_pessoa, cadastro_endereco);
+                        ft.commit();
+                    }
+                });
+            }
         }
-
-
 
         return view;
     }

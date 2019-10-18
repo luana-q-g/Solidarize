@@ -1,17 +1,15 @@
 package com.projetointegrador.solidarize.BEAN;
 
-public class Usuario {
+public abstract class Usuario {
     protected String email;
     protected String nome;
-    protected String senha;
 
     public Usuario(){
     }
 
-    public Usuario(String email, String nome, String senha){
+    public Usuario(String email, String nome){
         this.email= email;
         this.nome= nome;
-        this.senha= senha;
     }
 
     public String getEmail() {
@@ -30,11 +28,8 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
+    //isso possibilita saber que tipo é o usuario
+    //sabendo o tipo, da para instanciar um objeto e dar cast do usuario para o tipo especifico (e então recuperar dados do objeto)
+    public abstract String getTipo_usuario();
+    //todos os filhos devem ter esse método (por isso é abstrato)
 }

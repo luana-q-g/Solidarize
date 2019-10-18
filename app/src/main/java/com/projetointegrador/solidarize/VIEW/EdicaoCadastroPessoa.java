@@ -2,18 +2,10 @@ package com.projetointegrador.solidarize.VIEW;
 
 import android.os.Bundle;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.ValueEventListener;
 import com.projetointegrador.solidarize.BEAN.Pessoa;
-import com.projetointegrador.solidarize.BEAN.TelefoneUsuario;
-import com.projetointegrador.solidarize.DAO.PessoaDAO;
 import com.projetointegrador.solidarize.R;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;

@@ -16,7 +16,15 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.projetointegrador.solidarize.BEAN.Instituicao;
 import com.projetointegrador.solidarize.BEAN.Pessoa;
+import com.projetointegrador.solidarize.BEAN.Usuario;
+import com.projetointegrador.solidarize.BEAN.UsuarioLogado;
 import com.projetointegrador.solidarize.DAO.PessoaDAO;
 import com.projetointegrador.solidarize.R;
 
@@ -28,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView lbl_registrar;
 
     private FirebaseAuth auth_usuario= FirebaseAuth.getInstance();
+    private DatabaseReference BD= FirebaseDatabase.getInstance().getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +71,69 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         // Testa se logou com sucesso:
                         if ( task.isSuccessful() ) {
+
+                            final String email_usuario= auth_usuario.getCurrentUser().getEmail();
+
+                            BD.child("pessoa").addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    if ( dataSnapshot.exists() ) {
+                                        for ( DataSnapshot datasnapUsuario : dataSnapshot.getChildren() ) {
+                                            Pessoa p= datasnapUsuario.getValue(Pessoa.class);
+                                            if(p.getEmail().contentEquals(email_usuario)){
+
+                                                UsuarioLogado.getInstance().setUsuario(p);
+
+                                                /*if (UsuarioLogado.getInstance().getUsuario().getTipo_usuario().contentEquals("pessoa")) {
+                                                    Pessoa p1 = (Pessoa) UsuarioLogado.getInstance().getUsuario();
+                                                }*/
+
+                                                break;
+                                            }
+                                        }
+                                    }
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+
+                            BD.child("instituicao").addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    if ( dataSnapshot.exists() ) {
+                                        for ( DataSnapshot datasnapUsuario : dataSnapshot.getChildren() ) {
+                                            Instituicao i= datasnapUsuario.getValue(Instituicao.class);
+                                            if(i.getEmail().contentEquals(email_usuario)){
+
+
+                                                UsuarioLogado.getInstance().setUsuario(i);
+
+                                                /*if (UsuarioLogado.getInstance().getUsuario().getTipo_usuario().contentEquals("instituicao")) {
+                                                    Instituicao i1 = (Instituicao) UsuarioLogado.getInstance().getUsuario();
+                                                }*/
+
+                                                break;
+                                            }
+                                        }
+                                    }
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+                            // Aqui vc vai pegar o email do usuario
+                            // Vai buscar dados do usuario no firebase conforme o tipo de usuario
+                            // Vai preencher UsuarioLogado
+                            UsuarioLogado ul = UsuarioLogado.getInstance();
+
+
                             Intent i_nav_draw= new Intent(getApplicationContext(), NavDrawMenu.class);
                             startActivity(i_nav_draw);
                         }
