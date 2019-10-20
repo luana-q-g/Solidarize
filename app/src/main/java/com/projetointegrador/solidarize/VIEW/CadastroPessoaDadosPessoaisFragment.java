@@ -112,41 +112,6 @@ public class CadastroPessoaDadosPessoaisFragment extends Fragment {
 
                 setDadosView(n, e, c, t, dt);
 
-                //recuperando nó da pessoa
-                //DatabaseReference pessoa_dados= pessoaDAO.getUsuarioPessoaNo(email_usuario);
-
-                //recuperacao de dados do firebase
-                /*pessoa_dados.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if ( dataSnapshot.exists() ) {
-                            Pessoa p1= dataSnapshot.getValue(Pessoa.class);
-
-                            String n, e, i, c, t, dt, ci, es;
-
-                            n= p1.getNome();
-                            e= p1.getEmail();
-                            i= p1.getId();
-                            c= p1.getCpf();
-                            t= p1.getTelefone();
-                            dt= p1.getData_nasc();
-                            ci= p1.getCidade();
-                            es= p1.getEstado();
-
-                            //act.setDadosPessoais(n, e, c, t, dt); nao precisa, é so alterar os dados nos campos
-                            act.setEndereco(ci, es);
-                            act.setId(i);
-
-                            setDadosView(n, e, c, t, dt);
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });*/
-
                 btn_continuar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

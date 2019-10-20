@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.navigation.NavigationView;
+
+import androidx.annotation.NonNull;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -16,6 +18,13 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.projetointegrador.solidarize.BEAN.Instituicao;
+import com.projetointegrador.solidarize.BEAN.Pessoa;
 import com.projetointegrador.solidarize.BEAN.UsuarioLogado;
 import com.projetointegrador.solidarize.R;
 import com.projetointegrador.solidarize.VIEW.NavDrawer.AcoesUsuarioEventosFragment;
@@ -30,12 +39,72 @@ import com.projetointegrador.solidarize.VIEW.NavDrawer.SobreAppFragment;
 public class NavDrawMenu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-
     private FirebaseAuth auth_usuario= FirebaseAuth.getInstance();
+    private DatabaseReference BD= FirebaseDatabase.getInstance().getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //pegando usuario e setando UsuarioLogado
+        final String email_usuario= auth_usuario.getCurrentUser().getEmail();
+
+        // Aqui vc vai pegar o email do usuario
+        // Vai buscar dados do usuario no firebase conforme o tipo de usuario
+        // Vai preencher UsuarioLogado
+        //se for pessoa
+        BD.child("pessoa").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if ( dataSnapshot.exists() ) {
+                    for ( DataSnapshot datasnapUsuario : dataSnapshot.getChildren() ) {
+                        Pessoa p= datasnapUsuario.getValue(Pessoa.class);
+                        if(p.getEmail().contentEquals(email_usuario)){
+                            UsuarioLogado.getInstance().setUsuario(p);
+                            /* para pegar infos de pessoa
+                            if (UsuarioLogado.getInstance().getUsuario().getTipo_usuario().contentEquals("pessoa")) {
+                                Pessoa p1 = (Pessoa) UsuarioLogado.getInstance().getUsuario();
+                            }*/
+                            break;
+                        }
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        //se for instituicao
+        BD.child("instituicao").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if ( dataSnapshot.exists() ) {
+                    for ( DataSnapshot datasnapUsuario : dataSnapshot.getChildren() ) {
+                        Instituicao i= datasnapUsuario.getValue(Instituicao.class);
+                        if(i.getEmail().contentEquals(email_usuario)){
+                            UsuarioLogado.getInstance().setUsuario(i);
+                            /* para pegar infos de instituicao
+                            if (UsuarioLogado.getInstance().getUsuario().getTipo_usuario().contentEquals("instituicao")) {
+                                Instituicao i1 = (Instituicao) UsuarioLogado.getInstance().getUsuario();
+                            }*/
+                            break;
+                        }
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        //montagem do NavDraw
         setContentView(R.layout.activity_nav_draw_menu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -54,6 +123,8 @@ public class NavDrawMenu extends AppCompatActivity
         FeedEventosFragment fef= new FeedEventosFragment();
         ft.replace(R.id.place_holder_nav_draw, fef);
         ft.commit();
+
+
     }
 
     @Override

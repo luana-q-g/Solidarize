@@ -49,10 +49,6 @@ public class MainActivity extends AppCompatActivity {
         lbl_registrar= (TextView) findViewById(R.id.lbl_registrar);
         btn_entrar= (Button) findViewById(R.id.btn_entrar);
 
-        /*Pessoa user= new Pessoa("lulu@gmail.com", "luana", "9809809", "298929293", "28/11/2002", "SBC", "SP");
-        PessoaDAO p= new PessoaDAO();
-        p.inserirUsuarioPessoa(user);*/
-
         if(auth_usuario.getCurrentUser() != null){
             Intent i_nav_draw= new Intent(getApplicationContext(), NavDrawMenu.class);
             startActivity(i_nav_draw);
@@ -71,69 +67,6 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         // Testa se logou com sucesso:
                         if ( task.isSuccessful() ) {
-
-                            final String email_usuario= auth_usuario.getCurrentUser().getEmail();
-
-                            BD.child("pessoa").addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    if ( dataSnapshot.exists() ) {
-                                        for ( DataSnapshot datasnapUsuario : dataSnapshot.getChildren() ) {
-                                            Pessoa p= datasnapUsuario.getValue(Pessoa.class);
-                                            if(p.getEmail().contentEquals(email_usuario)){
-
-                                                UsuarioLogado.getInstance().setUsuario(p);
-
-                                                /*if (UsuarioLogado.getInstance().getUsuario().getTipo_usuario().contentEquals("pessoa")) {
-                                                    Pessoa p1 = (Pessoa) UsuarioLogado.getInstance().getUsuario();
-                                                }*/
-
-                                                break;
-                                            }
-                                        }
-                                    }
-
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                }
-                            });
-
-                            BD.child("instituicao").addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    if ( dataSnapshot.exists() ) {
-                                        for ( DataSnapshot datasnapUsuario : dataSnapshot.getChildren() ) {
-                                            Instituicao i= datasnapUsuario.getValue(Instituicao.class);
-                                            if(i.getEmail().contentEquals(email_usuario)){
-
-
-                                                UsuarioLogado.getInstance().setUsuario(i);
-
-                                                /*if (UsuarioLogado.getInstance().getUsuario().getTipo_usuario().contentEquals("instituicao")) {
-                                                    Instituicao i1 = (Instituicao) UsuarioLogado.getInstance().getUsuario();
-                                                }*/
-
-                                                break;
-                                            }
-                                        }
-                                    }
-
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                }
-                            });
-                            // Aqui vc vai pegar o email do usuario
-                            // Vai buscar dados do usuario no firebase conforme o tipo de usuario
-                            // Vai preencher UsuarioLogado
-                            UsuarioLogado ul = UsuarioLogado.getInstance();
-
-
                             Intent i_nav_draw= new Intent(getApplicationContext(), NavDrawMenu.class);
                             startActivity(i_nav_draw);
                         }
