@@ -44,7 +44,8 @@ public class TabLayoutPerfilInstituicaoPerfilFragment extends Fragment {
 
         Instituicao usuario_instituicao = (Instituicao) UsuarioLogado.getInstance().getUsuario();
 
-        //txt_nome.setText();
+        //funcao seta dados nos campos do perfil
+        setDadosView(usuario_instituicao.getNome(), usuario_instituicao.getEmail(), usuario_instituicao.getCnpj(), usuario_instituicao.getTelefone(), usuario_instituicao.getDescricao(), usuario_instituicao.getEstado(), usuario_instituicao.getCidade(), usuario_instituicao.getRua(), usuario_instituicao.getNumero());
 
         btn_editar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +57,18 @@ public class TabLayoutPerfilInstituicaoPerfilFragment extends Fragment {
         });
 
         return view;
+    }
+
+    public void setDadosView(String n, String e, String c, String t, String dt, String es, String ci, String rua, String com) {
+        txt_nome.setText(n);
+        txt_email.setText(e);
+        txt_cnpj.setText(c);
+        txt_tel.setText(t);
+        txt_descricao.setText(dt);
+        txt_cidade.setText(ci);
+        txt_estado.setText(es);
+        txt_rua.setText(rua);
+        txt_complemento.setText(com);
     }
 
 }
