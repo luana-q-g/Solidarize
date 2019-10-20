@@ -41,6 +41,10 @@ public class EdicaoCadastroInstituicao extends AppCompatActivity {
         this.instituicao.setId(id);
     }
 
+    public void setDescricao(String descricao){
+        this.instituicao.setDescricao(descricao);
+    }
+
     public void setEndereco(String cidade, String estado, String rua, String complemento){
         this.instituicao.setEstado(estado);
         this.instituicao.setCidade(cidade);

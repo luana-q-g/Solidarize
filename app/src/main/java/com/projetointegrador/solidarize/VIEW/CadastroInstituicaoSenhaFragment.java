@@ -154,6 +154,8 @@ public class CadastroInstituicaoSenhaFragment extends Fragment {
                     instituicaoDao.alterarUsuarioInstituicao(instituicao);
 
                     UsuarioLogado.getInstance().setUsuario(instituicao);
+
+                    act.finish();
                 }
             });
 
