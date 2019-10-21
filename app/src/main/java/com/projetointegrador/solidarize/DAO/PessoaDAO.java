@@ -35,6 +35,10 @@ public class PessoaDAO {
         pessoaDao.child(id).setValue(pessoa);
     }
 
+    public void excluirUsuarioPessoa (String id){
+        pessoaDao.child(id).setValue(null);
+    }
+
     public DatabaseReference getUsuarioPessoaNo (String id){
         return pessoaDao.child(id);
     }

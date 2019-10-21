@@ -25,6 +25,10 @@ public class InstituicaoDAO {
         instituicaoDao.child(id).setValue(instituicao);
     }
 
+    public void excluirUsuarioInstituicao (String id){
+        instituicaoDao.child(id).setValue(null);
+    }
+
     public DatabaseReference getUsuarioInstituicaoNo (String id){
         return instituicaoDao.child(id);
     }
