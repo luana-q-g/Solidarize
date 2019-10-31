@@ -24,6 +24,10 @@ public class EventoDAO {
         eventoDao.child(id).setValue(evento);
     }
 
+    public void excluirUsuarioEvento (String id){
+        eventoDao.child(id).setValue(null);
+    }
+
     public DatabaseReference getEventoNo (String id){
         return eventoDao.child(id);
     }

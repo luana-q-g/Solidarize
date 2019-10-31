@@ -130,7 +130,7 @@ public class CadastroEventoEnderecoefimFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     if(auth_usuario.getCurrentUser() != null){
-                        String e, c, r, com, d, m;
+                        String e, c, r, com, d, m, email_usuario;
                         //e= txt_estado.getSelectedItem().toString();
                         //c= txt_cidade.getSelectedItem().toString();
                         e= "";
@@ -140,19 +140,16 @@ public class CadastroEventoEnderecoefimFragment extends Fragment {
                         d= txt_descricao.getText().toString();
                         m= txt_max_participantes.getText().toString();
 
+                        email_usuario= auth_usuario.getCurrentUser().getEmail();
+
                         //edicao
                         EdicaoCadastroEvento edicao= (EdicaoCadastroEvento) getActivity();
-                        Evento evento= edicao.getEvento();
 
-                        evento.setEstado(e);
-                        evento.setCidade(c);
-                        evento.setRua(r);
-                        evento.setNumero(com);
-                        evento.setDescricao(d);
-                        evento.setMax_participantes(m);
+                        //seta atributos de eventos que faltavam
+                        edicao.setEnderecoEFim(email_usuario, e, c, r, com, d, m);
 
                         EventoDAO eventoDao= new EventoDAO();
-                        eventoDao.alterarEvento(evento);
+                        eventoDao.alterarEvento(edicao.getEvento());
 
                         Toast.makeText(getContext(), "Evento alterado com sucesso!", Toast.LENGTH_SHORT).show();
 

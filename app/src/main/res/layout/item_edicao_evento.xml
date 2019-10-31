@@ -7,16 +7,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btn_editar"
-        android:layout_width="86dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="8dp"
-        android:text="Editar"
-        app:layout_constraintEnd_toEndOf="@+id/lbl_nome_evento"
-        app:layout_constraintStart_toStartOf="@+id/lbl_nome_evento"
-        app:layout_constraintTop_toBottomOf="@+id/lbl_nome_evento" />
-
     <TextView
         android:id="@+id/lbl_nome_evento"
         android:layout_width="wrap_content"
@@ -35,6 +25,6 @@
         android:text="id"
         app:layout_constraintStart_toEndOf="@+id/lbl_nome_evento"
         app:layout_constraintTop_toTopOf="@+id/lbl_nome_evento"
-        tools:visibility="invisible" />
+        android:visibility="invisible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

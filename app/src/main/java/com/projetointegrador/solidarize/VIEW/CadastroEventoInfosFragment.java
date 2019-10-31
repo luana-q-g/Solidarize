@@ -90,12 +90,11 @@ public class CadastroEventoInfosFragment extends Fragment {
             final EdicaoCadastroEvento act= (EdicaoCadastroEvento) getActivity();
             EventoDAO eventoDAO= new EventoDAO();
 
-            //tem um campo no item com o id!!!!!
-            //como pegar esse campo? como vir de la?
-            String id= "-LpE5vRWJ9dMe_RxvOue";
+            //recupera id do evento clicado
+            String id_evento= act.getEvento().getId();
 
-            //recuperando nó da pessoa
-            DatabaseReference evento_dados= eventoDAO.getEventoNo(id);
+            //recuperando nó do evento
+            DatabaseReference evento_dados= eventoDAO.getEventoNo(id_evento);
 
             //recuperacao de dados do firebase
             evento_dados.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -138,7 +137,7 @@ public class CadastroEventoInfosFragment extends Fragment {
                     di= txt_dt_inicio.getText().toString();
                     df= txt_dt_final.getText().toString();
                     hi= txt_hra_inicio.getText().toString();
-                    hf= txt_dt_final.getText().toString();
+                    hf= txt_hra_final.getText().toString();
                     t= "";
                     //t= txt_tipo.getSelectedItem().toString();
 
@@ -166,6 +165,6 @@ public class CadastroEventoInfosFragment extends Fragment {
         txt_dt_final.setText(dtf);
         txt_hra_inicio.setText(hi);
         txt_hra_final.setText(hf);
-        //txt_tipo.setText(dt);
+        //txt_tipo.setText(ti);
     }
 }

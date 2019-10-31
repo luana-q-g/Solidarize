@@ -22,6 +22,10 @@ public class EdicaoCadastroEvento extends AppCompatActivity {
 
         place_holder= findViewById(R.id.place_holder_info_edicao_cadastro_evento);
 
+        String id_evento= getIntent().getStringExtra("id");
+
+        evento.setId(id_evento);
+
         //abertura do fragment
         FragmentManager fm= getSupportFragmentManager();
         FragmentTransaction ft= fm.beginTransaction();
@@ -40,8 +44,7 @@ public class EdicaoCadastroEvento extends AppCompatActivity {
         this.evento.setTipo(tipo);
     }
 
-    public void setEnderecoEFim(String id, String email, String es, String ci, String rua, String com, String descri, String max){
-        this.evento.setId(id);
+    public void setEnderecoEFim(String email, String es, String ci, String rua, String com, String descri, String max){
         this.evento.setEmail_usuario(email);
         this.evento.setEstado(es);
         this.evento.setCidade(ci);
