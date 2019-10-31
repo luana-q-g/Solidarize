@@ -18,4 +18,13 @@ public class EventoDAO {
 
         eventoDao.child(id).setValue(evento);
     }
+
+    public void alterarEvento(Evento evento){
+        String id= evento.getId();
+        eventoDao.child(id).setValue(evento);
+    }
+
+    public DatabaseReference getEventoNo (String id){
+        return eventoDao.child(id);
+    }
 }

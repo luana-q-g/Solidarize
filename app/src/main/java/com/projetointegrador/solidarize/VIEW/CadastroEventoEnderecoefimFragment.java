@@ -22,6 +22,14 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 public class CadastroEventoEnderecoefimFragment extends Fragment {
+    //constants
+    public static final String CADASTRO= "cadastro";
+    public static final String EDICAO= "edicao";
+
+    private String tipo;
+    public CadastroEventoEnderecoefimFragment(String tipo){
+        this.tipo= tipo;
+    }
 
     private Spinner txt_estado;
     private Spinner txt_cidade;
@@ -54,56 +62,117 @@ public class CadastroEventoEnderecoefimFragment extends Fragment {
         btn_voltar= view.findViewById(R.id.btn_voltar_enderecoefim_eventos);
         btn_cadastrar= view.findViewById(R.id.btn_cadastrar_enderecoefim_eventos);
 
-        btn_cadastrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(auth_usuario.getCurrentUser() != null){
-                    String e, c, r, com, d, m, email_usuario;
-                    //e= txt_estado.getSelectedItem().toString();
-                    //c= txt_cidade.getSelectedItem().toString();
-                    e= "";
-                    c= "";
-                    r= txt_rua.getText().toString();
-                    com= txt_complemento.getText().toString();
-                    d= txt_descricao.getText().toString();
-                    m= txt_max_participantes.getText().toString();
+        if(tipo.contentEquals(CADASTRO)){
+            btn_cadastrar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(auth_usuario.getCurrentUser() != null){
+                        String e, c, r, com, d, m, email_usuario;
+                        //e= txt_estado.getSelectedItem().toString();
+                        //c= txt_cidade.getSelectedItem().toString();
+                        e= "";
+                        c= "";
+                        r= txt_rua.getText().toString();
+                        com= txt_complemento.getText().toString();
+                        d= txt_descricao.getText().toString();
+                        m= txt_max_participantes.getText().toString();
 
-                    email_usuario= auth_usuario.getCurrentUser().getEmail();
+                        email_usuario= auth_usuario.getCurrentUser().getEmail();
 
-                    //cadastro
-                    CadastroEvento cadastro= (CadastroEvento) getActivity();
-                    Evento evento= cadastro.getEvento();
+                        //cadastro
+                        CadastroEvento cadastro= (CadastroEvento) getActivity();
+                        Evento evento= cadastro.getEvento();
 
-                    evento.setEstado(e);
-                    evento.setCidade(c);
-                    evento.setRua(r);
-                    evento.setNumero(com);
-                    evento.setDescricao(d);
-                    evento.setMax_participantes(m);
-                    //email do usuario que cadastrou
-                    evento.setEmail_usuario(email_usuario);
+                        evento.setEstado(e);
+                        evento.setCidade(c);
+                        evento.setRua(r);
+                        evento.setNumero(com);
+                        evento.setDescricao(d);
+                        evento.setMax_participantes(m);
+                        //email do usuario que cadastrou
+                        evento.setEmail_usuario(email_usuario);
 
-                    EventoDAO eventoDao= new EventoDAO();
-                    eventoDao.inserirEvento(evento);
+                        EventoDAO eventoDao= new EventoDAO();
+                        eventoDao.inserirEvento(evento);
 
-                    Toast.makeText(getContext(), "Evento cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Evento cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
 
-                    getActivity().finish();
+                        getActivity().finish();
+                    }
                 }
-            }
-        });
+            });
 
-        btn_voltar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentManager fm= getActivity().getSupportFragmentManager();
-                FragmentTransaction ft= fm.beginTransaction();
+            btn_voltar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    FragmentManager fm= getActivity().getSupportFragmentManager();
+                    FragmentTransaction ft= fm.beginTransaction();
 
-                CadastroEventoInfosFragment cadastro_infos= new CadastroEventoInfosFragment();
-                ft.replace(R.id.place_holder_info_cadastro_evento, cadastro_infos);
-                ft.commit();
-            }
-        });
+                    CadastroEventoInfosFragment cadastro_infos= new CadastroEventoInfosFragment(CadastroEventoInfosFragment.CADASTRO);
+                    ft.replace(R.id.place_holder_info_cadastro_evento, cadastro_infos);
+                    ft.commit();
+                }
+            });
+        }
+
+        if(tipo.contentEquals(EDICAO)){
+            btn_cadastrar.setText("Editar");
+
+            final EdicaoCadastroEvento act= (EdicaoCadastroEvento) getActivity();
+            //txt_estado
+            //txt_cidade
+            txt_rua.setText(act.getEvento().getRua());
+            txt_complemento.setText(act.getEvento().getNumero());
+            txt_descricao.setText(act.getEvento().getDescricao());
+            txt_max_participantes.setText(act.getEvento().getMax_participantes());
+
+            btn_cadastrar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(auth_usuario.getCurrentUser() != null){
+                        String e, c, r, com, d, m;
+                        //e= txt_estado.getSelectedItem().toString();
+                        //c= txt_cidade.getSelectedItem().toString();
+                        e= "";
+                        c= "";
+                        r= txt_rua.getText().toString();
+                        com= txt_complemento.getText().toString();
+                        d= txt_descricao.getText().toString();
+                        m= txt_max_participantes.getText().toString();
+
+                        //edicao
+                        EdicaoCadastroEvento edicao= (EdicaoCadastroEvento) getActivity();
+                        Evento evento= edicao.getEvento();
+
+                        evento.setEstado(e);
+                        evento.setCidade(c);
+                        evento.setRua(r);
+                        evento.setNumero(com);
+                        evento.setDescricao(d);
+                        evento.setMax_participantes(m);
+
+                        EventoDAO eventoDao= new EventoDAO();
+                        eventoDao.alterarEvento(evento);
+
+                        Toast.makeText(getContext(), "Evento alterado com sucesso!", Toast.LENGTH_SHORT).show();
+
+                        getActivity().finish();
+                    }
+                }
+            });
+
+            btn_voltar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    FragmentManager fm= getActivity().getSupportFragmentManager();
+                    FragmentTransaction ft= fm.beginTransaction();
+
+                    CadastroEventoInfosFragment cadastro_infos= new CadastroEventoInfosFragment(CadastroEventoInfosFragment.EDICAO);
+                    ft.replace(R.id.place_holder_info_edicao_cadastro_evento, cadastro_infos);
+                    ft.commit();
+                }
+            });
+        }
 
         return view;
     }
