@@ -83,14 +83,7 @@ public class CadastroEventoEnderecoefimFragment extends Fragment {
                         CadastroEvento cadastro= (CadastroEvento) getActivity();
                         Evento evento= cadastro.getEvento();
 
-                        evento.setEstado(e);
-                        evento.setCidade(c);
-                        evento.setRua(r);
-                        evento.setNumero(com);
-                        evento.setDescricao(d);
-                        evento.setMax_participantes(m);
-                        //email do usuario que cadastrou
-                        evento.setEmail_usuario(email_usuario);
+                        cadastro.setEnderecoEFim(email_usuario, e, c, r, com, d, m);
 
                         EventoDAO eventoDao= new EventoDAO();
                         eventoDao.inserirEvento(evento);

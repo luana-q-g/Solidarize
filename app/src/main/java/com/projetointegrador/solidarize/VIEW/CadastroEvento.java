@@ -39,6 +39,16 @@ public class CadastroEvento extends AppCompatActivity {
         this.evento.setTipo(tipo);
     }
 
+    public void setEnderecoEFim(String email, String es, String ci, String rua, String com, String descri, String max){
+        this.evento.setEmail_usuario(email);
+        this.evento.setEstado(es);
+        this.evento.setCidade(ci);
+        this.evento.setRua(rua);
+        this.evento.setNumero(com);
+        this.evento.setDescricao(descri);
+        this.evento.setMax_participantes(max);
+    }
+
     public Evento getEvento() {
         return evento;
     }

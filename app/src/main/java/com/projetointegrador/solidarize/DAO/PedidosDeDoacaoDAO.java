@@ -18,4 +18,17 @@ public class PedidosDeDoacaoDAO {
 
         pedidoDao.child(id).setValue(pedido);
     }
+
+    public void alterarPedidoDoacao(PedidoDeDoacao pedido){
+        String id= pedido.getId();
+        pedidoDao.child(id).setValue(pedido);
+    }
+
+    public void excluirPedidoDoacao (String id){
+        pedidoDao.child(id).setValue(null);
+    }
+
+    public DatabaseReference getPedidoDoacaoNo (String id){
+        return pedidoDao.child(id);
+    }
 }

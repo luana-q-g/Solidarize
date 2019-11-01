@@ -101,19 +101,18 @@ public class TabLayoutPerfilEventosFragment extends Fragment {
                 evento_edicao.putExtra("id", id_evento);
                 startActivity(evento_edicao);
 
-                break;
+                return true;
 
             case R.id.item_excluir:
                 //FAZER CAIXA DE TEXTO PARA CONFIRMAR!!
 
                 EventoDAO eventoDAO= new EventoDAO();
-
                 eventoDAO.excluirUsuarioEvento(id_evento);
 
-                break;
+                return true;
+
+            default:
+                return super.onContextItemSelected(item);
         }
-
-
-        return super.onContextItemSelected(item);
     }
 }

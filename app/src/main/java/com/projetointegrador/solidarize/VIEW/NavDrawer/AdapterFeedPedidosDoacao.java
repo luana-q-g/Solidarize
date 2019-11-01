@@ -21,6 +21,6 @@ public class AdapterFeedPedidosDoacao extends FirebaseListAdapter<PedidoDeDoacao
         lbl_instituicao= v.findViewById(R.id.lbl_nome_instituicao);
 
         lbl_item.setText(p.getItem());
-        lbl_instituicao.setText(p.getCnpj_instituicao());
+        lbl_instituicao.setText(p.getEmailUsuario());
     }
 }

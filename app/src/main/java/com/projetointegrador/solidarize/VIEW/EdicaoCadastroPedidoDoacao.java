@@ -3,6 +3,7 @@ package com.projetointegrador.solidarize.VIEW;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 
+import com.projetointegrador.solidarize.BEAN.Evento;
 import com.projetointegrador.solidarize.BEAN.PedidoDeDoacao;
 import com.projetointegrador.solidarize.R;
 
@@ -10,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-public class CadastroPedidosDeDoacao extends AppCompatActivity {
+public class EdicaoCadastroPedidoDoacao extends AppCompatActivity {
     private FrameLayout place_holder;
 
     private PedidoDeDoacao pedido_de_doacao= new PedidoDeDoacao();
@@ -18,15 +19,19 @@ public class CadastroPedidosDeDoacao extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastro_pedidos_de_doacao);
+        setContentView(R.layout.activity_edicao_cadastro_pedido_doacao);
 
-        place_holder= findViewById(R.id.place_holder_info_cadastro_pedidos_de_doacao);
+        place_holder= findViewById(R.id.place_holder_info_edicao_cadastro_pedido_doacao);
 
+        String id_pedido_doacao= getIntent().getStringExtra("id");
+        pedido_de_doacao.setId(id_pedido_doacao);
+
+        //abertura do fragment
         FragmentManager fm= getSupportFragmentManager();
         FragmentTransaction ft= fm.beginTransaction();
 
-        CadastroPedidosDeDoacaoInfosFragment cadastro_infos= new CadastroPedidosDeDoacaoInfosFragment(CadastroPedidosDeDoacaoInfosFragment.CADASTRO);
-        ft.replace(R.id.place_holder_info_cadastro_pedidos_de_doacao, cadastro_infos);
+        CadastroPedidosDeDoacaoInfosFragment cadastro_infos= new CadastroPedidosDeDoacaoInfosFragment(CadastroPedidosDeDoacaoInfosFragment.EDICAO);
+        ft.replace(R.id.place_holder_info_edicao_cadastro_pedido_doacao, cadastro_infos);
         ft.commit();
     }
 

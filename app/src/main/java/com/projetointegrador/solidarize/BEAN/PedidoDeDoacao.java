@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class PedidoDeDoacao {
     private String id;
-    private String cnpj_instituicao;
+    private String email_usuario;
     private String item;
     private String meta_qtd;
     private String tipo_pedido;
@@ -31,8 +31,8 @@ public class PedidoDeDoacao {
         this.complemento = complemento;
     }
 
-    public PedidoDeDoacao(String cnpj_instituicao, String item, String meta_qtd, String tipo_pedido, String dt_validade, String nivel_urgencia, String estado, String cidade, String rua, String complemento) {
-        this.cnpj_instituicao = cnpj_instituicao;
+    public PedidoDeDoacao(String email_instituicao, String item, String meta_qtd, String tipo_pedido, String dt_validade, String nivel_urgencia, String estado, String cidade, String rua, String complemento) {
+        this.email_usuario = email_instituicao;
         this.item = item;
         this.meta_qtd = meta_qtd;
         this.tipo_pedido = tipo_pedido;
@@ -44,12 +44,12 @@ public class PedidoDeDoacao {
         this.complemento = complemento;
     }
 
-    public String getCnpj_instituicao() {
-        return cnpj_instituicao;
+    public String getEmailUsuario() {
+        return email_usuario;
     }
 
-    public void setCnpj_instituicao(String cnpj_instituicao) {
-        this.cnpj_instituicao = cnpj_instituicao;
+    public void setEmailUsuario(String email_usuario) {
+        this.email_usuario = email_usuario;
     }
 
     public String getItem() {

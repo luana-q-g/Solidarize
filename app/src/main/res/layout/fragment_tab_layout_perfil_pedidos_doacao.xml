@@ -21,12 +21,11 @@
         android:id="@+id/lista_pedido_doacao_criados"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_criar_pedido_doacao"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lbl_existencia_pedido_doacao"></ListView>
+        app:layout_constraintTop_toTopOf="@+id/lbl_existencia_pedido_doacao"></ListView>
 
     <TextView
         android:id="@+id/lbl_pedido_doacao_criados"

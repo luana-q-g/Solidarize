@@ -7,7 +7,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.projetointegrador.solidarize.BEAN.PedidoDeDoacao;
 import com.projetointegrador.solidarize.DAO.PedidosDeDoacaoDAO;
 import com.projetointegrador.solidarize.R;
@@ -19,6 +21,15 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 public class CadastroPedidosDeDoacaoEnderecoefimFragment extends Fragment {
+    //constants
+    public static final String CADASTRO= "cadastro";
+    public static final String EDICAO= "edicao";
+
+    private String tipo;
+    public CadastroPedidosDeDoacaoEnderecoefimFragment(String tipo){
+        this.tipo= tipo;
+    }
+
     private Spinner txt_estado;
     private Spinner txt_cidade;
     private EditText txt_rua;
@@ -26,6 +37,8 @@ public class CadastroPedidosDeDoacaoEnderecoefimFragment extends Fragment {
 
     private Button btn_voltar;
     private Button btn_cadastrar;
+
+    private FirebaseAuth auth_usuario= FirebaseAuth.getInstance();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,44 +57,103 @@ public class CadastroPedidosDeDoacaoEnderecoefimFragment extends Fragment {
         btn_voltar= view.findViewById(R.id.btn_voltar_enderecoefim_pedidos_doacao);
         btn_cadastrar= view.findViewById(R.id.btn_cadastrar_enderecoefim_pedidos_doacao);
 
-        btn_cadastrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String e, c, r, com;
-                //e= txt_estado.getSelectedItem().toString();
-                //c= txt_cidade.getSelectedItem().toString();
-                e= "";
-                c= "";
-                r= txt_rua.getText().toString();
-                com= txt_complemento.getText().toString();
+        if(tipo.contentEquals(CADASTRO)){
+            btn_cadastrar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(auth_usuario.getCurrentUser() != null){
+                        String e, c, r, com, email_usuario;
+                        //e= txt_estado.getSelectedItem().toString();
+                        //c= txt_cidade.getSelectedItem().toString();
+                        e= "";
+                        c= "";
+                        r= txt_rua.getText().toString();
+                        com= txt_complemento.getText().toString();
 
-                //cadastro
-                CadastroPedidosDeDoacao cadastro= (CadastroPedidosDeDoacao) getActivity();
-                PedidoDeDoacao pedido= cadastro.getPedido_de_doacao();
+                        email_usuario= auth_usuario.getCurrentUser().getEmail();
 
-                pedido.setEstado(e);
-                pedido.setCidade(c);
-                pedido.setRua(r);
-                pedido.setComplemento(com);
+                        //cadastro
+                        CadastroPedidosDeDoacao cadastro= (CadastroPedidosDeDoacao) getActivity();
+                        cadastro.setEnderecoEFim(email_usuario, e, c, r, com);
 
-                //colocar id da instituicao que cadastra tambem!!!
+                        PedidosDeDoacaoDAO pedidoDao= new PedidosDeDoacaoDAO();
+                        pedidoDao.inserirPedidoDeDoacao(cadastro.getPedido_de_doacao());
 
-                PedidosDeDoacaoDAO pedidoDao= new PedidosDeDoacaoDAO();
-                pedidoDao.inserirPedidoDeDoacao(pedido);
-            }
-        });
+                        Toast.makeText(getContext(), "Pedido de doação cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
 
-        btn_voltar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentManager fm= getActivity().getSupportFragmentManager();
-                FragmentTransaction ft= fm.beginTransaction();
+                        getActivity().finish();
+                    }
+                    else{
 
-                CadastroPedidosDeDoacaoInfosFragment cadastro_infos= new CadastroPedidosDeDoacaoInfosFragment();
-                ft.replace(R.id.place_holder_info_cadastro_pedidos_de_doacao, cadastro_infos);
-                ft.commit();
-            }
-        });
+                    }
+                }
+            });
+
+            btn_voltar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    FragmentManager fm= getActivity().getSupportFragmentManager();
+                    FragmentTransaction ft= fm.beginTransaction();
+
+                    CadastroPedidosDeDoacaoInfosFragment cadastro_infos= new CadastroPedidosDeDoacaoInfosFragment(CadastroPedidosDeDoacaoInfosFragment.CADASTRO);
+                    ft.replace(R.id.place_holder_info_cadastro_pedidos_de_doacao, cadastro_infos);
+                    ft.commit();
+                }
+            });
+        }
+
+        if(tipo.contentEquals(EDICAO)){
+            btn_cadastrar.setText("Editar");
+
+            final EdicaoCadastroPedidoDoacao act= (EdicaoCadastroPedidoDoacao) getActivity();
+            //txt_estado
+            //txt_cidade
+            txt_rua.setText(act.getPedido_de_doacao().getRua());
+            txt_complemento.setText(act.getPedido_de_doacao().getComplemento());
+
+            btn_cadastrar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(auth_usuario.getCurrentUser() != null){
+                        String e, c, r, com, email_usuario;
+                        //e= txt_estado.getSelectedItem().toString();
+                        //c= txt_cidade.getSelectedItem().toString();
+                        e= "";
+                        c= "";
+                        r= txt_rua.getText().toString();
+                        com= txt_complemento.getText().toString();
+
+                        email_usuario= auth_usuario.getCurrentUser().getEmail();
+
+                        //edicao
+                        EdicaoCadastroPedidoDoacao edicao= (EdicaoCadastroPedidoDoacao) getActivity();
+
+                        //seta atributos de eventos que faltavam
+                        edicao.setEnderecoEFim(email_usuario, e, c, r, com);
+
+                        PedidosDeDoacaoDAO pedidosDeDoacaoDAO= new PedidosDeDoacaoDAO();
+                        pedidosDeDoacaoDAO.alterarPedidoDoacao(edicao.getPedido_de_doacao());
+
+                        Toast.makeText(getContext(), "Pedido de Doação alterado com sucesso!", Toast.LENGTH_SHORT).show();
+
+                        getActivity().finish();
+                    }
+                }
+            });
+
+            btn_voltar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    FragmentManager fm= getActivity().getSupportFragmentManager();
+                    FragmentTransaction ft= fm.beginTransaction();
+
+                    CadastroPedidosDeDoacaoInfosFragment cadastro_infos= new CadastroPedidosDeDoacaoInfosFragment(CadastroPedidosDeDoacaoInfosFragment.EDICAO);
+                    ft.replace(R.id.place_holder_info_edicao_cadastro_pedido_doacao, cadastro_infos);
+                    ft.commit();
+                }
+            });
+        }
+
 
         return view;
     }

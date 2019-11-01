@@ -19,6 +19,7 @@
         <activity android:name=".VIEW.EdicaoCadastroPessoa" />
         <activity android:name=".VIEW.EdicaoCadastroInstituicao" />
         <activity android:name=".VIEW.EdicaoCadastroEvento" />
+        <activity android:name=".VIEW.EdicaoCadastroPedidoDoacao" />
         <activity
             android:name=".VIEW.NavDrawMenu"
             android:label="@string/title_activity_nav_draw_menu"
