@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/lbl_nome_pedido"
+        android:id="@+id/nome_pedido"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -63,7 +63,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/lbl_tipo_pedido"
+        android:id="@+id/tipo_pedido"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
