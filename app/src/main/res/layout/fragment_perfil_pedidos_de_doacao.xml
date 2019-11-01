@@ -8,13 +8,13 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/lbl_nome_pedido"
+        android:id="@+id/lbl_item_pedido"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
-        android:text="Macarrão"
+        android:text="Item"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,33 +22,33 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <CheckBox
-        android:id="@+id/salvar_pedido"
+        android:id="@+id/check_salvar_pedido"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:text="Salvar"
-        app:layout_constraintEnd_toStartOf="@+id/confirma_doacao"
+        app:layout_constraintEnd_toStartOf="@+id/check_confirma_doacao"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lbl_nome_pedido" />
+        app:layout_constraintTop_toBottomOf="@id/lbl_item_pedido" />
 
     <CheckBox
-        android:id="@+id/confirma_doacao"
+        android:id="@+id/check_confirma_doacao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:text="Confirmar doação"
-        app:layout_constraintBottom_toBottomOf="@+id/salvar_pedido"
+        app:layout_constraintBottom_toBottomOf="@+id/check_salvar_pedido"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/salvar_pedido" />
+        app:layout_constraintStart_toEndOf="@+id/check_salvar_pedido" />
 
     <ProgressBar
-        android:id="@+id/meta_dos_pedidos"
+        android:id="@+id/bar_meta_dos_pedidos"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="160dp"
         android:layout_height="22dp"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lbl_meta_pedidos" />
 
@@ -61,7 +61,7 @@
         android:text="Meta:"
         android:textStyle="normal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/salvar_pedido" />
+        app:layout_constraintTop_toBottomOf="@+id/check_salvar_pedido" />
 
     <TextView
         android:id="@+id/lbl_tipo_pedido"
@@ -71,7 +71,7 @@
         android:layout_marginTop="32dp"
         android:text="tipo:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/meta_dos_pedidos" />
+        app:layout_constraintTop_toBottomOf="@id/bar_meta_dos_pedidos" />
 
     <TextView
         android:id="@+id/lbl_nivel_de_urgencia"
@@ -88,13 +88,13 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="157dp"
         android:layout_height="26dp"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lbl_nivel_de_urgencia" />
 
     <TextView
-        android:id="@+id/lbl_data_ate_qdo_recebe_pedidos"
+        android:id="@+id/lbl_dt_validade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -104,14 +104,14 @@
         app:layout_constraintTop_toBottomOf="@+id/barra_nivel_de_urgencia_pedido" />
 
     <TextView
-        android:id="@+id/data_ate_qdo_recebe_pedido"
+        android:id="@+id/txt_dt_validade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
-        android:text="TextView"
+        android:text="data"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lbl_data_ate_qdo_recebe_pedidos" />
+        app:layout_constraintTop_toBottomOf="@+id/lbl_dt_validade" />
 
     <TextView
         android:id="@+id/lbl_locais_de_arrecadacao"
@@ -121,20 +121,20 @@
         android:layout_marginTop="32dp"
         android:text="Locais de arrecadação:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/data_ate_qdo_recebe_pedido" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_dt_validade" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/txt_locais_arrecadacao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
-        android:text="TextView"
+        android:text="locais"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lbl_locais_de_arrecadacao" />
 
     <TextView
-        android:id="@+id/lbl_instituicao_que_pediu"
+        android:id="@+id/lbl_instituicao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -142,7 +142,7 @@
         android:text="Pedido feito pela Instituição:"
         android:textStyle="bold|italic"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_locais_arrecadacao" />
 
     <TextView
         android:id="@+id/lbl_enderecos_e_mais"
@@ -154,5 +154,5 @@
         android:text="Clique para endereços e mais sobre a instituição."
         android:textStyle="normal|bold|italic"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lbl_instituicao_que_pediu" />
+        app:layout_constraintTop_toBottomOf="@+id/lbl_instituicao" />
 </androidx.constraintlayout.widget.ConstraintLayout>
