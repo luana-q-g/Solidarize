@@ -11,7 +11,12 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.projetointegrador.solidarize.BEAN.CadastroUsuarioEvento;
 import com.projetointegrador.solidarize.BEAN.Evento;
+import com.projetointegrador.solidarize.BEAN.Instituicao;
+import com.projetointegrador.solidarize.BEAN.Pessoa;
+import com.projetointegrador.solidarize.BEAN.UsuarioLogado;
+import com.projetointegrador.solidarize.DAO.CadastroUsuarioEventoDAO;
 import com.projetointegrador.solidarize.DAO.EventoDAO;
 import com.projetointegrador.solidarize.R;
 
@@ -88,6 +93,21 @@ public class CadastroEventoEnderecoefimFragment extends Fragment {
                         EventoDAO eventoDao= new EventoDAO();
                         eventoDao.inserirEvento(evento);
 
+                        //inserindo relação tipo "foreign key" para identificar que usuario que cria tal evento
+                        String id_usuario= "";
+                        if (UsuarioLogado.getInstance().getUsuario().getTipo_usuario().contentEquals("pessoa")) {
+                            Pessoa usuario_pessoa = (Pessoa) UsuarioLogado.getInstance().getUsuario();
+                            id_usuario= usuario_pessoa.getId();
+                        }
+                        else{
+                            Instituicao usuario_instituicao = (Instituicao) UsuarioLogado.getInstance().getUsuario();
+                            id_usuario= usuario_instituicao.getId();
+                        }
+
+                        CadastroUsuarioEvento relacao_usuario_evento= new CadastroUsuarioEvento(id_usuario, evento.getId(), evento.getNome());
+                        CadastroUsuarioEventoDAO relacao_usuario_eventoDAO= new CadastroUsuarioEventoDAO();
+                        relacao_usuario_eventoDAO.inserirCadastroUsuarioEvento(relacao_usuario_evento);
+
                         Toast.makeText(getContext(), "Evento cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
 
                         getActivity().finish();
@@ -143,6 +163,21 @@ public class CadastroEventoEnderecoefimFragment extends Fragment {
 
                         EventoDAO eventoDao= new EventoDAO();
                         eventoDao.alterarEvento(edicao.getEvento());
+
+                        //alterando relação tipo "foreign key" para identificar que usuario que cria tal evento
+                        String id_usuario= "";
+                        if (UsuarioLogado.getInstance().getUsuario().getTipo_usuario().contentEquals("pessoa")) {
+                            Pessoa usuario_pessoa = (Pessoa) UsuarioLogado.getInstance().getUsuario();
+                            id_usuario= usuario_pessoa.getId();
+                        }
+                        else{
+                            Instituicao usuario_instituicao = (Instituicao) UsuarioLogado.getInstance().getUsuario();
+                            id_usuario= usuario_instituicao.getId();
+                        }
+
+                        CadastroUsuarioEvento relacao_usuario_evento= new CadastroUsuarioEvento(id_usuario, edicao.getEvento().getId(), edicao.getEvento().getNome());
+                        CadastroUsuarioEventoDAO relacao_usuario_eventoDAO= new CadastroUsuarioEventoDAO();
+                        relacao_usuario_eventoDAO.alterarCadastroUsuarioEvento(relacao_usuario_evento);
 
                         Toast.makeText(getContext(), "Evento alterado com sucesso!", Toast.LENGTH_SHORT).show();
 

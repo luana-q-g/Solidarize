@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <CheckBox
+    <Button
         android:id="@+id/check_salvar_evento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lbl_titulo_evento" />
 
-    <CheckBox
+    <Button
         android:id="@+id/check_confirma_presenca"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

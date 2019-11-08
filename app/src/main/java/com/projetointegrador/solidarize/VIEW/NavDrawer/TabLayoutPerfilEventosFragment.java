@@ -15,7 +15,12 @@ import android.widget.TextView;
 import com.firebase.ui.database.FirebaseListOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.projetointegrador.solidarize.BEAN.CadastroUsuarioEvento;
 import com.projetointegrador.solidarize.BEAN.Evento;
+import com.projetointegrador.solidarize.BEAN.Instituicao;
+import com.projetointegrador.solidarize.BEAN.Pessoa;
+import com.projetointegrador.solidarize.BEAN.UsuarioLogado;
+import com.projetointegrador.solidarize.DAO.CadastroUsuarioEventoDAO;
 import com.projetointegrador.solidarize.DAO.EventoDAO;
 import com.projetointegrador.solidarize.R;
 import com.projetointegrador.solidarize.VIEW.CadastroEvento;
@@ -31,7 +36,7 @@ public class TabLayoutPerfilEventosFragment extends Fragment {
     private Button btn_criar_evento;
 
     private DatabaseReference BD= FirebaseDatabase.getInstance().getReference();
-    private DatabaseReference eventos= BD.child("evento");
+    private DatabaseReference cadastroUsuarioEvento= BD.child("cadastroUsuarioEvento");
 
     private AdapterListaPerfilEventos adapter;
 
@@ -51,9 +56,23 @@ public class TabLayoutPerfilEventosFragment extends Fragment {
 
         //fazer a autenticação de quais são os eventos criados pela pessoa!!!
 
-        FirebaseListOptions<Evento> eventos_options= new FirebaseListOptions.Builder<Evento>()
+        //inserindo relação tipo "foreign key" para identificar que usuario que cria tal evento
+        String id_usuario= "";
+        if (UsuarioLogado.getInstance().getUsuario().getTipo_usuario().contentEquals("pessoa")) {
+            Pessoa usuario_pessoa = (Pessoa) UsuarioLogado.getInstance().getUsuario();
+            id_usuario= usuario_pessoa.getId();
+        }
+        else{
+            Instituicao usuario_instituicao = (Instituicao) UsuarioLogado.getInstance().getUsuario();
+            id_usuario= usuario_instituicao.getId();
+        }
+
+        //pegar nó especifico do usuario p listar eventos
+        DatabaseReference referencia_usuario_evento= cadastroUsuarioEvento.child(id_usuario);
+
+        FirebaseListOptions<CadastroUsuarioEvento> eventos_options= new FirebaseListOptions.Builder<CadastroUsuarioEvento>()
                 .setLayout(R.layout.item_edicao_evento)
-                .setQuery(eventos, Evento.class)
+                .setQuery(referencia_usuario_evento, CadastroUsuarioEvento.class)
                 .setLifecycleOwner(this)
                 .build();
 
@@ -93,7 +112,7 @@ public class TabLayoutPerfilEventosFragment extends Fragment {
         int list_position= info.position;
 
         //pegando id do evento que foi selecionado
-        String id_evento= adapter.getItem(list_position).getId();
+        String id_evento= adapter.getItem(list_position).getIdEvento();
 
         switch (item.getItemId()){
             case R.id.item_editar:
@@ -108,6 +127,20 @@ public class TabLayoutPerfilEventosFragment extends Fragment {
 
                 EventoDAO eventoDAO= new EventoDAO();
                 eventoDAO.excluirUsuarioEvento(id_evento);
+
+                //id_usuario para excluir evento específico do no de usuario
+                String id_usuario= "";
+                if (UsuarioLogado.getInstance().getUsuario().getTipo_usuario().contentEquals("pessoa")) {
+                    Pessoa usuario_pessoa = (Pessoa) UsuarioLogado.getInstance().getUsuario();
+                    id_usuario= usuario_pessoa.getId();
+                }
+                else{
+                    Instituicao usuario_instituicao = (Instituicao) UsuarioLogado.getInstance().getUsuario();
+                    id_usuario= usuario_instituicao.getId();
+                }
+
+                CadastroUsuarioEventoDAO cadastroUsuarioEventoDAO= new CadastroUsuarioEventoDAO();
+                cadastroUsuarioEventoDAO.excluirCadastroUsuarioEvento(id_usuario, id_evento);
 
                 return true;
 

@@ -69,7 +69,7 @@ public class CadastroEventoInfosFragment extends Fragment {
                     di= txt_dt_inicio.getText().toString();
                     df= txt_dt_final.getText().toString();
                     hi= txt_hra_inicio.getText().toString();
-                    hf= txt_dt_final.getText().toString();
+                    hf= txt_hra_final.getText().toString();
                     t= "";
                     //t= txt_tipo.getSelectedItem().toString();
 

@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
+import com.projetointegrador.solidarize.BEAN.CadastroUsuarioEvento;
 import com.projetointegrador.solidarize.BEAN.Evento;
 import com.projetointegrador.solidarize.R;
 import com.projetointegrador.solidarize.VIEW.EdicaoCadastroEvento;
@@ -19,19 +20,19 @@ import com.projetointegrador.solidarize.VIEW.EsqueciSenha;
 
 import java.util.ArrayList;
 
-public class AdapterListaPerfilEventos extends FirebaseListAdapter<Evento> {
+public class AdapterListaPerfilEventos extends FirebaseListAdapter<CadastroUsuarioEvento> {
     public AdapterListaPerfilEventos(FirebaseListOptions options){
         super (options);
     }
 
-    protected void populateView (View v, Evento e, int position){
+    protected void populateView (View v, CadastroUsuarioEvento e, int position){
         TextView lbl_nome;
         TextView lbl_id;
 
         lbl_nome= v.findViewById(R.id.lbl_nome_evento);
         lbl_id= v.findViewById(R.id.lbl_id_evento);
 
-        lbl_nome.setText(e.getNome());
-        lbl_id.setText(e.getId());
+        lbl_nome.setText(e.getNomeEvento());
+        lbl_id.setText(e.getIdEvento());
     }
 }
