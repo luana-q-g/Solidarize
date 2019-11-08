@@ -54,8 +54,6 @@ public class TabLayoutPerfilEventosFragment extends Fragment {
         lista_eventos_criados= view.findViewById(R.id.lista_eventos_criados);
         btn_criar_evento= view.findViewById(R.id.btn_criar_evento);
 
-        //fazer a autenticação de quais são os eventos criados pela pessoa!!!
-
         //inserindo relação tipo "foreign key" para identificar que usuario que cria tal evento
         String id_usuario= "";
         if (UsuarioLogado.getInstance().getUsuario().getTipo_usuario().contentEquals("pessoa")) {

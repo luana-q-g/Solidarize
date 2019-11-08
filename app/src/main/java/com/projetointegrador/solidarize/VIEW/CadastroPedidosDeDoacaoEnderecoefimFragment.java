@@ -10,7 +10,12 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.projetointegrador.solidarize.BEAN.CadastroUsuarioPedidoDoacao;
+import com.projetointegrador.solidarize.BEAN.Instituicao;
 import com.projetointegrador.solidarize.BEAN.PedidoDeDoacao;
+import com.projetointegrador.solidarize.BEAN.Pessoa;
+import com.projetointegrador.solidarize.BEAN.UsuarioLogado;
+import com.projetointegrador.solidarize.DAO.CadastroUsuarioPedidoDoacaoDAO;
 import com.projetointegrador.solidarize.DAO.PedidosDeDoacaoDAO;
 import com.projetointegrador.solidarize.R;
 
@@ -40,6 +45,8 @@ public class CadastroPedidosDeDoacaoEnderecoefimFragment extends Fragment {
 
     private FirebaseAuth auth_usuario= FirebaseAuth.getInstance();
 
+    private String id_usuario;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +63,16 @@ public class CadastroPedidosDeDoacaoEnderecoefimFragment extends Fragment {
         txt_complemento= view.findViewById(R.id.txt_complemento);
         btn_voltar= view.findViewById(R.id.btn_voltar_enderecoefim_pedidos_doacao);
         btn_cadastrar= view.findViewById(R.id.btn_cadastrar_enderecoefim_pedidos_doacao);
+
+        //recupera id do usuario
+        if (UsuarioLogado.getInstance().getUsuario().getTipo_usuario().contentEquals("pessoa")) {
+            Pessoa usuario_pessoa = (Pessoa) UsuarioLogado.getInstance().getUsuario();
+            id_usuario= usuario_pessoa.getId();
+        }
+        else{
+            Instituicao usuario_instituicao = (Instituicao) UsuarioLogado.getInstance().getUsuario();
+            id_usuario= usuario_instituicao.getId();
+        }
 
         if(tipo.contentEquals(CADASTRO)){
             btn_cadastrar.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +95,11 @@ public class CadastroPedidosDeDoacaoEnderecoefimFragment extends Fragment {
 
                         PedidosDeDoacaoDAO pedidoDao= new PedidosDeDoacaoDAO();
                         pedidoDao.inserirPedidoDeDoacao(cadastro.getPedido_de_doacao());
+
+                        //inserindo relação tipo "foreign key" para identificar que usuario que cria tal pedido
+                        CadastroUsuarioPedidoDoacao relacao_usuario_pedido= new CadastroUsuarioPedidoDoacao(id_usuario, cadastro.getPedido_de_doacao().getId(), cadastro.getPedido_de_doacao().getItem());
+                        CadastroUsuarioPedidoDoacaoDAO relacao_usuario_pedidoDAO= new CadastroUsuarioPedidoDoacaoDAO();
+                        relacao_usuario_pedidoDAO.inserirCadastroUsuarioPedido(relacao_usuario_pedido);
 
                         Toast.makeText(getContext(), "Pedido de doação cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
 
@@ -133,6 +155,12 @@ public class CadastroPedidosDeDoacaoEnderecoefimFragment extends Fragment {
 
                         PedidosDeDoacaoDAO pedidosDeDoacaoDAO= new PedidosDeDoacaoDAO();
                         pedidosDeDoacaoDAO.alterarPedidoDoacao(edicao.getPedido_de_doacao());
+
+                        //inserindo relação tipo "foreign key" para identificar que usuario que cria tal pedido
+                        CadastroUsuarioPedidoDoacao relacao_usuario_pedido= new CadastroUsuarioPedidoDoacao(id_usuario, edicao.getPedido_de_doacao().getId(), edicao.getPedido_de_doacao().getItem());
+                        CadastroUsuarioPedidoDoacaoDAO relacao_usuario_pedidoDAO= new CadastroUsuarioPedidoDoacaoDAO();
+                        relacao_usuario_pedidoDAO.alterarCadastroUsuarioPedido(relacao_usuario_pedido);
+
 
                         Toast.makeText(getContext(), "Pedido de Doação alterado com sucesso!", Toast.LENGTH_SHORT).show();
 

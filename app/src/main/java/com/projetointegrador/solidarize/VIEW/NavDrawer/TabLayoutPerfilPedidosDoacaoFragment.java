@@ -15,8 +15,13 @@ import android.widget.TextView;
 import com.firebase.ui.database.FirebaseListOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.projetointegrador.solidarize.BEAN.CadastroUsuarioPedidoDoacao;
 import com.projetointegrador.solidarize.BEAN.Evento;
+import com.projetointegrador.solidarize.BEAN.Instituicao;
 import com.projetointegrador.solidarize.BEAN.PedidoDeDoacao;
+import com.projetointegrador.solidarize.BEAN.Pessoa;
+import com.projetointegrador.solidarize.BEAN.UsuarioLogado;
+import com.projetointegrador.solidarize.DAO.CadastroUsuarioPedidoDoacaoDAO;
 import com.projetointegrador.solidarize.DAO.PedidosDeDoacaoDAO;
 import com.projetointegrador.solidarize.R;
 import com.projetointegrador.solidarize.VIEW.CadastroPedidosDeDoacao;
@@ -34,7 +39,7 @@ public class TabLayoutPerfilPedidosDoacaoFragment extends Fragment {
     private Button btn_criar_pedido;
 
     private DatabaseReference BD= FirebaseDatabase.getInstance().getReference();
-    private DatabaseReference pedidos= BD.child("pedidoDeDoacao");
+    private DatabaseReference cadastroUsuarioPedido= BD.child("cadastroUsuarioPedido");
 
     private AdapterListaPerfilPedidosDoacao adapter;
 
@@ -52,11 +57,23 @@ public class TabLayoutPerfilPedidosDoacaoFragment extends Fragment {
         lista_pedidos_criados= view.findViewById(R.id.lista_pedido_doacao_criados);
         btn_criar_pedido= view.findViewById(R.id.btn_criar_pedido_doacao);
 
-        //fazer a autenticação de quais são os pedidos criados pela instituicao!!!
+        //inserindo relação tipo "foreign key" para identificar que usuario que cria tal evento
+        String id_usuario= "";
+        if (UsuarioLogado.getInstance().getUsuario().getTipo_usuario().contentEquals("pessoa")) {
+            Pessoa usuario_pessoa = (Pessoa) UsuarioLogado.getInstance().getUsuario();
+            id_usuario= usuario_pessoa.getId();
+        }
+        else{
+            Instituicao usuario_instituicao = (Instituicao) UsuarioLogado.getInstance().getUsuario();
+            id_usuario= usuario_instituicao.getId();
+        }
 
-        FirebaseListOptions<PedidoDeDoacao> pedidos_options= new FirebaseListOptions.Builder<PedidoDeDoacao>()
+        //pegar nó especifico do usuario p listar eventos
+        DatabaseReference referencia_usuario_pedido= cadastroUsuarioPedido.child(id_usuario);
+
+        FirebaseListOptions<CadastroUsuarioPedidoDoacao> pedidos_options= new FirebaseListOptions.Builder<CadastroUsuarioPedidoDoacao>()
                 .setLayout(R.layout.item_edicao_pedidos_doacao)
-                .setQuery(pedidos, PedidoDeDoacao.class)
+                .setQuery(referencia_usuario_pedido, CadastroUsuarioPedidoDoacao.class)
                 .setLifecycleOwner(this)
                 .build();
 
@@ -95,7 +112,7 @@ public class TabLayoutPerfilPedidosDoacaoFragment extends Fragment {
         int list_position= info.position;
 
         //pegando id do pedido que foi selecionado
-        String id_pedido= adapter.getItem(list_position).getId();
+        String id_pedido= adapter.getItem(list_position).getIdPedido();
 
         switch (item.getItemId()){
             case R.id.item_editar:
@@ -109,8 +126,21 @@ public class TabLayoutPerfilPedidosDoacaoFragment extends Fragment {
                 //FAZER CAIXA DE TEXTO PARA CONFIRMAR!!
 
                 PedidosDeDoacaoDAO pedidosDeDoacaoDAO= new PedidosDeDoacaoDAO();
-
                 pedidosDeDoacaoDAO.excluirPedidoDoacao(id_pedido);
+
+                //id_usuario para excluir evento específico do no de usuario
+                String id_usuario= "";
+                if (UsuarioLogado.getInstance().getUsuario().getTipo_usuario().contentEquals("pessoa")) {
+                    Pessoa usuario_pessoa = (Pessoa) UsuarioLogado.getInstance().getUsuario();
+                    id_usuario= usuario_pessoa.getId();
+                }
+                else{
+                    Instituicao usuario_instituicao = (Instituicao) UsuarioLogado.getInstance().getUsuario();
+                    id_usuario= usuario_instituicao.getId();
+                }
+
+                CadastroUsuarioPedidoDoacaoDAO cadastroUsuarioPedidoDoacaoDAO= new CadastroUsuarioPedidoDoacaoDAO();
+                cadastroUsuarioPedidoDoacaoDAO.excluirCadastroUsuarioPedido(id_usuario, id_pedido);
 
                 return true;
 
