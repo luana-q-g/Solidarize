@@ -1,5 +1,7 @@
 package com.projetointegrador.solidarize.VIEW.NavDrawer;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -105,45 +107,67 @@ public class TabLayoutPerfilEventosFragment extends Fragment {
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-        //resgatando posição do item no listView
-        AdapterView.AdapterContextMenuInfo info= (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        int list_position= info.position;
+        if (getUserVisibleHint()) {
+            //resgatando posição do item no listView
+            AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+            int list_position = info.position;
 
-        //pegando id do evento que foi selecionado
-        String id_evento= adapter.getItem(list_position).getIdEvento();
+            //pegando id do evento que foi selecionado
+            CadastroUsuarioEvento evento = (CadastroUsuarioEvento) lista_eventos_criados.getItemAtPosition(list_position);
+            final String id_evento = evento.getIdEvento();
 
-        switch (item.getItemId()){
-            case R.id.item_editar:
-                Intent evento_edicao= new Intent(getActivity(), EdicaoCadastroEvento.class);
-                evento_edicao.putExtra("id", id_evento);
-                startActivity(evento_edicao);
+            //final String id_evento= adapter.getItem(list_position).getIdEvento();
 
-                return true;
+            switch (item.getItemId()) {
+                case R.id.item_editar:
+                    Intent evento_edicao = new Intent(getActivity(), EdicaoCadastroEvento.class);
+                    evento_edicao.putExtra("id", id_evento);
+                    startActivity(evento_edicao);
 
-            case R.id.item_excluir:
-                //FAZER CAIXA DE TEXTO PARA CONFIRMAR!!
+                    return true;
 
-                EventoDAO eventoDAO= new EventoDAO();
-                eventoDAO.excluirUsuarioEvento(id_evento);
+                case R.id.item_excluir:
+                    //CAIXA DE TEXTO PARA CONFIRMAR!!
+                    AlertDialog.Builder alert_evento = new AlertDialog.Builder(getActivity());
+                    alert_evento.setTitle("Deseja mesmo excluir o Evento?");
+                    alert_evento.setMessage("Essa ação não pode ser desfeita!!");
+                    alert_evento.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            EventoDAO eventoDAO = new EventoDAO();
+                            eventoDAO.excluirUsuarioEvento(id_evento);
 
-                //id_usuario para excluir evento específico do no de usuario
-                String id_usuario= "";
-                if (UsuarioLogado.getInstance().getUsuario().getTipo_usuario().contentEquals("pessoa")) {
-                    Pessoa usuario_pessoa = (Pessoa) UsuarioLogado.getInstance().getUsuario();
-                    id_usuario= usuario_pessoa.getId();
-                }
-                else{
-                    Instituicao usuario_instituicao = (Instituicao) UsuarioLogado.getInstance().getUsuario();
-                    id_usuario= usuario_instituicao.getId();
-                }
+                            //id_usuario para excluir evento específico do no de usuario
+                            String id_usuario = "";
+                            if (UsuarioLogado.getInstance().getUsuario().getTipo_usuario().contentEquals("pessoa")) {
+                                Pessoa usuario_pessoa = (Pessoa) UsuarioLogado.getInstance().getUsuario();
+                                id_usuario = usuario_pessoa.getId();
+                            } else {
+                                Instituicao usuario_instituicao = (Instituicao) UsuarioLogado.getInstance().getUsuario();
+                                id_usuario = usuario_instituicao.getId();
+                            }
 
-                CadastroUsuarioEventoDAO cadastroUsuarioEventoDAO= new CadastroUsuarioEventoDAO();
-                cadastroUsuarioEventoDAO.excluirCadastroUsuarioEvento(id_usuario, id_evento);
+                            CadastroUsuarioEventoDAO cadastroUsuarioEventoDAO = new CadastroUsuarioEventoDAO();
+                            cadastroUsuarioEventoDAO.excluirCadastroUsuarioEvento(id_usuario, id_evento);
+                        }
+                    });
 
-                return true;
+                    alert_evento.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
 
-            default:
-                return super.onContextItemSelected(item);
+                    alert_evento.create();
+                    alert_evento.show();
+
+                    return true;
+
+                default:
+                    return super.onContextItemSelected(item);
+            }
         }
+        return false;
     }
 }
