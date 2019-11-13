@@ -179,43 +179,43 @@ public class NavDrawMenu extends AppCompatActivity
         switch (id) {
             case R.id.nav_perfil:
                 PerfilUsuarioFragment puf= new PerfilUsuarioFragment();
-                ft.replace(R.id.place_holder_nav_draw, puf);
+                ft.replace(R.id.place_holder_nav_draw, puf).addToBackStack(null);
                 ft.commit();
                 break;
 
             case R.id.nav_acoes_eventos:
                 AcoesUsuarioEventosFragment auef= new AcoesUsuarioEventosFragment();
-                ft.replace(R.id.place_holder_nav_draw, auef);
+                ft.replace(R.id.place_holder_nav_draw, auef).addToBackStack(null);
                 ft.commit();
                 break;
 
             case R.id.nav_acoes_pedidos_doacao:
                 AcoesUsuarioPedidosDoacaoFragment aupdf= new AcoesUsuarioPedidosDoacaoFragment();
-                ft.replace(R.id.place_holder_nav_draw, aupdf);
+                ft.replace(R.id.place_holder_nav_draw, aupdf).addToBackStack(null);
                 ft.commit();
                 break;
 
             case R.id.nav_eventos:
                 FeedEventosFragment fef= new FeedEventosFragment();
-                ft.replace(R.id.place_holder_nav_draw, fef);
+                ft.replace(R.id.place_holder_nav_draw, fef).addToBackStack(null);
                 ft.commit();
                 break;
 
             case R.id.nav_inst_todas:
                 FeedInstituicoesFragment fif= new FeedInstituicoesFragment();
-                ft.replace(R.id.place_holder_nav_draw, fif);
+                ft.replace(R.id.place_holder_nav_draw, fif).addToBackStack(null);
                 ft.commit();
                 break;
 
             case R.id.nav_inst_pedidos:
                 FeedPedidosDoacaoFragment fpdf= new FeedPedidosDoacaoFragment();
-                ft.replace(R.id.place_holder_nav_draw, fpdf);
+                ft.replace(R.id.place_holder_nav_draw, fpdf).addToBackStack(null);
                 ft.commit();
                 break;
 
             case R.id.nav_config:
                 ConfiguracoesFragment cf= new ConfiguracoesFragment();
-                ft.replace(R.id.place_holder_nav_draw, cf);
+                ft.replace(R.id.place_holder_nav_draw, cf).addToBackStack(null);
                 ft.commit();
                 break;
 

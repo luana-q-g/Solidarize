@@ -16,10 +16,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.projetointegrador.solidarize.BEAN.CadastroUsuarioEvento;
 import com.projetointegrador.solidarize.BEAN.Evento;
 import com.projetointegrador.solidarize.BEAN.UsuarioLogado;
 import com.projetointegrador.solidarize.R;
 import com.projetointegrador.solidarize.VIEW.NavDrawMenu;
+
+import java.util.Iterator;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,6 +36,7 @@ public class PerfilEventoFragment extends Fragment {
     private TextView lbl_hora_i;
     private TextView lbl_hora_f;
     private TextView lbl_descricao;
+    private TextView lbl_organizado_por;
     private Button btn_nome_instituicao;
     private TextView lbl_id_instituicao;
     private TextView txt_endereco1;
@@ -57,6 +61,7 @@ public class PerfilEventoFragment extends Fragment {
         lbl_hora_i= view.findViewById(R.id.lbl_hora_inicial);
         lbl_hora_f= view.findViewById(R.id.lbl_hora_final);
         lbl_descricao= view.findViewById(R.id.lbl_descricao);
+        lbl_organizado_por= view.findViewById(R.id.lbl_organizacao);
         btn_nome_instituicao= view.findViewById(R.id.btn_nome_instituicao);
         lbl_id_instituicao= view.findViewById(R.id.txt_id_instituicao);
         txt_endereco1= view.findViewById(R.id.txt_endereco1);
@@ -64,7 +69,7 @@ public class PerfilEventoFragment extends Fragment {
         txt_email_contato= view.findViewById(R.id.txt_email);
 
         //pega o id do evento da activity
-        NavDrawMenu act= (NavDrawMenu) getActivity();
+        final NavDrawMenu act= (NavDrawMenu) getActivity();
 
         //pega no nó específico com o id do evento
         DatabaseReference dados_evento= BD.child("evento").child(act.getIdEvento());
@@ -74,6 +79,37 @@ public class PerfilEventoFragment extends Fragment {
                 Evento evento= dataSnapshot.getValue(Evento.class);
 
                 setContentView(evento);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        //pega no nó específico com o id do evento
+        DatabaseReference dados_instituicao= BD.child("cadastroUsuarioEvento");
+        dados_instituicao.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot usuarios_cadastrados : dataSnapshot.getChildren()){
+
+                        String id_evento_certo= act.getIdEvento();
+
+                        Iterable<DataSnapshot> eventos_usuario_children= usuarios_cadastrados.getChildren();
+
+                        //se o nó dentro de usuario tiver o id_evento que queremos
+                        for(DataSnapshot eventos_children: eventos_usuario_children){
+                            if(eventos_children.getKey().contentEquals(id_evento_certo)){
+                                //pega os valores de cadastro
+                                CadastroUsuarioEvento cadastroUsuarioEvento= eventos_children.getValue(CadastroUsuarioEvento.class);
+                                setContentView2(cadastroUsuarioEvento);
+                            }
+                        }
+                    }
+                } else {
+                }
             }
 
             @Override
@@ -95,5 +131,17 @@ public class PerfilEventoFragment extends Fragment {
         txt_endereco1.setText(evento.getEstado()+", "+evento.getCidade());
         txt_endereco2.setText(evento.getRua()+", "+evento.getNumero());
         txt_email_contato.setText(evento.getEmail_usuario());
+    }
+
+    public void setContentView2 (CadastroUsuarioEvento cadastro){
+        if(cadastro.getTipoUsuario().contentEquals("pessoa")){
+            btn_nome_instituicao.setVisibility(View.INVISIBLE);
+            lbl_organizado_por.setVisibility(View.INVISIBLE);
+        }
+        else{
+            btn_nome_instituicao.setText(cadastro.getNomeInstituicao());
+            lbl_id_instituicao.setText(cadastro.getIdUsuario());
+        }
+
     }
 }

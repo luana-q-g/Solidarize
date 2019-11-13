@@ -48,7 +48,10 @@ public class CadastroEventoEnderecoefimFragment extends Fragment {
 
     private FirebaseAuth auth_usuario= FirebaseAuth.getInstance();
 
+    //para CadastroEvento
     private String id_usuario= "";
+    private String tipo_usuario= "";
+    private String nome_instituicao= "";
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,10 +76,13 @@ public class CadastroEventoEnderecoefimFragment extends Fragment {
         if (UsuarioLogado.getInstance().getUsuario().getTipo_usuario().contentEquals("pessoa")) {
             Pessoa usuario_pessoa = (Pessoa) UsuarioLogado.getInstance().getUsuario();
             id_usuario= usuario_pessoa.getId();
+            tipo_usuario= "pessoa";
         }
         else{
             Instituicao usuario_instituicao = (Instituicao) UsuarioLogado.getInstance().getUsuario();
             id_usuario= usuario_instituicao.getId();
+            tipo_usuario= "instituicao";
+            nome_instituicao= usuario_instituicao.getNome();
         }
 
         if(tipo.contentEquals(CADASTRO)){
@@ -105,8 +111,17 @@ public class CadastroEventoEnderecoefimFragment extends Fragment {
                         EventoDAO eventoDao= new EventoDAO();
                         eventoDao.inserirEvento(evento);
 
+
+                        //verificando tipo de usuario e fzendo cadastro de acordocom cada um
+                        CadastroUsuarioEvento relacao_usuario_evento;
+                        if(tipo_usuario.contentEquals("pessoa")){
+                            relacao_usuario_evento= new CadastroUsuarioEvento(id_usuario, cadastro.getEvento().getId(), cadastro.getEvento().getNome(), "", tipo_usuario);
+                        }
+                        else{
+                            relacao_usuario_evento= new CadastroUsuarioEvento(id_usuario, cadastro.getEvento().getId(), cadastro.getEvento().getNome(), nome_instituicao, tipo_usuario);
+                        }
+
                         //inserindo relação tipo "foreign key" para identificar que usuario que cria tal evento
-                        CadastroUsuarioEvento relacao_usuario_evento= new CadastroUsuarioEvento(id_usuario, evento.getId(), evento.getNome());
                         CadastroUsuarioEventoDAO relacao_usuario_eventoDAO= new CadastroUsuarioEventoDAO();
                         relacao_usuario_eventoDAO.inserirCadastroUsuarioEvento(relacao_usuario_evento);
 
@@ -166,7 +181,16 @@ public class CadastroEventoEnderecoefimFragment extends Fragment {
                         EventoDAO eventoDao= new EventoDAO();
                         eventoDao.alterarEvento(edicao.getEvento());
 
-                        CadastroUsuarioEvento relacao_usuario_evento= new CadastroUsuarioEvento(id_usuario, edicao.getEvento().getId(), edicao.getEvento().getNome());
+
+                        //verificando tipo de usuario e fzendo cadastro de acordocom cada um
+                        CadastroUsuarioEvento relacao_usuario_evento;
+                        if(tipo_usuario.contentEquals("pessoa")){
+                            relacao_usuario_evento= new CadastroUsuarioEvento(id_usuario, edicao.getEvento().getId(), edicao.getEvento().getNome(), "", tipo_usuario);
+                        }
+                        else{
+                            relacao_usuario_evento= new CadastroUsuarioEvento(id_usuario, edicao.getEvento().getId(), edicao.getEvento().getNome(), nome_instituicao, tipo_usuario);
+                        }
+                        //editando "foreign key"
                         CadastroUsuarioEventoDAO relacao_usuario_eventoDAO= new CadastroUsuarioEventoDAO();
                         relacao_usuario_eventoDAO.alterarCadastroUsuarioEvento(relacao_usuario_evento);
 
