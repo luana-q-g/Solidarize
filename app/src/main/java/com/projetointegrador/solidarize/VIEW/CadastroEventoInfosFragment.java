@@ -81,7 +81,7 @@ public class CadastroEventoInfosFragment extends Fragment {
                     FragmentTransaction ft= fm.beginTransaction();
 
                     CadastroEventoEnderecoefimFragment cadastro_enderecoefim= new CadastroEventoEnderecoefimFragment(CadastroEventoEnderecoefimFragment.CADASTRO);
-                    ft.replace(R.id.place_holder_info_cadastro_evento, cadastro_enderecoefim);
+                    ft.replace(R.id.place_holder_info_cadastro_evento, cadastro_enderecoefim).addToBackStack(null);
                     ft.commit();
                 }
             });
@@ -150,7 +150,7 @@ public class CadastroEventoInfosFragment extends Fragment {
                     FragmentTransaction ft= fm.beginTransaction();
 
                     CadastroEventoEnderecoefimFragment cadastro_enderecoefim= new CadastroEventoEnderecoefimFragment(CadastroEventoEnderecoefimFragment.EDICAO);
-                    ft.replace(R.id.place_holder_info_edicao_cadastro_evento, cadastro_enderecoefim);
+                    ft.replace(R.id.place_holder_info_edicao_cadastro_evento, cadastro_enderecoefim).addToBackStack(null);
                     ft.commit();
                 }
             });

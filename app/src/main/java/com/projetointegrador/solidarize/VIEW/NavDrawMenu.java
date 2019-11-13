@@ -42,6 +42,36 @@ public class NavDrawMenu extends AppCompatActivity
     private FirebaseAuth auth_usuario= FirebaseAuth.getInstance();
     private DatabaseReference BD= FirebaseDatabase.getInstance().getReference();
 
+    //para os perfis quando clicados
+    private String id_evento;
+    private String id_pedido_doacao;
+    private String id_instituicao;
+
+    //getters e setters
+    public String getIdEvento() {
+        return id_evento;
+    }
+
+    public void setIdEvento(String id_evento) {
+        this.id_evento = id_evento;
+    }
+
+    public String getIdInstituicao() {
+        return id_instituicao;
+    }
+
+    public void setIdInstituicao(String id_instituicao) {
+        this.id_instituicao = id_instituicao;
+    }
+
+    public String getIdPedidoDoacao() {
+        return id_pedido_doacao;
+    }
+
+    public void setIdPedidoDoacao(String id_pedido_doacao) {
+        this.id_pedido_doacao = id_pedido_doacao;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

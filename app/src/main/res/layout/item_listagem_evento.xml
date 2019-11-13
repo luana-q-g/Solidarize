@@ -7,18 +7,6 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/lbl_data_evento"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:text="data"
-        app:layout_constraintEnd_toStartOf="@+id/lbl_hora_evento"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lbl_titulo_evento" />
-
-    <TextView
         android:id="@+id/lbl_titulo_evento"
         android:layout_width="wrap_content"
         android:layout_height="27dp"
@@ -30,6 +18,27 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/lbl_id_evento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="id"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/lbl_titulo_evento"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_titulo_evento" />
+
+    <TextView
+        android:id="@+id/lbl_data_evento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="data"
+        app:layout_constraintEnd_toStartOf="@+id/lbl_hora_evento"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_titulo_evento" />
 
     <TextView
         android:id="@+id/lbl_hora_evento"

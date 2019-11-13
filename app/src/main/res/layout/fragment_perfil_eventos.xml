@@ -2,158 +2,256 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraint_layout"
+    android:id="@+id/constraint_layout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/lbl_titulo_evento"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
-        android:gravity="center_vertical|center"
-        android:text="Título evento"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-
-    <Button
-        android:id="@+id/check_salvar_evento"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:text="Salvar"
-        app:layout_constraintEnd_toStartOf="@+id/check_confirma_presenca"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lbl_titulo_evento" />
-
-    <Button
-        android:id="@+id/check_confirma_presenca"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Confirmar presença"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/check_salvar_evento"
-        app:layout_constraintTop_toBottomOf="@+id/lbl_titulo_evento" />
-
-
-    <TextView
-        android:id="@+id/lbl_data"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:text="data "
-        app:layout_constraintEnd_toStartOf="@+id/lbl_hora"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/check_salvar_evento" />
-
-    <TextView
-        android:id="@+id/lbl_hora"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:text="hora "
-        app:layout_constraintBottom_toBottomOf="@+id/lbl_data"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/lbl_data"
-        app:layout_constraintTop_toTopOf="@+id/lbl_data"
-        app:layout_constraintVertical_bias="1.0" />
-
-
-    <TextView
-        android:id="@+id/lbl_descricao"
+    <ScrollView
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:inputType="textMultiLine"
-        android:text="descricao"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lbl_data" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/lbl_organizacao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="8dp"
-        android:text="Organizado por:"
-        android:textColorHint="#3F51B5"
-        android:textSize="14sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lbl_descricao" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/lbl_nome_instituicao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
-        android:text="Nome da instituicao"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lbl_organizacao" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/lbl_endereco"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="56dp"
-        android:text="Endereço:"
-        app:layout_constraintEnd_toStartOf="@+id/txt_endereco"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lbl_nome_instituicao" />
+                <Button
+                    android:id="@+id/check_salvar_evento"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="32dp"
+                    android:text="Salvar"
+                    app:layout_constraintEnd_toStartOf="@+id/check_confirma_presenca"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/lbl_titulo_evento" />
 
-    <TextView
-        android:id="@+id/txt_endereco"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="endereco"
-        app:layout_constraintBaseline_toBaselineOf="@+id/lbl_endereco"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/lbl_endereco" />
 
-    <TextView
-        android:id="@+id/lbl_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:text="E-mail:"
-        app:layout_constraintEnd_toStartOf="@+id/txt_email"
-        app:layout_constraintHorizontal_bias="0.019"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lbl_endereco" />
+                <Button
+                    android:id="@+id/check_confirma_presenca"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="Confirmar presença"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/check_salvar_evento"
+                    app:layout_constraintTop_toBottomOf="@+id/lbl_titulo_evento" />
 
-    <TextView
-        android:id="@+id/txt_email"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="email"
-        app:layout_constraintBaseline_toBaselineOf="@+id/lbl_email"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/lbl_email" />
 
+                <Button
+                    android:id="@+id/btn_nome_instituicao"
+                    style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Nome da instituicao"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/lbl_organizacao" />
+
+                <TextView
+                    android:id="@+id/lbl_titulo_evento"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="center_vertical|center"
+                    android:text="Título evento"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/lbl_data_inicio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:text="data_i"
+                    app:layout_constraintBottom_toBottomOf="@+id/lbl_data"
+                    app:layout_constraintStart_toEndOf="@+id/lbl_data"
+                    app:layout_constraintTop_toTopOf="@+id/lbl_data" />
+
+                <TextView
+                    android:id="@+id/lbl_data_final"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:text="data_f"
+                    app:layout_constraintBottom_toBottomOf="@+id/lbl_ate"
+                    app:layout_constraintStart_toEndOf="@+id/lbl_ate"
+                    app:layout_constraintTop_toTopOf="@+id/lbl_ate" />
+
+                <TextView
+                    android:id="@+id/lbl_hora_inicial"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:text="hora_i"
+                    app:layout_constraintBottom_toBottomOf="@+id/lbl_hora"
+                    app:layout_constraintStart_toEndOf="@+id/lbl_hora"
+                    app:layout_constraintTop_toTopOf="@+id/lbl_hora" />
+
+                <TextView
+                    android:id="@+id/lbl_hora_final"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:text="hora_f"
+                    app:layout_constraintBottom_toBottomOf="@+id/lbl_as"
+                    app:layout_constraintStart_toEndOf="@+id/lbl_as"
+                    app:layout_constraintTop_toTopOf="@+id/lbl_as" />
+
+                <TextView
+                    android:id="@+id/lbl_descricao"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:inputType="textMultiLine"
+                    android:text="descricao"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/lbl_hora" />
+
+                <TextView
+                    android:id="@+id/lbl_endereco"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="32dp"
+                    android:text="Endereço:"
+                    app:layout_constraintEnd_toStartOf="@+id/txt_endereco1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/lbl_descricao" />
+
+                <TextView
+                    android:id="@+id/txt_endereco1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="endereco1"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/lbl_endereco"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/lbl_endereco" />
+
+                <TextView
+                    android:id="@+id/txt_endereco2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="endereco2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/lbl_endereco"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_endereco1" />
+
+                <TextView
+                    android:id="@+id/lbl_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="46dp"
+                    android:text="E-mail:"
+                    app:layout_constraintEnd_toStartOf="@+id/txt_email"
+                    app:layout_constraintHorizontal_bias="0.019"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/lbl_endereco" />
+
+                <TextView
+                    android:id="@+id/txt_email"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="email"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/lbl_email"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/lbl_email" />
+
+                <TextView
+                    android:id="@+id/lbl_organizacao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="45dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="Organizado por:"
+                    android:textColorHint="#3F51B5"
+                    android:textSize="14sp"
+                    android:textStyle="bold|italic"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.484"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_email" />
+
+                <TextView
+                    android:id="@+id/lbl_hora"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="Horário: "
+                    app:layout_constraintStart_toStartOf="@+id/lbl_data"
+                    app:layout_constraintTop_toBottomOf="@+id/lbl_data" />
+
+                <TextView
+                    android:id="@+id/lbl_as"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:text="às"
+                    app:layout_constraintBottom_toBottomOf="@+id/lbl_hora_inicial"
+                    app:layout_constraintStart_toEndOf="@+id/lbl_hora_inicial"
+                    app:layout_constraintTop_toTopOf="@+id/lbl_hora_inicial" />
+
+                <TextView
+                    android:id="@+id/lbl_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="32dp"
+                    android:text="Data:"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/check_salvar_evento" />
+
+                <TextView
+                    android:id="@+id/lbl_ate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:text="até"
+                    app:layout_constraintBottom_toBottomOf="@+id/lbl_data_inicio"
+                    app:layout_constraintStart_toEndOf="@+id/lbl_data_inicio"
+                    app:layout_constraintTop_toTopOf="@+id/lbl_data_inicio" />
+
+                <TextView
+                    android:id="@+id/txt_id_instituicao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="id_instituicao"
+                    android:visibility="invisible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_nome_instituicao" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

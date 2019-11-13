@@ -4,6 +4,7 @@ public class CadastroUsuarioEvento {
     private String id_usuario;
     private String id_evento;
     private String nome_evento;
+    //private String nome_usuario;
 
     public CadastroUsuarioEvento(){}
 
