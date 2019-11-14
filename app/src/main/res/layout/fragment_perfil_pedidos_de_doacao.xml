@@ -60,16 +60,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/check_salvar_pedido" />
 
-                <ProgressBar
-                    android:id="@+id/bar_meta_dos_pedidos"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="160dp"
-                    android:layout_height="22dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/lbl_meta_pedidos" />
-
                 <TextView
                     android:id="@+id/lbl_meta_pedidos"
                     android:layout_width="wrap_content"
@@ -81,15 +71,34 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/check_salvar_pedido" />
 
+                <ProgressBar
+                    android:id="@+id/bar_meta_dos_pedidos"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="160dp"
+                    android:layout_height="22dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/lbl_meta_pedidos" />
+
                 <TextView
                     android:id="@+id/lbl_tipo_pedido"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="32dp"
-                    android:text="tipo:"
+                    android:text="Tipo:"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/bar_meta_dos_pedidos" />
+
+                <TextView
+                    android:id="@+id/txt_tipo_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:text="tipo"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/lbl_tipo_pedido"
+                    app:layout_constraintStart_toEndOf="@+id/lbl_tipo_pedido" />
 
                 <TextView
                     android:id="@+id/lbl_nivel_de_urgencia"
@@ -102,7 +111,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/lbl_tipo_pedido" />
 
                 <ProgressBar
-                    android:id="@+id/barra_nivel_de_urgencia_pedido"
+                    android:id="@+id/bar_nivel_urgencia_pedido"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="157dp"
                     android:layout_height="26dp"
@@ -119,7 +128,7 @@
                     android:layout_marginTop="32dp"
                     android:text="Até quando receberemos:"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/barra_nivel_de_urgencia_pedido" />
+                    app:layout_constraintTop_toBottomOf="@+id/bar_nivel_urgencia_pedido" />
 
                 <TextView
                     android:id="@+id/txt_dt_validade"
@@ -162,6 +171,17 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txt_locais_arrecadacao" />
 
+                <Button
+                    android:id="@+id/btn_nome_instituicao"
+                    style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Nome Instituição"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/lbl_instituicao" />
+
                 <TextView
                     android:id="@+id/lbl_enderecos_e_mais"
                     android:layout_width="wrap_content"
@@ -175,22 +195,11 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/btn_nome_instituicao" />
 
-                <Button
-                    android:id="@+id/btn_nome_instituicao"
-                    style="@style/Widget.AppCompat.Button.Borderless.Colored"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="Nome Instituição"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/lbl_instituicao" />
-
                 <TextView
-                    android:id="@+id/txt_id_pedido"
+                    android:id="@+id/txt_id_instituicao"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="id_pedido"
+                    android:text="id_instituicao"
                     android:visibility="invisible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

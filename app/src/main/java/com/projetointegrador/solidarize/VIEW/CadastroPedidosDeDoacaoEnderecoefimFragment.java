@@ -45,7 +45,9 @@ public class CadastroPedidosDeDoacaoEnderecoefimFragment extends Fragment {
 
     private FirebaseAuth auth_usuario= FirebaseAuth.getInstance();
 
-    private String id_usuario;
+    //para CadastroPedido
+    private String id_usuario= "";
+    private String nome_instituicao= "";
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -65,14 +67,11 @@ public class CadastroPedidosDeDoacaoEnderecoefimFragment extends Fragment {
         btn_cadastrar= view.findViewById(R.id.btn_cadastrar_enderecoefim_pedidos_doacao);
 
         //recupera id do usuario
-        if (UsuarioLogado.getInstance().getUsuario().getTipo_usuario().contentEquals("pessoa")) {
-            Pessoa usuario_pessoa = (Pessoa) UsuarioLogado.getInstance().getUsuario();
-            id_usuario= usuario_pessoa.getId();
-        }
-        else{
-            Instituicao usuario_instituicao = (Instituicao) UsuarioLogado.getInstance().getUsuario();
-            id_usuario= usuario_instituicao.getId();
-        }
+        //só pode ser uma instituicao para estar cadastrando um pedido
+        Instituicao usuario_instituicao = (Instituicao) UsuarioLogado.getInstance().getUsuario();
+        id_usuario= usuario_instituicao.getId();
+        nome_instituicao= usuario_instituicao.getNome();
+
 
         if(tipo.contentEquals(CADASTRO)){
             btn_cadastrar.setOnClickListener(new View.OnClickListener() {
@@ -96,8 +95,10 @@ public class CadastroPedidosDeDoacaoEnderecoefimFragment extends Fragment {
                         PedidosDeDoacaoDAO pedidoDao= new PedidosDeDoacaoDAO();
                         pedidoDao.inserirPedidoDeDoacao(cadastro.getPedido_de_doacao());
 
+                        //verificando tipo de usuario e fzendo cadastro de acordocom cada um
+                        CadastroUsuarioPedidoDoacao relacao_usuario_pedido= new CadastroUsuarioPedidoDoacao(id_usuario, cadastro.getPedido_de_doacao().getId(), cadastro.getPedido_de_doacao().getItem(), nome_instituicao);
+
                         //inserindo relação tipo "foreign key" para identificar que usuario que cria tal pedido
-                        CadastroUsuarioPedidoDoacao relacao_usuario_pedido= new CadastroUsuarioPedidoDoacao(id_usuario, cadastro.getPedido_de_doacao().getId(), cadastro.getPedido_de_doacao().getItem());
                         CadastroUsuarioPedidoDoacaoDAO relacao_usuario_pedidoDAO= new CadastroUsuarioPedidoDoacaoDAO();
                         relacao_usuario_pedidoDAO.inserirCadastroUsuarioPedido(relacao_usuario_pedido);
 
@@ -156,8 +157,10 @@ public class CadastroPedidosDeDoacaoEnderecoefimFragment extends Fragment {
                         PedidosDeDoacaoDAO pedidosDeDoacaoDAO= new PedidosDeDoacaoDAO();
                         pedidosDeDoacaoDAO.alterarPedidoDoacao(edicao.getPedido_de_doacao());
 
+                        //verificando tipo de usuario e fzendo cadastro de acordo com cada um
+                        CadastroUsuarioPedidoDoacao relacao_usuario_pedido= new CadastroUsuarioPedidoDoacao(id_usuario, edicao.getPedido_de_doacao().getId(), edicao.getPedido_de_doacao().getItem(), nome_instituicao);
+
                         //inserindo relação tipo "foreign key" para identificar que usuario que cria tal pedido
-                        CadastroUsuarioPedidoDoacao relacao_usuario_pedido= new CadastroUsuarioPedidoDoacao(id_usuario, edicao.getPedido_de_doacao().getId(), edicao.getPedido_de_doacao().getItem());
                         CadastroUsuarioPedidoDoacaoDAO relacao_usuario_pedidoDAO= new CadastroUsuarioPedidoDoacaoDAO();
                         relacao_usuario_pedidoDAO.alterarCadastroUsuarioPedido(relacao_usuario_pedido);
 

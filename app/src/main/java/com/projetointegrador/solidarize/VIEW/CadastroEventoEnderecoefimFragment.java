@@ -111,7 +111,6 @@ public class CadastroEventoEnderecoefimFragment extends Fragment {
                         EventoDAO eventoDao= new EventoDAO();
                         eventoDao.inserirEvento(evento);
 
-
                         //verificando tipo de usuario e fzendo cadastro de acordocom cada um
                         CadastroUsuarioEvento relacao_usuario_evento;
                         if(tipo_usuario.contentEquals("pessoa")){
