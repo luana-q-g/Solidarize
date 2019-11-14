@@ -22,12 +22,12 @@ public class AdapterListaPerfilPedidosDoacao extends FirebaseListAdapter<Cadastr
 
     protected void populateView (View v, CadastroUsuarioPedidoDoacao p, int position){
         TextView lbl_nome_pedido;
-        TextView lbl_id;
+        TextView lbl_id_pedido;
 
         lbl_nome_pedido= v.findViewById(R.id.lbl_nome_pedido_doacao);
-        lbl_id= v.findViewById(R.id.lbl_id_pedido);
+        lbl_id_pedido= v.findViewById(R.id.lbl_id_pedido);
 
         lbl_nome_pedido.setText(p.getNomePedido());
-        lbl_id.setText(p.getIdPedido());
+        lbl_id_pedido.setText(p.getIdPedido());
     }
 }

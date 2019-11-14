@@ -1,5 +1,7 @@
 package com.projetointegrador.solidarize.VIEW.NavDrawer;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -40,6 +42,14 @@ public class ConfiguracoesFragment extends Fragment {
         btn_excluir_conta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+            //CAIXA DE TEXTO PARA CONFIRMAR!!
+            AlertDialog.Builder alert_evento = new AlertDialog.Builder(getActivity());
+            alert_evento.setTitle("Deseja mesmo excluir a sua Conta?");
+            alert_evento.setMessage("ESSA AÇÃO NÃO PODE SER DESFEITA!!");
+
+            alert_evento.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
                 auth_usuario.getCurrentUser().delete().addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -59,6 +69,18 @@ public class ConfiguracoesFragment extends Fragment {
                         }
                     }
                 });
+                }
+            });
+
+            alert_evento.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+
+            alert_evento.create();
+            alert_evento.show();
             }
         });
 

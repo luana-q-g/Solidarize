@@ -36,4 +36,14 @@
         app:layout_constraintBottom_toBottomOf="@+id/img_topico"
         app:layout_constraintEnd_toEndOf="@+id/lbl_nome_pedido_doacao"
         app:layout_constraintStart_toStartOf="@+id/lbl_nome_pedido_doacao" />
+
+    <TextView
+        android:id="@+id/txt_id_pedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="id_pedido"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/lbl_nome_instituicao"
+        app:layout_constraintTop_toTopOf="@+id/lbl_nome_instituicao" />
 </androidx.constraintlayout.widget.ConstraintLayout>

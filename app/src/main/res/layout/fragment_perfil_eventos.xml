@@ -48,18 +48,6 @@
                     app:layout_constraintStart_toEndOf="@+id/check_salvar_evento"
                     app:layout_constraintTop_toBottomOf="@+id/lbl_titulo_evento" />
 
-
-                <Button
-                    android:id="@+id/btn_nome_instituicao"
-                    style="@style/Widget.AppCompat.Button.Borderless.Colored"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="Nome da instituicao"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/lbl_organizacao" />
-
                 <TextView
                     android:id="@+id/lbl_titulo_evento"
                     android:layout_width="wrap_content"
@@ -186,22 +174,6 @@
                     app:layout_constraintStart_toEndOf="@+id/lbl_email" />
 
                 <TextView
-                    android:id="@+id/lbl_organizacao"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="45dp"
-                    android:layout_marginEnd="8dp"
-                    android:text="Organizado por:"
-                    android:textColorHint="#3F51B5"
-                    android:textSize="14sp"
-                    android:textStyle="bold|italic"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.484"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txt_email" />
-
-                <TextView
                     android:id="@+id/lbl_hora"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -239,6 +211,33 @@
                     app:layout_constraintBottom_toBottomOf="@+id/lbl_data_inicio"
                     app:layout_constraintStart_toEndOf="@+id/lbl_data_inicio"
                     app:layout_constraintTop_toTopOf="@+id/lbl_data_inicio" />
+
+                <TextView
+                    android:id="@+id/lbl_organizacao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="45dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="Organizado por:"
+                    android:textColorHint="#3F51B5"
+                    android:textSize="14sp"
+                    android:textStyle="bold|italic"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.484"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_email" />
+
+                <Button
+                    android:id="@+id/btn_nome_instituicao"
+                    style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Nome da instituicao"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/lbl_organizacao" />
 
                 <TextView
                     android:id="@+id/txt_id_instituicao"

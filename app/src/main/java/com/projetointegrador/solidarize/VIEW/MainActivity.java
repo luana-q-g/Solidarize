@@ -67,6 +67,10 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         // Testa se logou com sucesso:
                         if ( task.isSuccessful() ) {
+                            //esvazia campos de login
+                            txt_email.setText("");
+                            txt_senha.setText("");
+
                             Intent i_nav_draw= new Intent(getApplicationContext(), NavDrawMenu.class);
                             startActivity(i_nav_draw);
                         }
