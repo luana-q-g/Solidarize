@@ -28,12 +28,15 @@ import com.projetointegrador.solidarize.DAO.PedidosDeDoacaoDAO;
 import com.projetointegrador.solidarize.R;
 import com.projetointegrador.solidarize.VIEW.CadastroPedidosDeDoacao;
 import com.projetointegrador.solidarize.VIEW.EdicaoCadastroPedidoDoacao;
+import com.projetointegrador.solidarize.VIEW.NavDrawMenu;
 
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 public class TabLayoutPerfilPedidosDoacaoFragment extends Fragment {
     private TextView lbl_existencia_pedidos_doacao;
@@ -89,6 +92,24 @@ public class TabLayoutPerfilPedidosDoacaoFragment extends Fragment {
 
         //context menu
         registerForContextMenu(lista_pedidos_criados);
+
+        lista_pedidos_criados.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                CadastroUsuarioPedidoDoacao pedido_selecionado = adapter.getItem(position);
+
+                //transfere o id do pedido para o perfil
+                NavDrawMenu act= (NavDrawMenu) getActivity();
+                act.setIdPedidoDoacao(pedido_selecionado.getIdPedido());
+
+                FragmentManager fm= getActivity().getSupportFragmentManager();
+                FragmentTransaction ft= fm.beginTransaction();
+
+                PerfilPedidoDoacaoFragment perfil_pedido= new PerfilPedidoDoacaoFragment();
+                ft.replace(R.id.place_holder_nav_draw, perfil_pedido).addToBackStack(null);
+                ft.commit();
+            }
+        });
 
         btn_criar_pedido.setOnClickListener(new View.OnClickListener() {
             @Override
