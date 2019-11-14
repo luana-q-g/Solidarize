@@ -27,10 +27,13 @@ import com.projetointegrador.solidarize.DAO.EventoDAO;
 import com.projetointegrador.solidarize.R;
 import com.projetointegrador.solidarize.VIEW.CadastroEvento;
 import com.projetointegrador.solidarize.VIEW.EdicaoCadastroEvento;
+import com.projetointegrador.solidarize.VIEW.NavDrawMenu;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 public class TabLayoutPerfilEventosFragment extends Fragment {
     private TextView lbl_existencia_eventos;
@@ -87,6 +90,24 @@ public class TabLayoutPerfilEventosFragment extends Fragment {
 
         //context menu
         registerForContextMenu(lista_eventos_criados);
+
+        lista_eventos_criados.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                CadastroUsuarioEvento evento_selecionado = adapter.getItem(position);
+
+                //transfere o id do evento para o perfil
+                NavDrawMenu act= (NavDrawMenu) getActivity();
+                act.setIdEvento(evento_selecionado.getIdEvento());
+
+                FragmentManager fm= getActivity().getSupportFragmentManager();
+                FragmentTransaction ft= fm.beginTransaction();
+
+                PerfilEventoFragment perfil_evento= new PerfilEventoFragment();
+                ft.replace(R.id.place_holder_nav_draw, perfil_evento).addToBackStack(null);
+                ft.commit();
+            }
+        });
 
         btn_criar_evento.setOnClickListener(new View.OnClickListener() {
             @Override
