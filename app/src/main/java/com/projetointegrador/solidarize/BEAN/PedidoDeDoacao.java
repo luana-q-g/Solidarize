@@ -10,7 +10,7 @@ public class PedidoDeDoacao {
     private String meta_qtd;
     private String tipo_pedido;
     private String dt_validade;
-    private String nivel_urgencia;
+    private int nivel_urgencia;
     private String estado;
     private String cidade;
     private String rua;
@@ -19,7 +19,7 @@ public class PedidoDeDoacao {
     public PedidoDeDoacao(){
     }
 
-    public PedidoDeDoacao(String item, String meta_qtd, String tipo_pedido, String dt_validade, String nivel_urgencia, String estado, String cidade, String rua, String complemento) {
+    public PedidoDeDoacao(String item, String meta_qtd, String tipo_pedido, String dt_validade, int nivel_urgencia, String estado, String cidade, String rua, String complemento) {
         this.item = item;
         this.meta_qtd = meta_qtd;
         this.tipo_pedido = tipo_pedido;
@@ -31,7 +31,7 @@ public class PedidoDeDoacao {
         this.complemento = complemento;
     }
 
-    public PedidoDeDoacao(String email_instituicao, String item, String meta_qtd, String tipo_pedido, String dt_validade, String nivel_urgencia, String estado, String cidade, String rua, String complemento) {
+    public PedidoDeDoacao(String email_instituicao, String item, String meta_qtd, String tipo_pedido, String dt_validade, int nivel_urgencia, String estado, String cidade, String rua, String complemento) {
         this.email_usuario = email_instituicao;
         this.item = item;
         this.meta_qtd = meta_qtd;
@@ -84,11 +84,11 @@ public class PedidoDeDoacao {
         this.dt_validade = dt_validade;
     }
 
-    public String getNivel_urgencia() {
+    public int getNivel_urgencia() {
         return nivel_urgencia;
     }
 
-    public void setNivel_urgencia(String nivel_urgencia) {
+    public void setNivel_urgencia(int nivel_urgencia) {
         this.nivel_urgencia = nivel_urgencia;
     }
 

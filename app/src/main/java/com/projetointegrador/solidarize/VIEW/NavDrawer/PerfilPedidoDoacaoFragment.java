@@ -111,8 +111,9 @@ public class PerfilPedidoDoacaoFragment extends Fragment {
     }
 
     public void setContentView (PedidoDeDoacao pedido){
-        //definir meta e urgencia
+        //definir meta
         lbl_titulo_item_pedido.setText(pedido.getItem());
+        bar_nivel_urgencia.setProgress(pedido.getNivel_urgencia());
         lbl_data_validade.setText(pedido.getDt_validade());
         txt_tipo_pedido.setText(pedido.getTipo_pedido());
         String endereco= pedido.getEstado()+", "+pedido.getCidade()+", "+pedido.getRua()+", "+pedido.getComplemento();

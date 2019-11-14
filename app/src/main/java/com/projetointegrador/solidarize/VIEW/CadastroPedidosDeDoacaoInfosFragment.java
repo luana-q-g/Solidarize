@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.SeekBar;
 import android.widget.Spinner;
 
 import com.google.firebase.database.DataSnapshot;
@@ -36,7 +37,7 @@ public class CadastroPedidosDeDoacaoInfosFragment extends Fragment {
     private EditText txt_meta_qtd;
     private Spinner txt_tipo_pedido;
     private EditText txt_dt_validade_pedido;
-    private EditText txt_nivel_urgencia;
+    private SeekBar bar_nivel_urgencia;
 
     private Button btn_continuar;
 
@@ -54,21 +55,22 @@ public class CadastroPedidosDeDoacaoInfosFragment extends Fragment {
         txt_meta_qtd= view.findViewById(R.id.txt_meta_qtd);
         txt_tipo_pedido= view.findViewById(R.id.txt_tipo_pedido);
         txt_dt_validade_pedido= view.findViewById(R.id.txt_dt_final);
-        txt_nivel_urgencia= view.findViewById(R.id.txt_nivel_urgencia);
+        bar_nivel_urgencia= view.findViewById(R.id.seek_bar_nivel_urgencia);
         btn_continuar= view.findViewById(R.id.btn_continuar_infos_pedidos_doacao);
 
         if(tipo.contentEquals(CADASTRO)){
             btn_continuar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String item_pedido, meta, tipo, dt_validade, nivel_urgencia;
+                    String item_pedido, meta, tipo, dt_validade;
+                    int nivel_urgencia;
 
                     item_pedido= txt_item_pedido.getText().toString();
                     meta= txt_meta_qtd.getText().toString();
                     tipo= "";
                     //tipo= txt_tipo_pedido.getSelectedItem().toString();
                     dt_validade= txt_dt_validade_pedido.getText().toString();
-                    nivel_urgencia= txt_nivel_urgencia.getText().toString();
+                    nivel_urgencia= bar_nivel_urgencia.getProgress();
 
                     CadastroPedidosDeDoacao act= (CadastroPedidosDeDoacao) getActivity();
 
@@ -104,7 +106,9 @@ public class CadastroPedidosDeDoacaoInfosFragment extends Fragment {
                         //salva evento resgatado na activity
                         act.setPedido_de_doacao(pedidoDeDoacao);
 
-                        String item, meta, tipo, dt_val, urgencia;
+                        String item, meta, tipo, dt_val;
+                        int urgencia;
+
                         item= pedidoDeDoacao.getItem();
                         meta= pedidoDeDoacao.getMeta_qtd();
                         tipo= pedidoDeDoacao.getTipo_pedido();
@@ -128,14 +132,15 @@ public class CadastroPedidosDeDoacaoInfosFragment extends Fragment {
             btn_continuar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String item, meta, tipo, dt_val, urgencia;
+                    String item, meta, tipo, dt_val;
+                    int urgencia;
 
                     item= txt_item_pedido.getText().toString();
                     meta= txt_meta_qtd.getText().toString();
                     tipo= "";
                     //tipo= txt_tipo_pedido.getSelectedItem().toString();
                     dt_val= txt_dt_validade_pedido.getText().toString();
-                    urgencia= txt_nivel_urgencia.getText().toString();
+                    urgencia= bar_nivel_urgencia.getProgress();
 
 
                     EdicaoCadastroPedidoDoacao act= (EdicaoCadastroPedidoDoacao) getActivity();
@@ -156,11 +161,11 @@ public class CadastroPedidosDeDoacaoInfosFragment extends Fragment {
         return view;
     }
 
-    public void setDadosView(String i, String m, String t, String d, String u) {
+    public void setDadosView(String i, String m, String t, String d, int u) {
         txt_item_pedido.setText(i);
         txt_meta_qtd.setText(m);
         //txt_tipo_pedido.setText(t);
         txt_dt_validade_pedido.setText(d);
-        txt_nivel_urgencia.setText(u);
+        bar_nivel_urgencia.setProgress(u);
     }
 }

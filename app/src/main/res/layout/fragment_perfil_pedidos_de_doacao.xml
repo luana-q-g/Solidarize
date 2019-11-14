@@ -73,10 +73,11 @@
 
                 <ProgressBar
                     android:id="@+id/bar_meta_dos_pedidos"
-                    style="?android:attr/progressBarStyleHorizontal"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                     android:layout_width="160dp"
                     android:layout_height="22dp"
                     android:layout_marginTop="8dp"
+                    android:indeterminate="false"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/lbl_meta_pedidos" />
@@ -112,10 +113,11 @@
 
                 <ProgressBar
                     android:id="@+id/bar_nivel_urgencia_pedido"
-                    style="?android:attr/progressBarStyleHorizontal"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                     android:layout_width="157dp"
                     android:layout_height="26dp"
                     android:layout_marginTop="8dp"
+                    android:max="10"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/lbl_nivel_de_urgencia" />
@@ -125,10 +127,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginTop="24dp"
                     android:text="Até quando receberemos:"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/bar_nivel_urgencia_pedido" />
+                    app:layout_constraintTop_toBottomOf="@+id/lbl_urgencia_pouca" />
 
                 <TextView
                     android:id="@+id/txt_dt_validade"
@@ -204,6 +206,35 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/lbl_enderecos_e_mais" />
+
+                <TextView
+                    android:id="@+id/lbl_urgencia_pouca"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="pouco"
+                    app:layout_constraintEnd_toStartOf="@+id/lbl_urgencia_muito"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/bar_nivel_urgencia_pedido" />
+
+                <TextView
+                    android:id="@+id/lbl_urgencia_medio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="médio"
+                    app:layout_constraintEnd_toEndOf="@+id/bar_nivel_urgencia_pedido"
+                    app:layout_constraintStart_toStartOf="@+id/bar_nivel_urgencia_pedido"
+                    app:layout_constraintTop_toBottomOf="@+id/bar_nivel_urgencia_pedido" />
+
+                <TextView
+                    android:id="@+id/lbl_urgencia_muito"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="muito"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/lbl_urgencia_pouca"
+                    app:layout_constraintTop_toBottomOf="@+id/bar_nivel_urgencia_pedido" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
