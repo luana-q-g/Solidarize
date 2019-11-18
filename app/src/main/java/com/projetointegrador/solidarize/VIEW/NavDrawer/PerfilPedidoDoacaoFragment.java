@@ -25,6 +25,8 @@ import org.w3c.dom.Text;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 public class PerfilPedidoDoacaoFragment extends Fragment {
     private TextView lbl_titulo_item_pedido;
@@ -104,6 +106,24 @@ public class PerfilPedidoDoacaoFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+
+        btn_nome_instituicao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String id_instituicao= txt_id_instituicao.getText().toString();
+
+                //transfere o id da instituicao para o perfil
+                NavDrawMenu act= (NavDrawMenu) getActivity();
+                act.setIdInstituicao(id_instituicao);
+
+                FragmentManager fm= getActivity().getSupportFragmentManager();
+                FragmentTransaction ft= fm.beginTransaction();
+
+                PerfilVerTodasInstituicoesFragment perfil_instituicao= new PerfilVerTodasInstituicoesFragment();
+                ft.replace(R.id.place_holder_nav_draw, perfil_instituicao).addToBackStack(null);
+                ft.commit();
             }
         });
 

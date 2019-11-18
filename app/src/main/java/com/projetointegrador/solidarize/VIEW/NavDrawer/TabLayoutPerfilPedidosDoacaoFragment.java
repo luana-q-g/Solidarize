@@ -82,13 +82,8 @@ public class TabLayoutPerfilPedidosDoacaoFragment extends Fragment {
                 .setLifecycleOwner(this)
                 .build();
 
-        adapter = new AdapterListaPerfilPedidosDoacao(pedidos_options);
+        adapter = new AdapterListaPerfilPedidosDoacao(pedidos_options, lbl_existencia_pedidos_doacao);
         lista_pedidos_criados.setAdapter(adapter);
-
-        //verifica se existem pedidos
-        if(adapter.getCount() == 0){
-            lbl_existencia_pedidos_doacao.setText("");
-        }
 
         //context menu
         registerForContextMenu(lista_pedidos_criados);

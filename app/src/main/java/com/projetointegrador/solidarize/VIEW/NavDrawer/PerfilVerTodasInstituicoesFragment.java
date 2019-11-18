@@ -4,9 +4,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseListOptions;
 import com.google.firebase.database.DataSnapshot;
@@ -18,12 +20,15 @@ import com.projetointegrador.solidarize.BEAN.CadastroUsuarioEvento;
 import com.projetointegrador.solidarize.BEAN.CadastroUsuarioPedidoDoacao;
 import com.projetointegrador.solidarize.BEAN.Evento;
 import com.projetointegrador.solidarize.BEAN.Instituicao;
+import com.projetointegrador.solidarize.BEAN.PedidoDeDoacao;
 import com.projetointegrador.solidarize.R;
 import com.projetointegrador.solidarize.VIEW.NavDrawMenu;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 public class PerfilVerTodasInstituicoesFragment extends Fragment {
     private TextView lbl_nome_instituicao;
@@ -84,13 +89,26 @@ public class PerfilVerTodasInstituicoesFragment extends Fragment {
                 .setLifecycleOwner(this)
                 .build();
 
-        AdapterListaPerfilPedidosDoacao adapter = new AdapterListaPerfilPedidosDoacao(pedidos_options);
+        final AdapterListaPerfilPedidosDoacao adapter = new AdapterListaPerfilPedidosDoacao(pedidos_options, lbl_existencia_pedidos);
         lista_pedidos_instituicao.setAdapter(adapter);
 
-        //verifica se existem pedidos
-        if(adapter.getCount() == 0){
-            lbl_existencia_pedidos.setText("");
-        }
+        lista_pedidos_instituicao.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                CadastroUsuarioPedidoDoacao pedido_selecionado = adapter.getItem(position);
+
+                //transfere o id do pedido para o perfil
+                NavDrawMenu act= (NavDrawMenu) getActivity();
+                act.setIdPedidoDoacao(pedido_selecionado.getIdPedido());
+
+                FragmentManager fm= getActivity().getSupportFragmentManager();
+                FragmentTransaction ft= fm.beginTransaction();
+
+                PerfilPedidoDoacaoFragment perfil_pedido= new PerfilPedidoDoacaoFragment();
+                ft.replace(R.id.place_holder_nav_draw, perfil_pedido).addToBackStack(null);
+                ft.commit();
+            }
+        });
 
         return view;
     }

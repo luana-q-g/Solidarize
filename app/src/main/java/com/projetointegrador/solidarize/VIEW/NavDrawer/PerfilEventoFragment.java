@@ -18,7 +18,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.projetointegrador.solidarize.BEAN.CadastroUsuarioEvento;
 import com.projetointegrador.solidarize.BEAN.Evento;
+import com.projetointegrador.solidarize.BEAN.Instituicao;
+import com.projetointegrador.solidarize.BEAN.Pessoa;
+import com.projetointegrador.solidarize.BEAN.SalvaEvento;
 import com.projetointegrador.solidarize.BEAN.UsuarioLogado;
+import com.projetointegrador.solidarize.DAO.SalvaEventoDAO;
 import com.projetointegrador.solidarize.R;
 import com.projetointegrador.solidarize.VIEW.NavDrawMenu;
 
@@ -27,10 +31,14 @@ import java.util.Iterator;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 public class PerfilEventoFragment extends Fragment {
     private TextView lbl_titulo_evento;
+    private Button btn_salvar_evento;
+    private Button btn_confirmar_evento;
     private TextView lbl_data_i;
     private TextView lbl_data_f;
     private TextView lbl_hora_i;
@@ -56,6 +64,8 @@ public class PerfilEventoFragment extends Fragment {
         final View view= inflater.inflate(R.layout.fragment_perfil_eventos, container, false);
 
         lbl_titulo_evento= view.findViewById(R.id.lbl_titulo_evento);
+        btn_salvar_evento= view.findViewById(R.id.btn_salvar_evento);
+        btn_confirmar_evento= view.findViewById(R.id.btn_confirma_presenca);
         lbl_data_i= view.findViewById(R.id.lbl_data_inicio);
         lbl_data_f= view.findViewById(R.id.lbl_data_final);
         lbl_hora_i= view.findViewById(R.id.lbl_hora_inicial);
@@ -115,6 +125,46 @@ public class PerfilEventoFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+
+        btn_salvar_evento.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String id_usuario= "";
+                if (UsuarioLogado.getInstance().getUsuario().getTipo_usuario().contentEquals("pessoa")) {
+                    Pessoa usuario_pessoa = (Pessoa) UsuarioLogado.getInstance().getUsuario();
+                    id_usuario= usuario_pessoa.getId();
+                }
+                else{
+                    Instituicao usuario_instituicao = (Instituicao) UsuarioLogado.getInstance().getUsuario();
+                    id_usuario= usuario_instituicao.getId();
+                }
+
+                SalvaEvento evento_salvo= new SalvaEvento(id_usuario, act.getIdEvento(), lbl_titulo_evento.getText().toString());
+
+                SalvaEventoDAO salvaEventoDAO= new SalvaEventoDAO();
+                salvaEventoDAO.inserirEventoSalvo(evento_salvo);
+
+                btn_salvar_evento.setText("Salvo");
+            }
+        });
+
+        btn_nome_instituicao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String id_instituicao= lbl_id_instituicao.getText().toString();
+
+                //transfere o id da instituicao para o perfil
+                NavDrawMenu act= (NavDrawMenu) getActivity();
+                act.setIdInstituicao(id_instituicao);
+
+                FragmentManager fm= getActivity().getSupportFragmentManager();
+                FragmentTransaction ft= fm.beginTransaction();
+
+                PerfilVerTodasInstituicoesFragment perfil_instituicao= new PerfilVerTodasInstituicoesFragment();
+                ft.replace(R.id.place_holder_nav_draw, perfil_instituicao).addToBackStack(null);
+                ft.commit();
             }
         });
 

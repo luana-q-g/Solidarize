@@ -27,25 +27,25 @@
                 android:layout_height="match_parent">
 
                 <Button
-                    android:id="@+id/check_salvar_evento"
+                    android:id="@+id/btn_salvar_evento"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="32dp"
                     android:text="Salvar"
-                    app:layout_constraintEnd_toStartOf="@+id/check_confirma_presenca"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_confirma_presenca"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/lbl_titulo_evento" />
 
 
                 <Button
-                    android:id="@+id/check_confirma_presenca"
+                    android:id="@+id/btn_confirma_presenca"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
                     android:text="Confirmar presença"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/check_salvar_evento"
+                    app:layout_constraintStart_toEndOf="@+id/btn_salvar_evento"
                     app:layout_constraintTop_toBottomOf="@+id/lbl_titulo_evento" />
 
                 <TextView
@@ -56,7 +56,6 @@
                     android:layout_marginTop="32dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center_vertical|center"
-                    android:text="Título evento"
                     android:textSize="18dp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -68,7 +67,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
-                    android:text="data_i"
                     app:layout_constraintBottom_toBottomOf="@+id/lbl_data"
                     app:layout_constraintStart_toEndOf="@+id/lbl_data"
                     app:layout_constraintTop_toTopOf="@+id/lbl_data" />
@@ -78,7 +76,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
-                    android:text="data_f"
                     app:layout_constraintBottom_toBottomOf="@+id/lbl_ate"
                     app:layout_constraintStart_toEndOf="@+id/lbl_ate"
                     app:layout_constraintTop_toTopOf="@+id/lbl_ate" />
@@ -88,7 +85,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
-                    android:text="hora_i"
                     app:layout_constraintBottom_toBottomOf="@+id/lbl_hora"
                     app:layout_constraintStart_toEndOf="@+id/lbl_hora"
                     app:layout_constraintTop_toTopOf="@+id/lbl_hora" />
@@ -98,7 +94,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
-                    android:text="hora_f"
                     app:layout_constraintBottom_toBottomOf="@+id/lbl_as"
                     app:layout_constraintStart_toEndOf="@+id/lbl_as"
                     app:layout_constraintTop_toTopOf="@+id/lbl_as" />
@@ -111,7 +106,6 @@
                     android:layout_marginTop="32dp"
                     android:layout_marginEnd="32dp"
                     android:inputType="textMultiLine"
-                    android:text="descricao"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/lbl_hora" />
@@ -133,7 +127,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
-                    android:text="endereco1"
                     app:layout_constraintBaseline_toBaselineOf="@+id/lbl_endereco"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/lbl_endereco" />
@@ -145,7 +138,6 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
-                    android:text="endereco2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/lbl_endereco"
                     app:layout_constraintTop_toBottomOf="@+id/txt_endereco1" />
@@ -168,7 +160,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
-                    android:text="email"
                     app:layout_constraintBaseline_toBaselineOf="@+id/lbl_email"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/lbl_email" />
@@ -200,7 +191,7 @@
                     android:layout_marginTop="32dp"
                     android:text="Data:"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/check_salvar_evento" />
+                    app:layout_constraintTop_toBottomOf="@id/btn_salvar_evento" />
 
                 <TextView
                     android:id="@+id/lbl_ate"
@@ -234,7 +225,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="Nome da instituicao"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/lbl_organizacao" />

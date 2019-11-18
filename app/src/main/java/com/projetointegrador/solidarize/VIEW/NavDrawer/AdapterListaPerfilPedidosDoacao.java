@@ -16,8 +16,11 @@ import com.projetointegrador.solidarize.R;
 import java.util.ArrayList;
 
 public class AdapterListaPerfilPedidosDoacao extends FirebaseListAdapter<CadastroUsuarioPedidoDoacao> {
-    public AdapterListaPerfilPedidosDoacao(FirebaseListOptions options){
+    private TextView lbl_existencia_pedidos;
+
+    public AdapterListaPerfilPedidosDoacao(FirebaseListOptions options, TextView lbl_existencia_pedidos){
         super (options);
+        this.lbl_existencia_pedidos= lbl_existencia_pedidos;
     }
 
     protected void populateView (View v, CadastroUsuarioPedidoDoacao p, int position){
@@ -29,5 +32,16 @@ public class AdapterListaPerfilPedidosDoacao extends FirebaseListAdapter<Cadastr
 
         lbl_nome_pedido.setText(p.getNomePedido());
         lbl_id_pedido.setText(p.getIdPedido());
+    }
+
+    @Override
+    public void onDataChanged(){
+        //se chamar esse método, esvazia
+        if(getCount()==0){
+            lbl_existencia_pedidos.setText("nenhum pedido feito pela instituição...");
+        }
+        else{
+            lbl_existencia_pedidos.setText("");
+        }
     }
 }
