@@ -39,25 +39,25 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
-                    android:id="@+id/check_salvar_pedido"
+                    android:id="@+id/btn_salvar_pedido"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="32dp"
                     android:text="Salvar"
-                    app:layout_constraintEnd_toStartOf="@+id/check_confirma_doacao"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_confirma_doacao"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/lbl_item_pedido" />
 
                 <Button
-                    android:id="@+id/check_confirma_doacao"
+                    android:id="@+id/btn_confirma_doacao"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="32dp"
                     android:text="Confirmar doação"
-                    app:layout_constraintBottom_toBottomOf="@+id/check_salvar_pedido"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_salvar_pedido"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/check_salvar_pedido" />
+                    app:layout_constraintStart_toEndOf="@+id/btn_salvar_pedido" />
 
                 <TextView
                     android:id="@+id/lbl_meta_pedidos"
@@ -68,7 +68,7 @@
                     android:text="Meta:"
                     android:textStyle="normal"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/check_salvar_pedido" />
+                    app:layout_constraintTop_toBottomOf="@+id/btn_salvar_pedido" />
 
                 <ProgressBar
                     android:id="@+id/bar_meta_dos_pedidos"

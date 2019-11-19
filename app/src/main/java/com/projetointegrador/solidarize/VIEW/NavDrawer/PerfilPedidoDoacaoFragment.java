@@ -16,7 +16,12 @@ import com.google.firebase.database.ValueEventListener;
 import com.projetointegrador.solidarize.BEAN.CadastroUsuarioEvento;
 import com.projetointegrador.solidarize.BEAN.CadastroUsuarioPedidoDoacao;
 import com.projetointegrador.solidarize.BEAN.Evento;
+import com.projetointegrador.solidarize.BEAN.Instituicao;
 import com.projetointegrador.solidarize.BEAN.PedidoDeDoacao;
+import com.projetointegrador.solidarize.BEAN.Pessoa;
+import com.projetointegrador.solidarize.BEAN.SalvaPedidoDeDoacao;
+import com.projetointegrador.solidarize.BEAN.UsuarioLogado;
+import com.projetointegrador.solidarize.DAO.SalvaPedidoDeDoacaoDAO;
 import com.projetointegrador.solidarize.R;
 import com.projetointegrador.solidarize.VIEW.NavDrawMenu;
 
@@ -30,6 +35,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 public class PerfilPedidoDoacaoFragment extends Fragment {
     private TextView lbl_titulo_item_pedido;
+    private Button btn_salvar_pedido;
+    private Button btn_confirmar_pedido;
     private ProgressBar bar_meta_pedido;
     private TextView txt_tipo_pedido;
     private ProgressBar bar_nivel_urgencia;
@@ -51,6 +58,8 @@ public class PerfilPedidoDoacaoFragment extends Fragment {
         final View view= inflater.inflate(R.layout.fragment_perfil_pedidos_de_doacao, container, false);
 
         lbl_titulo_item_pedido= view.findViewById(R.id.lbl_item_pedido);
+        btn_salvar_pedido= view.findViewById(R.id.btn_salvar_pedido);
+        btn_confirmar_pedido= view.findViewById(R.id.btn_confirma_doacao);
         bar_meta_pedido= view.findViewById(R.id.bar_meta_dos_pedidos);
         txt_tipo_pedido= view.findViewById(R.id.txt_tipo_item);
         bar_nivel_urgencia= view.findViewById(R.id.bar_nivel_urgencia_pedido);
@@ -106,6 +115,28 @@ public class PerfilPedidoDoacaoFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+
+        btn_salvar_pedido.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String id_usuario= "";
+                if (UsuarioLogado.getInstance().getUsuario().getTipo_usuario().contentEquals("pessoa")) {
+                    Pessoa usuario_pessoa = (Pessoa) UsuarioLogado.getInstance().getUsuario();
+                    id_usuario= usuario_pessoa.getId();
+                }
+                else{
+                    Instituicao usuario_instituicao = (Instituicao) UsuarioLogado.getInstance().getUsuario();
+                    id_usuario= usuario_instituicao.getId();
+                }
+
+                SalvaPedidoDeDoacao pedido_salvo= new SalvaPedidoDeDoacao(id_usuario, act.getIdPedidoDoacao(), lbl_titulo_item_pedido.getText().toString());
+
+                SalvaPedidoDeDoacaoDAO salvaEventoDAO= new SalvaPedidoDeDoacaoDAO();
+                salvaEventoDAO.inserirPedidoSalvo(pedido_salvo);
+
+                btn_salvar_pedido.setText("Salvo");
             }
         });
 
