@@ -133,6 +133,41 @@ public class PerfilPedidoDoacaoFragment extends Fragment {
             }
         });
 
+        //pega no nó específico para ver se pedido está salvo
+        DatabaseReference dados_pedido_salvo= BD.child("salvaPedidoDeDoacao").child(id_usuario).child(act.getIdPedidoDoacao());
+        dados_pedido_salvo.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    btn_salvar_pedido.setText("Salvo");
+                    btn_salvar_pedido.setEnabled(false);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        //pega no nó específico para ver se pedido está confirmado
+        DatabaseReference dados_pedido_confirmado= BD.child("confirmaPedidoDeDoacao").child(id_usuario).child(act.getIdPedidoDoacao());
+        dados_pedido_confirmado.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    btn_confirmar_pedido.setText("Confirmado");
+                    btn_confirmar_pedido.setEnabled(false);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        //ação do botão Salvar
         btn_salvar_pedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -142,9 +177,11 @@ public class PerfilPedidoDoacaoFragment extends Fragment {
                 salvaEventoDAO.inserirPedidoSalvo(pedido_salvo);
 
                 btn_salvar_pedido.setText("Salvo");
+                btn_salvar_pedido.setEnabled(false);
             }
         });
 
+        //ação do botão Confirmar
         btn_confirmar_pedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -154,6 +191,7 @@ public class PerfilPedidoDoacaoFragment extends Fragment {
                 confirmaPedidoDeDoacaoDAO.inserirPedidoConfirmado(pedido_confirmado);
 
                 btn_confirmar_pedido.setText("Confirmado");
+                btn_confirmar_pedido.setEnabled(false);
             }
         });
 

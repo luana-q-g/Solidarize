@@ -142,6 +142,41 @@ public class PerfilEventoFragment extends Fragment {
             }
         });
 
+        //pega no nó específico para ver se evento está salvo
+        DatabaseReference dados_evento_salvo= BD.child("salvaEvento").child(id_usuario).child(act.getIdEvento());
+        dados_evento_salvo.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    btn_salvar_evento.setText("Salvo");
+                    btn_salvar_evento.setEnabled(false);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        //pega no nó específico para ver se evento está confirmado
+        DatabaseReference dados_evento_confirmado= BD.child("confirmaEvento").child(id_usuario).child(act.getIdEvento());
+        dados_evento_confirmado.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    btn_confirmar_evento.setText("Confirmado");
+                    btn_confirmar_evento.setEnabled(false);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        //ação do botão Salvar
         btn_salvar_evento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -151,9 +186,11 @@ public class PerfilEventoFragment extends Fragment {
                 salvaEventoDAO.inserirEventoSalvo(evento_salvo);
 
                 btn_salvar_evento.setText("Salvo");
+                btn_salvar_evento.setEnabled(false);
             }
         });
 
+        //ação do botão Confirmar
         btn_confirmar_evento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -168,6 +205,7 @@ public class PerfilEventoFragment extends Fragment {
                 confirmaEventoDAO.inserirEventoConfirmado(evento_confirmado);
 
                 btn_confirmar_evento.setText("Confirmado");
+                btn_confirmar_evento.setEnabled(false);
             }
         });
 
