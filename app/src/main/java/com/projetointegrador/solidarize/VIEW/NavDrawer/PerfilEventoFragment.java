@@ -17,11 +17,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.projetointegrador.solidarize.BEAN.CadastroUsuarioEvento;
+import com.projetointegrador.solidarize.BEAN.ConfirmaEvento;
 import com.projetointegrador.solidarize.BEAN.Evento;
 import com.projetointegrador.solidarize.BEAN.Instituicao;
 import com.projetointegrador.solidarize.BEAN.Pessoa;
 import com.projetointegrador.solidarize.BEAN.SalvaEvento;
 import com.projetointegrador.solidarize.BEAN.UsuarioLogado;
+import com.projetointegrador.solidarize.DAO.ConfirmaEventoDAO;
 import com.projetointegrador.solidarize.DAO.SalvaEventoDAO;
 import com.projetointegrador.solidarize.R;
 import com.projetointegrador.solidarize.VIEW.NavDrawMenu;
@@ -53,6 +55,8 @@ public class PerfilEventoFragment extends Fragment {
 
     private DatabaseReference BD= FirebaseDatabase.getInstance().getReference();
 
+    private String id_usuario;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +81,16 @@ public class PerfilEventoFragment extends Fragment {
         txt_endereco1= view.findViewById(R.id.txt_endereco1);
         txt_endereco2= view.findViewById(R.id.txt_endereco2);
         txt_email_contato= view.findViewById(R.id.txt_email);
+
+        //resgata id do usuario
+        if (UsuarioLogado.getInstance().getUsuario().getTipo_usuario().contentEquals("pessoa")) {
+            Pessoa usuario_pessoa = (Pessoa) UsuarioLogado.getInstance().getUsuario();
+            id_usuario= usuario_pessoa.getId();
+        }
+        else{
+            Instituicao usuario_instituicao = (Instituicao) UsuarioLogado.getInstance().getUsuario();
+            id_usuario= usuario_instituicao.getId();
+        }
 
         //pega o id do evento da activity
         final NavDrawMenu act= (NavDrawMenu) getActivity();
@@ -131,22 +145,29 @@ public class PerfilEventoFragment extends Fragment {
         btn_salvar_evento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String id_usuario= "";
-                if (UsuarioLogado.getInstance().getUsuario().getTipo_usuario().contentEquals("pessoa")) {
-                    Pessoa usuario_pessoa = (Pessoa) UsuarioLogado.getInstance().getUsuario();
-                    id_usuario= usuario_pessoa.getId();
-                }
-                else{
-                    Instituicao usuario_instituicao = (Instituicao) UsuarioLogado.getInstance().getUsuario();
-                    id_usuario= usuario_instituicao.getId();
-                }
-
                 SalvaEvento evento_salvo= new SalvaEvento(id_usuario, act.getIdEvento(), lbl_titulo_evento.getText().toString());
 
                 SalvaEventoDAO salvaEventoDAO= new SalvaEventoDAO();
                 salvaEventoDAO.inserirEventoSalvo(evento_salvo);
 
                 btn_salvar_evento.setText("Salvo");
+            }
+        });
+
+        btn_confirmar_evento.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //como fazer o botão estar atualizado de acordo com o bd
+
+                //ALERT DIALOG DE CERTEZA
+
+                ConfirmaEvento evento_confirmado= new ConfirmaEvento(id_usuario, act.getIdEvento(), lbl_titulo_evento.getText().toString());
+
+                ConfirmaEventoDAO confirmaEventoDAO= new ConfirmaEventoDAO();
+                confirmaEventoDAO.inserirEventoConfirmado(evento_confirmado);
+
+                btn_confirmar_evento.setText("Confirmado");
             }
         });
 

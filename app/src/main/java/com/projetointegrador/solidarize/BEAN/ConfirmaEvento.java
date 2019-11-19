@@ -1,40 +1,40 @@
 package com.projetointegrador.solidarize.BEAN;
 
 public class ConfirmaEvento {
-    private String email_usuario;
+    private String id_usuario;
+    private String id_evento;
     private String nome_evento;
-    private String email_usuario_evento;
 
     public ConfirmaEvento(){
     }
 
-    public ConfirmaEvento(String email_u, String nome_evento, String email_u_e){
-        this.email_usuario= email_u;
+    public ConfirmaEvento(String id_u, String id_e, String nome_evento){
+        this.id_usuario= id_u;
         this.nome_evento= nome_evento;
-        this.email_usuario_evento= email_u_e;
+        this.id_evento= id_e;
     }
 
-    public String getEmail_usuario() {
-        return email_usuario;
+    public String getIdUsuario() {
+        return id_usuario;
     }
 
-    public void setEmail_usuario(String email_usuario) {
-        this.email_usuario = email_usuario;
+    public void setIdUsuario(String id_usuario) {
+        this.id_usuario = id_usuario;
     }
 
-    public String getNome_evento() {
+    public String getIdEvento() {
+        return id_evento;
+    }
+
+    public void setIdEvento(String id_evento) {
+        this.id_evento = id_evento;
+    }
+
+    public String getNomeEvento() {
         return nome_evento;
     }
 
-    public void setNome_evento(String nome_evento) {
+    public void setNomeEvento(String nome_evento) {
         this.nome_evento = nome_evento;
-    }
-
-    public String getEmail_usuario_evento() {
-        return email_usuario_evento;
-    }
-
-    public void setEmail_usuario_evento(String email_usuario_evento) {
-        this.email_usuario_evento = email_usuario_evento;
     }
 }

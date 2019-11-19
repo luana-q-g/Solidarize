@@ -15,12 +15,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.projetointegrador.solidarize.BEAN.CadastroUsuarioEvento;
 import com.projetointegrador.solidarize.BEAN.CadastroUsuarioPedidoDoacao;
+import com.projetointegrador.solidarize.BEAN.ConfirmaPedidoDeDoacao;
 import com.projetointegrador.solidarize.BEAN.Evento;
 import com.projetointegrador.solidarize.BEAN.Instituicao;
 import com.projetointegrador.solidarize.BEAN.PedidoDeDoacao;
 import com.projetointegrador.solidarize.BEAN.Pessoa;
 import com.projetointegrador.solidarize.BEAN.SalvaPedidoDeDoacao;
 import com.projetointegrador.solidarize.BEAN.UsuarioLogado;
+import com.projetointegrador.solidarize.DAO.ConfirmaPedidoDeDoacaoDAO;
 import com.projetointegrador.solidarize.DAO.SalvaPedidoDeDoacaoDAO;
 import com.projetointegrador.solidarize.R;
 import com.projetointegrador.solidarize.VIEW.NavDrawMenu;
@@ -47,6 +49,8 @@ public class PerfilPedidoDoacaoFragment extends Fragment {
 
     private DatabaseReference BD= FirebaseDatabase.getInstance().getReference();
 
+    private String id_usuario;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +71,17 @@ public class PerfilPedidoDoacaoFragment extends Fragment {
         lbl_locais= view.findViewById(R.id.txt_locais_arrecadacao);
         btn_nome_instituicao= view.findViewById(R.id.btn_nome_instituicao);
         txt_id_instituicao= view.findViewById(R.id.txt_id_instituicao);
+
+        //resgata id do usuario
+        id_usuario= "";
+        if (UsuarioLogado.getInstance().getUsuario().getTipo_usuario().contentEquals("pessoa")) {
+            Pessoa usuario_pessoa = (Pessoa) UsuarioLogado.getInstance().getUsuario();
+            id_usuario= usuario_pessoa.getId();
+        }
+        else{
+            Instituicao usuario_instituicao = (Instituicao) UsuarioLogado.getInstance().getUsuario();
+            id_usuario= usuario_instituicao.getId();
+        }
 
         //pega o id do evento da activity
         final NavDrawMenu act= (NavDrawMenu) getActivity();
@@ -121,22 +136,24 @@ public class PerfilPedidoDoacaoFragment extends Fragment {
         btn_salvar_pedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String id_usuario= "";
-                if (UsuarioLogado.getInstance().getUsuario().getTipo_usuario().contentEquals("pessoa")) {
-                    Pessoa usuario_pessoa = (Pessoa) UsuarioLogado.getInstance().getUsuario();
-                    id_usuario= usuario_pessoa.getId();
-                }
-                else{
-                    Instituicao usuario_instituicao = (Instituicao) UsuarioLogado.getInstance().getUsuario();
-                    id_usuario= usuario_instituicao.getId();
-                }
-
                 SalvaPedidoDeDoacao pedido_salvo= new SalvaPedidoDeDoacao(id_usuario, act.getIdPedidoDoacao(), lbl_titulo_item_pedido.getText().toString());
 
                 SalvaPedidoDeDoacaoDAO salvaEventoDAO= new SalvaPedidoDeDoacaoDAO();
                 salvaEventoDAO.inserirPedidoSalvo(pedido_salvo);
 
                 btn_salvar_pedido.setText("Salvo");
+            }
+        });
+
+        btn_confirmar_pedido.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ConfirmaPedidoDeDoacao pedido_confirmado= new ConfirmaPedidoDeDoacao(id_usuario, act.getIdPedidoDoacao(), lbl_titulo_item_pedido.getText().toString());
+
+                ConfirmaPedidoDeDoacaoDAO confirmaPedidoDeDoacaoDAO= new ConfirmaPedidoDeDoacaoDAO();
+                confirmaPedidoDeDoacaoDAO.inserirPedidoConfirmado(pedido_confirmado);
+
+                btn_confirmar_pedido.setText("Confirmado");
             }
         });
 
