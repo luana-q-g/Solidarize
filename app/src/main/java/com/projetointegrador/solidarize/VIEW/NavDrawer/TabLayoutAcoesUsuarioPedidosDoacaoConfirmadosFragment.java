@@ -1,9 +1,14 @@
 package com.projetointegrador.solidarize.VIEW.NavDrawer;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -15,6 +20,7 @@ import com.projetointegrador.solidarize.BEAN.ConfirmaPedidoDeDoacao;
 import com.projetointegrador.solidarize.BEAN.Instituicao;
 import com.projetointegrador.solidarize.BEAN.Pessoa;
 import com.projetointegrador.solidarize.BEAN.UsuarioLogado;
+import com.projetointegrador.solidarize.DAO.ConfirmaPedidoDeDoacaoDAO;
 import com.projetointegrador.solidarize.R;
 
 import androidx.annotation.NonNull;
@@ -30,6 +36,8 @@ public class TabLayoutAcoesUsuarioPedidosDoacaoConfirmadosFragment extends Fragm
 
     private AdapterListaPedidosConfirmados adapter;
 
+    private String id_usuario;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +51,7 @@ public class TabLayoutAcoesUsuarioPedidosDoacaoConfirmadosFragment extends Fragm
         lista_pedidos_confirmados= view.findViewById(R.id.lista_pedidos_de_doacao_confirmados);
         lbl_existencia_pedidos= view.findViewById(R.id.lbl_existencia_pedidos);
 
-        String id_usuario= "";
+        id_usuario= "";
         if (UsuarioLogado.getInstance().getUsuario().getTipo_usuario().contentEquals("pessoa")) {
             Pessoa usuario_pessoa = (Pessoa) UsuarioLogado.getInstance().getUsuario();
             id_usuario= usuario_pessoa.getId();
@@ -65,6 +73,9 @@ public class TabLayoutAcoesUsuarioPedidosDoacaoConfirmadosFragment extends Fragm
         adapter= new AdapterListaPedidosConfirmados(pedidos_confirmados_options, lbl_existencia_pedidos);
 
         lista_pedidos_confirmados.setAdapter(adapter);
+
+        //context menu
+        registerForContextMenu(lista_pedidos_confirmados);
 
         return view;
     }
@@ -98,5 +109,56 @@ public class TabLayoutAcoesUsuarioPedidosDoacaoConfirmadosFragment extends Fragm
                 lbl_existencia_pedidos.setText("");
             }
         }
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        getActivity().getMenuInflater().inflate(R.menu.menu_context_editar_confirmados, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        if (getUserVisibleHint()) {
+            //resgatando posição do item no listView
+            AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+            int list_position = info.position;
+
+            //pegando id do evento que foi selecionado
+            final ConfirmaPedidoDeDoacao confirmaPedidoDeDoacao = (ConfirmaPedidoDeDoacao) lista_pedidos_confirmados.getItemAtPosition(list_position);
+            final String id_pedido = confirmaPedidoDeDoacao.getIdPedido();
+
+            //final String id_evento= adapter.getItem(list_position).getIdEvento();
+
+            if(item.getItemId() == R.id.item_editar_confirmados){
+                AlertDialog.Builder alert_evento = new AlertDialog.Builder(getActivity());
+                alert_evento.setTitle("Deseja retirar o pedido de doação da lista dos confirmados?");
+                alert_evento.setMessage("A confirmação de um pedido de doação tem importância para a instituição e deve ser feito com responsabilidade!");
+                alert_evento.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ConfirmaPedidoDeDoacaoDAO confirmaPedidoDeDoacaoDAO = new ConfirmaPedidoDeDoacaoDAO();
+                        confirmaPedidoDeDoacaoDAO.excluirPedidoConfirmado(id_usuario, id_pedido);
+                    }
+                });
+
+                alert_evento.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                alert_evento.create();
+                alert_evento.show();
+
+                return true;
+            }
+            else{
+                return super.onContextItemSelected(item);
+            }
+
+        }
+        return false;
     }
 }

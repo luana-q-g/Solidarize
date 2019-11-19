@@ -1,9 +1,14 @@
 package com.projetointegrador.solidarize.VIEW.NavDrawer;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -15,6 +20,7 @@ import com.projetointegrador.solidarize.BEAN.ConfirmaEvento;
 import com.projetointegrador.solidarize.BEAN.Instituicao;
 import com.projetointegrador.solidarize.BEAN.Pessoa;
 import com.projetointegrador.solidarize.BEAN.UsuarioLogado;
+import com.projetointegrador.solidarize.DAO.ConfirmaEventoDAO;
 import com.projetointegrador.solidarize.R;
 
 import androidx.annotation.NonNull;
@@ -30,6 +36,8 @@ public class TabLayoutAcoesUsuarioEventosConfirmadosFragment extends Fragment {
 
     private AdapterListaEventosConfirmados adapter;
 
+    private String id_usuario;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +51,7 @@ public class TabLayoutAcoesUsuarioEventosConfirmadosFragment extends Fragment {
         lista_eventos_confirmados= view.findViewById(R.id.lista_eventos_confirmados);
         lbl_existencia_eventos= view.findViewById(R.id.lbl_existencia_eventos);
 
-        String id_usuario= "";
+        id_usuario= "";
         if (UsuarioLogado.getInstance().getUsuario().getTipo_usuario().contentEquals("pessoa")) {
             Pessoa usuario_pessoa = (Pessoa) UsuarioLogado.getInstance().getUsuario();
             id_usuario= usuario_pessoa.getId();
@@ -65,6 +73,9 @@ public class TabLayoutAcoesUsuarioEventosConfirmadosFragment extends Fragment {
         adapter= new AdapterListaEventosConfirmados(eventos_confirmados_options, lbl_existencia_eventos);
 
         lista_eventos_confirmados.setAdapter(adapter);
+
+        //context menu
+        registerForContextMenu(lista_eventos_confirmados);
 
         return view;
     }
@@ -98,5 +109,56 @@ public class TabLayoutAcoesUsuarioEventosConfirmadosFragment extends Fragment {
                 lbl_existencia_eventos.setText("");
             }
         }
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        getActivity().getMenuInflater().inflate(R.menu.menu_context_editar_confirmados, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        if (getUserVisibleHint()) {
+            //resgatando posição do item no listView
+            AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+            int list_position = info.position;
+
+            //pegando id do evento que foi selecionado
+            final ConfirmaEvento confirmaEvento = (ConfirmaEvento) lista_eventos_confirmados.getItemAtPosition(list_position);
+            final String id_evento = confirmaEvento.getIdEvento();
+
+            //final String id_evento= adapter.getItem(list_position).getIdEvento();
+
+            if(item.getItemId() == R.id.item_editar_confirmados){
+                AlertDialog.Builder alert_evento = new AlertDialog.Builder(getActivity());
+                alert_evento.setTitle("Deseja retirar o evento da lista dos confirmados?");
+                alert_evento.setMessage("A confirmação do evento tem importância para o organizador do evento!");
+                alert_evento.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ConfirmaEventoDAO confirmaEventoDAO = new ConfirmaEventoDAO();
+                        confirmaEventoDAO.excluirEventoConfirmado(id_usuario, id_evento);
+                    }
+                });
+
+                alert_evento.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                alert_evento.create();
+                alert_evento.show();
+
+                return true;
+            }
+            else{
+                return super.onContextItemSelected(item);
+            }
+
+        }
+        return false;
     }
 }
