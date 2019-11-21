@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -51,8 +52,7 @@ public class CadastroPessoaEnderecoFragment extends Fragment {
     private Button btn_voltar;
     private Button btn_continuar;
 
-    HashMap<Integer, String> lista_estados;
-    ArrayList<String> lista_cidades_por_estado;
+    HashMap<String, Integer> lista_estados;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -71,12 +71,25 @@ public class CadastroPessoaEnderecoFragment extends Fragment {
         btn_continuar= view.findViewById(R.id.btn_continuar_endereco_pessoa);
 
         String URL_estados="https://servicodados.ibge.gov.br/api/v1/localidades/estados";
+        lista_estados= new HashMap<String, Integer>();
         loadSpinnerEstados(URL_estados);
-        lista_estados= new HashMap<Integer, String>();
 
-        //{UF} substitui-se pelo código do estado
-        String URL_cidades_por_estado="https://servicodados.ibge.gov.br/api/v1/localidades/estados/{UF}/municipios";
-        lista_cidades_por_estado= new ArrayList<String>();
+        spin_estado.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String nome_estado= spin_estado.getItemAtPosition(spin_estado.getSelectedItemPosition()).toString();
+
+                Integer cod_estado= lista_estados.get(nome_estado);
+
+                String URL_cidades_por_estado="https://servicodados.ibge.gov.br/api/v1/localidades/estados/"+cod_estado+"/municipios";
+                loadSpinnerCidades(URL_cidades_por_estado);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         if(tipo.contentEquals(CADASTRO)){
             btn_continuar.setOnClickListener(new View.OnClickListener() {
@@ -171,20 +184,58 @@ public class CadastroPessoaEnderecoFragment extends Fragment {
                     //JSONArray jsonArray = jsonObject.getJSONArray("");
                     JSONArray jsonArray = new JSONArray(response);
 
-                    String[] lista_adapter_estados= new String[jsonArray.length()];
+                    String[] lista_adapter_estados= new String[jsonArray.length()+1];
+                    lista_adapter_estados[0]= "Selecione um estado...";
 
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonEstado = jsonArray.getJSONObject(i);
                         int cod_estado = jsonEstado.getInt("id");
                         String nome_estado = jsonEstado.getString("nome");
 
-                        System.out.println("erro: "+jsonEstado.getString("nome"));
-
-                        lista_estados.put(cod_estado, nome_estado);
-                        lista_adapter_estados[i]= nome_estado;
+                        lista_estados.put(nome_estado, cod_estado);
+                        int posicao_lista_adapter= i+1;
+                        lista_adapter_estados[posicao_lista_adapter]= nome_estado;
                     }
 
                     spin_estado.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, lista_adapter_estados));
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+
+        int socketTimeout = 30000;
+        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        stringRequest.setRetryPolicy(policy);
+        requestQueue.add(stringRequest);
+    }
+
+    private void loadSpinnerCidades(String url) {
+        RequestQueue requestQueue= Volley.newRequestQueue(getActivity().getApplicationContext());
+        StringRequest stringRequest=new StringRequest(Request.Method.GET, url, new com.android.volley.Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONArray jsonArray = new JSONArray(response);
+
+                    String[] lista_adapter_cidades= new String[jsonArray.length()+1];
+                    lista_adapter_cidades[0]= "Selecione sua cidade...";
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonCidade = jsonArray.getJSONObject(i);
+                        String nome_cidade = jsonCidade.getString("nome");
+
+                        int posicao_lista_adapter= i+1;
+                        lista_adapter_cidades[posicao_lista_adapter]= nome_cidade;
+                    }
+
+                    spin_cidade.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, lista_adapter_cidades));
 
                 } catch (JSONException e) {
                     e.printStackTrace();
