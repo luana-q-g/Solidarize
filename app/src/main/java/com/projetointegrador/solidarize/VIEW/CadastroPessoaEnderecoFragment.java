@@ -52,7 +52,9 @@ public class CadastroPessoaEnderecoFragment extends Fragment {
     private Button btn_voltar;
     private Button btn_continuar;
 
-    HashMap<String, Integer> lista_estados;
+    HashMap<String, Integer> lista_estados= new HashMap<String, Integer>();
+    ArrayList<String> lista_adapter_estados= new ArrayList<>();
+    ArrayList<String> lista_adapter_cidades= new ArrayList<>();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -71,7 +73,6 @@ public class CadastroPessoaEnderecoFragment extends Fragment {
         btn_continuar= view.findViewById(R.id.btn_continuar_endereco_pessoa);
 
         String URL_estados="https://servicodados.ibge.gov.br/api/v1/localidades/estados";
-        lista_estados= new HashMap<String, Integer>();
         loadSpinnerEstados(URL_estados);
 
         spin_estado.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -97,11 +98,8 @@ public class CadastroPessoaEnderecoFragment extends Fragment {
                 public void onClick(View v) {
                     String c, e;
 
-                    //????
-                    //c= spin_cidade.getSelectedItem().toString();
-                    //e= spin_estado.getSelectedItem().toString();
-                    c= "São Carlos";
-                    e= "SP";
+                    e= spin_estado.getItemAtPosition(spin_estado.getSelectedItemPosition()).toString();
+                    c= spin_cidade.getItemAtPosition(spin_cidade.getSelectedItemPosition()).toString();
 
                     CadastroPessoa act= (CadastroPessoa) getActivity();
                     act.setEndereco(c, e);
@@ -133,19 +131,19 @@ public class CadastroPessoaEnderecoFragment extends Fragment {
 
             btn_continuar.setText("Editar");
 
-            //cidade.setText(act.getPessoa().getCidade());
+            //spin_estado.setSelection(lista_adapter_estados.indexOf(act.getPessoa().getEstado()));
+            //int position_estado= lista_adapter_estados.indexOf(act.getPessoa().getEstado());
+            //spin_estado.setSelection(position_estado);
             //estado.setText(act.getPessoa().getEstado());
+            //spin_cidade.setSelection(lista_adapter_cidades.indexOf(act.getPessoa().getCidade()));
 
             btn_continuar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     String c, e;
 
-                    //????
-                    //c= spin_cidade.getSelectedItem().toString();
-                    //e= spin_estado.getSelectedItem().toString();
-                    c= "São Carlos";
-                    e= "SP";
+                    e= spin_estado.getItemAtPosition(spin_estado.getSelectedItemPosition()).toString();
+                    c= spin_cidade.getItemAtPosition(spin_cidade.getSelectedItemPosition()).toString();
 
                     act.setEndereco(c, e);
 
@@ -153,6 +151,8 @@ public class CadastroPessoaEnderecoFragment extends Fragment {
                     pessoaDao.alterarUsuarioPessoa(act.getPessoa());
 
                     UsuarioLogado.getInstance().setUsuario(act.getPessoa());
+
+                    act.finish();
                 }
             });
 
@@ -184,8 +184,7 @@ public class CadastroPessoaEnderecoFragment extends Fragment {
                     //JSONArray jsonArray = jsonObject.getJSONArray("");
                     JSONArray jsonArray = new JSONArray(response);
 
-                    String[] lista_adapter_estados= new String[jsonArray.length()+1];
-                    lista_adapter_estados[0]= "Selecione um estado...";
+                    lista_adapter_estados.add("Selecione um estado...");
 
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonEstado = jsonArray.getJSONObject(i);
@@ -194,10 +193,17 @@ public class CadastroPessoaEnderecoFragment extends Fragment {
 
                         lista_estados.put(nome_estado, cod_estado);
                         int posicao_lista_adapter= i+1;
-                        lista_adapter_estados[posicao_lista_adapter]= nome_estado;
+                        lista_adapter_estados.add(nome_estado);
                     }
 
                     spin_estado.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, lista_adapter_estados));
+
+                    if(tipo.contentEquals(EDICAO)){
+                        EdicaoCadastroPessoa act= (EdicaoCadastroPessoa) getActivity();
+                        int position_estado= lista_adapter_estados.indexOf(act.getPessoa().getEstado());
+                        spin_estado.setSelection(position_estado);
+                    }
+
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -224,18 +230,23 @@ public class CadastroPessoaEnderecoFragment extends Fragment {
                 try {
                     JSONArray jsonArray = new JSONArray(response);
 
-                    String[] lista_adapter_cidades= new String[jsonArray.length()+1];
-                    lista_adapter_cidades[0]= "Selecione sua cidade...";
+                    lista_adapter_cidades.add("Selecione sua cidade...");
 
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonCidade = jsonArray.getJSONObject(i);
                         String nome_cidade = jsonCidade.getString("nome");
 
                         int posicao_lista_adapter= i+1;
-                        lista_adapter_cidades[posicao_lista_adapter]= nome_cidade;
+                        lista_adapter_cidades.add(nome_cidade);
                     }
 
                     spin_cidade.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, lista_adapter_cidades));
+
+                    if(tipo.contentEquals(EDICAO)){
+                        EdicaoCadastroPessoa act= (EdicaoCadastroPessoa) getActivity();
+                        int position_cidade= lista_adapter_cidades.indexOf(act.getPessoa().getCidade());
+                        spin_cidade.setSelection(position_cidade);
+                    }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
