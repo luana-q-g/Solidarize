@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -12,12 +13,14 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.projetointegrador.solidarize.BEAN.CadastroUsuarioPedidoDoacao;
 import com.projetointegrador.solidarize.BEAN.Instituicao;
-import com.projetointegrador.solidarize.BEAN.PedidoDeDoacao;
-import com.projetointegrador.solidarize.BEAN.Pessoa;
 import com.projetointegrador.solidarize.BEAN.UsuarioLogado;
 import com.projetointegrador.solidarize.DAO.CadastroUsuarioPedidoDoacaoDAO;
+import com.projetointegrador.solidarize.DAO.LoadSpinnerEstadoCidade;
 import com.projetointegrador.solidarize.DAO.PedidosDeDoacaoDAO;
 import com.projetointegrador.solidarize.R;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -35,8 +38,8 @@ public class CadastroPedidosDeDoacaoEnderecoefimFragment extends Fragment {
         this.tipo= tipo;
     }
 
-    private Spinner txt_estado;
-    private Spinner txt_cidade;
+    private Spinner spin_estado;
+    private Spinner spin_cidade;
     private EditText txt_rua;
     private EditText txt_complemento;
 
@@ -49,6 +52,12 @@ public class CadastroPedidosDeDoacaoEnderecoefimFragment extends Fragment {
     private String id_usuario= "";
     private String nome_instituicao= "";
 
+    //loadSpinner
+    LoadSpinnerEstadoCidade loadSpinner;
+    HashMap<String, Integer> lista_estados= new HashMap<String, Integer>();
+    ArrayList<String> lista_adapter_estados= new ArrayList<>();
+    ArrayList<String> lista_adapter_cidades= new ArrayList<>();
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,12 +68,36 @@ public class CadastroPedidosDeDoacaoEnderecoefimFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_act_cadastro_pedidos_de_doacao_enderecoefim, container, false);
 
-        txt_estado= view.findViewById(R.id.spin_estados);
-        txt_cidade= view.findViewById(R.id.spin_cidades);
+        spin_estado= view.findViewById(R.id.spin_estados);
+        spin_cidade= view.findViewById(R.id.spin_cidades);
         txt_rua= view.findViewById(R.id.txt_rua);
         txt_complemento= view.findViewById(R.id.txt_complemento);
         btn_voltar= view.findViewById(R.id.btn_voltar_enderecoefim_pedidos_doacao);
         btn_cadastrar= view.findViewById(R.id.btn_cadastrar_enderecoefim_pedidos_doacao);
+
+        //loadSpinner
+        String URL_estados="https://servicodados.ibge.gov.br/api/v1/localidades/estados";
+        loadSpinner= new LoadSpinnerEstadoCidade(this, "pedidoDoacao", tipo);
+        loadSpinner.setInfosEstados(lista_estados, lista_adapter_estados, spin_estado);
+        loadSpinner.loadSpinnerEstados(URL_estados);
+
+        spin_estado.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String nome_estado= spin_estado.getItemAtPosition(spin_estado.getSelectedItemPosition()).toString();
+
+                Integer cod_estado= lista_estados.get(nome_estado);
+
+                String URL_cidades_por_estado="https://servicodados.ibge.gov.br/api/v1/localidades/estados/"+cod_estado+"/municipios";
+                loadSpinner.setInfosCidades(lista_adapter_cidades, spin_cidade);
+                loadSpinner.loadSpinnerCidades(URL_cidades_por_estado);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         //recupera id do usuario
         //só pode ser uma instituicao para estar cadastrando um pedido

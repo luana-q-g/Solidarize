@@ -1,4 +1,4 @@
-package com.projetointegrador.solidarize.VIEW;
+package com.projetointegrador.solidarize.DAO;
 
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -11,6 +11,10 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.projetointegrador.solidarize.VIEW.EdicaoCadastroEvento;
+import com.projetointegrador.solidarize.VIEW.EdicaoCadastroInstituicao;
+import com.projetointegrador.solidarize.VIEW.EdicaoCadastroPedidoDoacao;
+import com.projetointegrador.solidarize.VIEW.EdicaoCadastroPessoa;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,6 +27,7 @@ import androidx.fragment.app.Fragment;
 
 public class LoadSpinnerEstadoCidade {
     private Fragment fragment;
+    private String tipo_fragment;
     private String tipo_cadastro;
     private HashMap<String, Integer> lista_estados;
     private ArrayList<String> lista_adapter_estados;
@@ -30,8 +35,9 @@ public class LoadSpinnerEstadoCidade {
     private Spinner spin_estados;
     private Spinner spin_cidades;
 
-    public LoadSpinnerEstadoCidade(Fragment fragment, String tipo_cadastro) {
+    public LoadSpinnerEstadoCidade(Fragment fragment, String tipo_fragment, String tipo_cadastro) {
         this.fragment= fragment;
+        this.tipo_fragment= tipo_fragment;
         this.tipo_cadastro= tipo_cadastro;
     }
 
@@ -71,8 +77,34 @@ public class LoadSpinnerEstadoCidade {
                     spin_estados.setAdapter(new ArrayAdapter<String>(fragment.getActivity(), android.R.layout.simple_spinner_dropdown_item, lista_adapter_estados));
 
                     if(tipo_cadastro.contentEquals("edicao")){
-                        EdicaoCadastroPessoa act= (EdicaoCadastroPessoa) fragment.getActivity();
-                        int position_estado= lista_adapter_estados.indexOf(act.getPessoa().getEstado());
+                        int position_estado= 0;
+
+                        switch(tipo_fragment){
+                            case "pessoa":
+                                EdicaoCadastroPessoa act_p= (EdicaoCadastroPessoa) fragment.getActivity();
+                                position_estado= lista_adapter_estados.indexOf(act_p.getPessoa().getEstado());
+                                break;
+
+                            case "instituicao":
+                                EdicaoCadastroInstituicao act_i= (EdicaoCadastroInstituicao) fragment.getActivity();
+                                position_estado= lista_adapter_estados.indexOf(act_i.getInstituicao().getEstado());
+                                break;
+
+                            case "evento":
+                                EdicaoCadastroEvento act_e= (EdicaoCadastroEvento) fragment.getActivity();
+                                position_estado= lista_adapter_estados.indexOf(act_e.getEvento().getEstado());
+                                break;
+
+                            case "pedidoDoacao":
+                                EdicaoCadastroPedidoDoacao act_pe= (EdicaoCadastroPedidoDoacao) fragment.getActivity();
+                                position_estado= lista_adapter_estados.indexOf(act_pe.getPedido_de_doacao().getEstado());
+                                break;
+
+                            default:
+                                position_estado= 0;
+                                break;
+                        }
+
                         spin_estados.setSelection(position_estado);
                     }
 
@@ -115,8 +147,34 @@ public class LoadSpinnerEstadoCidade {
                     spin_cidades.setAdapter(new ArrayAdapter<String>(fragment.getActivity(), android.R.layout.simple_spinner_dropdown_item, lista_adapter_cidades));
 
                     if(tipo_cadastro.contentEquals("edicao")){
-                        EdicaoCadastroPessoa act= (EdicaoCadastroPessoa) fragment.getActivity();
-                        int position_cidade= lista_adapter_cidades.indexOf(act.getPessoa().getCidade());
+                        int position_cidade= 0;
+
+                        switch(tipo_fragment){
+                            case "pessoa":
+                                EdicaoCadastroPessoa act_p= (EdicaoCadastroPessoa) fragment.getActivity();
+                                position_cidade= lista_adapter_cidades.indexOf(act_p.getPessoa().getCidade());
+                                break;
+
+                            case "instituicao":
+                                EdicaoCadastroInstituicao act_i= (EdicaoCadastroInstituicao) fragment.getActivity();
+                                position_cidade= lista_adapter_cidades.indexOf(act_i.getInstituicao().getCidade());
+                                break;
+
+                            case "evento":
+                                EdicaoCadastroEvento act_e= (EdicaoCadastroEvento) fragment.getActivity();
+                                position_cidade= lista_adapter_cidades.indexOf(act_e.getEvento().getCidade());
+                                break;
+
+                            case "pedidoDoacao":
+                                EdicaoCadastroPedidoDoacao act_pe= (EdicaoCadastroPedidoDoacao) fragment.getActivity();
+                                position_cidade= lista_adapter_cidades.indexOf(act_pe.getPedido_de_doacao().getCidade());
+                                break;
+
+                            default:
+                                position_cidade= 0;
+                                break;
+                        }
+
                         spin_cidades.setSelection(position_cidade);
                     }
 

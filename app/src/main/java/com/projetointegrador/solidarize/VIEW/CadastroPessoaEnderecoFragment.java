@@ -1,6 +1,5 @@
 package com.projetointegrador.solidarize.VIEW;
 
-import android.app.DownloadManager;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,26 +11,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.RetryPolicy;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.projetointegrador.solidarize.BEAN.UsuarioLogado;
+import com.projetointegrador.solidarize.DAO.LoadSpinnerEstadoCidade;
 import com.projetointegrador.solidarize.DAO.PessoaDAO;
 import com.projetointegrador.solidarize.R;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -75,7 +61,7 @@ public class CadastroPessoaEnderecoFragment extends Fragment {
         btn_continuar= view.findViewById(R.id.btn_continuar_endereco_pessoa);
 
         String URL_estados="https://servicodados.ibge.gov.br/api/v1/localidades/estados";
-        loadSpinner= new LoadSpinnerEstadoCidade(this, tipo);
+        loadSpinner= new LoadSpinnerEstadoCidade(this, "pessoa", tipo);
         loadSpinner.setInfosEstados(lista_estados, lista_adapter_estados, spin_estado);
         loadSpinner.loadSpinnerEstados(URL_estados);
 

@@ -4,11 +4,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.projetointegrador.solidarize.DAO.LoadSpinnerEstadoCidade;
 import com.projetointegrador.solidarize.R;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,13 +31,19 @@ public class CadastroInstituicaoEnderecoFragment extends Fragment {
         this.tipo= tipo;
     }
 
-    private Spinner estado;
-    private Spinner cidade;
+    private Spinner spin_estado;
+    private Spinner spin_cidade;
     private EditText rua;
     private EditText complemento;
 
     private Button btn_voltar;
     private Button btn_continuar;
+
+    LoadSpinnerEstadoCidade loadSpinner;
+
+    HashMap<String, Integer> lista_estados= new HashMap<String, Integer>();
+    ArrayList<String> lista_adapter_estados= new ArrayList<>();
+    ArrayList<String> lista_adapter_cidades= new ArrayList<>();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,12 +56,37 @@ public class CadastroInstituicaoEnderecoFragment extends Fragment {
         //inflando fragment com seu layout
         View view= inflater.inflate(R.layout.fragment_act_cadastro_instituicao_endereco, container, false);
 
-        estado= view.findViewById(R.id.spin_estados);
-        cidade= view.findViewById(R.id.spin_cidades);
+        spin_estado= view.findViewById(R.id.spin_estados);
+        spin_cidade= view.findViewById(R.id.spin_cidades);
         rua= view.findViewById(R.id.txt_rua);
         complemento= view.findViewById(R.id.txt_complemento);
         btn_voltar= view.findViewById(R.id.btn_voltar_endereco_instituicao);
         btn_continuar= view.findViewById(R.id.btn_continuar_endereco_instituicao);
+
+        //spinner estados
+        String URL_estados="https://servicodados.ibge.gov.br/api/v1/localidades/estados";
+        loadSpinner= new LoadSpinnerEstadoCidade(this, "instituicao", tipo);
+        loadSpinner.setInfosEstados(lista_estados, lista_adapter_estados, spin_estado);
+        loadSpinner.loadSpinnerEstados(URL_estados);
+
+        //quando clica em um estado, spin cidades
+        spin_estado.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String nome_estado= spin_estado.getItemAtPosition(spin_estado.getSelectedItemPosition()).toString();
+
+                Integer cod_estado= lista_estados.get(nome_estado);
+
+                String URL_cidades_por_estado="https://servicodados.ibge.gov.br/api/v1/localidades/estados/"+cod_estado+"/municipios";
+                loadSpinner.setInfosCidades(lista_adapter_cidades, spin_cidade);
+                loadSpinner.loadSpinnerCidades(URL_cidades_por_estado);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         if(tipo.contentEquals(CADASTRO)){
             btn_continuar.setOnClickListener(new View.OnClickListener() {
@@ -58,11 +94,8 @@ public class CadastroInstituicaoEnderecoFragment extends Fragment {
                 public void onClick(View v) {
                     String c, e, r, com;
 
-                    //????
-                    //c= cidade.getSelectedItem().toString();
-                    c= "São Carlos";
-                    e= "SP";
-                    //e= estado.getSelectedItem().toString();
+                    e= spin_estado.getItemAtPosition(spin_estado.getSelectedItemPosition()).toString();
+                    c= spin_cidade.getItemAtPosition(spin_cidade.getSelectedItemPosition()).toString();
                     r= rua.getText().toString();
                     com= complemento.getText().toString();
 
@@ -94,8 +127,7 @@ public class CadastroInstituicaoEnderecoFragment extends Fragment {
         if(tipo.contentEquals(EDICAO)){
             final EdicaoCadastroInstituicao act= (EdicaoCadastroInstituicao) getActivity();
 
-            //cidade.setText(act.getPessoa().getCidade());
-            //estado.setText(act.getPessoa().getEstado());
+            //estado e cidade já carregam com o LoadSpinnerEstadoCidade class
             rua.setText(act.getInstituicao().getRua());
             complemento.setText(act.getInstituicao().getNumero());
 
@@ -104,11 +136,9 @@ public class CadastroInstituicaoEnderecoFragment extends Fragment {
                 public void onClick(View v) {
                     String c, e, r, com;
 
-                    //????
-                    //c= cidade.getSelectedItem().toString();
-                    c= "São Carlos";
-                    e= "SP";
-                    //e= estado.getSelectedItem().toString();
+                    e= spin_estado.getItemAtPosition(spin_estado.getSelectedItemPosition()).toString();
+                    c= spin_cidade.getItemAtPosition(spin_cidade.getSelectedItemPosition()).toString();
+
                     r= rua.getText().toString();
                     com= complemento.getText().toString();
 
