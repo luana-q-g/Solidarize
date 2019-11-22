@@ -52,6 +52,8 @@ public class CadastroPessoaEnderecoFragment extends Fragment {
     private Button btn_voltar;
     private Button btn_continuar;
 
+    LoadSpinnerEstadoCidade loadSpinner;
+
     HashMap<String, Integer> lista_estados= new HashMap<String, Integer>();
     ArrayList<String> lista_adapter_estados= new ArrayList<>();
     ArrayList<String> lista_adapter_cidades= new ArrayList<>();
@@ -73,7 +75,9 @@ public class CadastroPessoaEnderecoFragment extends Fragment {
         btn_continuar= view.findViewById(R.id.btn_continuar_endereco_pessoa);
 
         String URL_estados="https://servicodados.ibge.gov.br/api/v1/localidades/estados";
-        loadSpinnerEstados(URL_estados);
+        loadSpinner= new LoadSpinnerEstadoCidade(this, tipo);
+        loadSpinner.setInfosEstados(lista_estados, lista_adapter_estados, spin_estado);
+        loadSpinner.loadSpinnerEstados(URL_estados);
 
         spin_estado.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -83,7 +87,8 @@ public class CadastroPessoaEnderecoFragment extends Fragment {
                 Integer cod_estado= lista_estados.get(nome_estado);
 
                 String URL_cidades_por_estado="https://servicodados.ibge.gov.br/api/v1/localidades/estados/"+cod_estado+"/municipios";
-                loadSpinnerCidades(URL_cidades_por_estado);
+                loadSpinner.setInfosCidades(lista_adapter_cidades, spin_cidade);
+                loadSpinner.loadSpinnerCidades(URL_cidades_por_estado);
             }
 
             @Override
@@ -131,12 +136,6 @@ public class CadastroPessoaEnderecoFragment extends Fragment {
 
             btn_continuar.setText("Editar");
 
-            //spin_estado.setSelection(lista_adapter_estados.indexOf(act.getPessoa().getEstado()));
-            //int position_estado= lista_adapter_estados.indexOf(act.getPessoa().getEstado());
-            //spin_estado.setSelection(position_estado);
-            //estado.setText(act.getPessoa().getEstado());
-            //spin_cidade.setSelection(lista_adapter_cidades.indexOf(act.getPessoa().getCidade()));
-
             btn_continuar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -169,99 +168,6 @@ public class CadastroPessoaEnderecoFragment extends Fragment {
             });
         }
 
-
-
         return view;
-    }
-
-    private void loadSpinnerEstados(String url) {
-        RequestQueue requestQueue= Volley.newRequestQueue(getActivity().getApplicationContext());
-        StringRequest stringRequest=new StringRequest(Request.Method.GET, url, new com.android.volley.Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    //JSONObject jsonObject = new JSONObject(response);
-                    //JSONArray jsonArray = jsonObject.getJSONArray("");
-                    JSONArray jsonArray = new JSONArray(response);
-
-                    lista_adapter_estados.add("Selecione um estado...");
-
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject jsonEstado = jsonArray.getJSONObject(i);
-                        int cod_estado = jsonEstado.getInt("id");
-                        String nome_estado = jsonEstado.getString("nome");
-
-                        lista_estados.put(nome_estado, cod_estado);
-                        int posicao_lista_adapter= i+1;
-                        lista_adapter_estados.add(nome_estado);
-                    }
-
-                    spin_estado.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, lista_adapter_estados));
-
-                    if(tipo.contentEquals(EDICAO)){
-                        EdicaoCadastroPessoa act= (EdicaoCadastroPessoa) getActivity();
-                        int position_estado= lista_adapter_estados.indexOf(act.getPessoa().getEstado());
-                        spin_estado.setSelection(position_estado);
-                    }
-
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        });
-
-        int socketTimeout = 30000;
-        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-        stringRequest.setRetryPolicy(policy);
-        requestQueue.add(stringRequest);
-    }
-
-    private void loadSpinnerCidades(String url) {
-        RequestQueue requestQueue= Volley.newRequestQueue(getActivity().getApplicationContext());
-        StringRequest stringRequest=new StringRequest(Request.Method.GET, url, new com.android.volley.Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONArray jsonArray = new JSONArray(response);
-
-                    lista_adapter_cidades.add("Selecione sua cidade...");
-
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject jsonCidade = jsonArray.getJSONObject(i);
-                        String nome_cidade = jsonCidade.getString("nome");
-
-                        int posicao_lista_adapter= i+1;
-                        lista_adapter_cidades.add(nome_cidade);
-                    }
-
-                    spin_cidade.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, lista_adapter_cidades));
-
-                    if(tipo.contentEquals(EDICAO)){
-                        EdicaoCadastroPessoa act= (EdicaoCadastroPessoa) getActivity();
-                        int position_cidade= lista_adapter_cidades.indexOf(act.getPessoa().getCidade());
-                        spin_cidade.setSelection(position_cidade);
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        });
-
-        int socketTimeout = 30000;
-        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-        stringRequest.setRetryPolicy(policy);
-        requestQueue.add(stringRequest);
     }
 }
