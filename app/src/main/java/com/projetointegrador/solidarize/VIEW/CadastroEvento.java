@@ -20,6 +20,8 @@ public class CadastroEvento extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_evento);
 
+        getSupportActionBar().setTitle("Cadastro de Evento");
+
         place_holder= findViewById(R.id.place_holder_info_cadastro_evento);
 
         FragmentManager fm= getSupportFragmentManager();

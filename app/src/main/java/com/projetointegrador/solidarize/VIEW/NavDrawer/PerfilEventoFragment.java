@@ -1,11 +1,14 @@
 package com.projetointegrador.solidarize.VIEW.NavDrawer;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.android.material.appbar.AppBarLayout;
@@ -39,8 +42,8 @@ import androidx.viewpager.widget.ViewPager;
 
 public class PerfilEventoFragment extends Fragment {
     private TextView lbl_titulo_evento;
-    private Button btn_salvar_evento;
-    private Button btn_confirmar_evento;
+    private ImageButton btn_salvar_evento;
+    private ImageButton btn_confirmar_evento;
     private TextView lbl_data_i;
     private TextView lbl_data_f;
     private TextView lbl_hora_i;
@@ -148,7 +151,7 @@ public class PerfilEventoFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
-                    btn_salvar_evento.setText("Salvo");
+                    btn_salvar_evento.setImageResource(R.drawable.salvo_evento);
                     btn_salvar_evento.setEnabled(false);
                 }
             }
@@ -165,7 +168,7 @@ public class PerfilEventoFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
-                    btn_confirmar_evento.setText("Confirmado");
+                    btn_confirmar_evento.setImageResource(R.drawable.confirmado_evento);
                     btn_confirmar_evento.setEnabled(false);
                 }
             }
@@ -180,13 +183,31 @@ public class PerfilEventoFragment extends Fragment {
         btn_salvar_evento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SalvaEvento evento_salvo= new SalvaEvento(id_usuario, act.getIdEvento(), lbl_titulo_evento.getText().toString());
+                AlertDialog.Builder alert_evento = new AlertDialog.Builder(getActivity());
+                alert_evento.setTitle("Deseja salvar evento?");
+                alert_evento.setMessage("Salvá-lo pode te ajudar a lembrar dele");
+                alert_evento.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        SalvaEvento evento_salvo= new SalvaEvento(id_usuario, act.getIdEvento(), lbl_titulo_evento.getText().toString());
 
-                SalvaEventoDAO salvaEventoDAO= new SalvaEventoDAO();
-                salvaEventoDAO.inserirEventoSalvo(evento_salvo);
+                        SalvaEventoDAO salvaEventoDAO= new SalvaEventoDAO();
+                        salvaEventoDAO.inserirEventoSalvo(evento_salvo);
 
-                btn_salvar_evento.setText("Salvo");
-                btn_salvar_evento.setEnabled(false);
+                        btn_salvar_evento.setImageResource(R.drawable.salvo_evento);
+                        btn_salvar_evento.setEnabled(false);
+                    }
+                });
+
+                alert_evento.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                alert_evento.create();
+                alert_evento.show();
             }
         });
 
@@ -194,18 +215,31 @@ public class PerfilEventoFragment extends Fragment {
         btn_confirmar_evento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AlertDialog.Builder alert_evento = new AlertDialog.Builder(getActivity());
+                alert_evento.setTitle("Deseja confirmar presença no evento?");
+                alert_evento.setMessage("A confirmação do evento tem importância para o organizador do evento!");
+                alert_evento.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ConfirmaEvento evento_confirmado= new ConfirmaEvento(id_usuario, act.getIdEvento(), lbl_titulo_evento.getText().toString());
 
-                //como fazer o botão estar atualizado de acordo com o bd
+                        ConfirmaEventoDAO confirmaEventoDAO= new ConfirmaEventoDAO();
+                        confirmaEventoDAO.inserirEventoConfirmado(evento_confirmado);
 
-                //ALERT DIALOG DE CERTEZA
+                        btn_confirmar_evento.setImageResource(R.drawable.confirmado_evento);
+                        btn_confirmar_evento.setEnabled(false);
+                    }
+                });
 
-                ConfirmaEvento evento_confirmado= new ConfirmaEvento(id_usuario, act.getIdEvento(), lbl_titulo_evento.getText().toString());
+                alert_evento.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
 
-                ConfirmaEventoDAO confirmaEventoDAO= new ConfirmaEventoDAO();
-                confirmaEventoDAO.inserirEventoConfirmado(evento_confirmado);
-
-                btn_confirmar_evento.setText("Confirmado");
-                btn_confirmar_evento.setEnabled(false);
+                alert_evento.create();
+                alert_evento.show();
             }
         });
 

@@ -24,29 +24,33 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="@color/colorWhite">
 
-                <Button
+                <ImageButton
                     android:id="@+id/btn_salvar_evento"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
                     android:layout_marginTop="32dp"
-                    android:text="Salvar"
+                    android:background="#00FFFFFF"
+                    android:scaleType="fitCenter"
                     app:layout_constraintEnd_toStartOf="@+id/btn_confirma_presenca"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/lbl_titulo_evento" />
+                    app:layout_constraintTop_toBottomOf="@+id/lbl_titulo_evento"
+                    app:srcCompat="@drawable/salvar_evento" />
 
 
-                <Button
+                <ImageButton
                     android:id="@+id/btn_confirma_presenca"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
                     android:layout_marginTop="32dp"
-                    android:text="Confirmar presença"
+                    android:background="#00FFFFFF"
+                    android:scaleType="centerCrop"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/btn_salvar_evento"
-                    app:layout_constraintTop_toBottomOf="@+id/lbl_titulo_evento" />
+                    app:layout_constraintTop_toBottomOf="@+id/lbl_titulo_evento"
+                    app:srcCompat="@drawable/confirmar_evento" />
 
                 <TextView
                     android:id="@+id/lbl_titulo_evento"

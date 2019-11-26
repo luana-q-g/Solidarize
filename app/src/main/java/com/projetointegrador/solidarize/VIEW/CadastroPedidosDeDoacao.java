@@ -20,6 +20,8 @@ public class CadastroPedidosDeDoacao extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_pedidos_de_doacao);
 
+        getSupportActionBar().setTitle("Cadastro de Pedido de Doação");
+
         place_holder= findViewById(R.id.place_holder_info_cadastro_pedidos_de_doacao);
 
         FragmentManager fm= getSupportFragmentManager();

@@ -21,6 +21,8 @@ public class CadastroPessoa extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_pessoa);
 
+        getSupportActionBar().setTitle("Cadastro de Pessoa");
+
         place_holder= findViewById(R.id.place_holder_info_cadastro_pessoa);
 
         FragmentManager fm= getSupportFragmentManager();

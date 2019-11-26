@@ -139,6 +139,8 @@ public class NavDrawMenu extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        getSupportActionBar().setTitle("Feed de Eventos");
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -181,48 +183,72 @@ public class NavDrawMenu extends AppCompatActivity
                 PerfilUsuarioFragment puf= new PerfilUsuarioFragment();
                 ft.replace(R.id.place_holder_nav_draw, puf).addToBackStack(null);
                 ft.commit();
+
+                getSupportActionBar().setTitle("Perfil");
+
                 break;
 
             case R.id.nav_acoes_eventos:
                 AcoesUsuarioEventosFragment auef= new AcoesUsuarioEventosFragment();
                 ft.replace(R.id.place_holder_nav_draw, auef).addToBackStack(null);
                 ft.commit();
+
+                getSupportActionBar().setTitle("Eventos salvos e confirmados");
+
                 break;
 
             case R.id.nav_acoes_pedidos_doacao:
                 AcoesUsuarioPedidosDoacaoFragment aupdf= new AcoesUsuarioPedidosDoacaoFragment();
                 ft.replace(R.id.place_holder_nav_draw, aupdf).addToBackStack(null);
                 ft.commit();
+
+                getSupportActionBar().setTitle("Pedidos salvos e confirmados");
+
                 break;
 
             case R.id.nav_eventos:
                 FeedEventosFragment fef= new FeedEventosFragment();
                 ft.replace(R.id.place_holder_nav_draw, fef).addToBackStack(null);
                 ft.commit();
+
+                getSupportActionBar().setTitle("Feed de Eventos");
+
                 break;
 
             case R.id.nav_inst_todas:
                 FeedInstituicoesFragment fif= new FeedInstituicoesFragment();
                 ft.replace(R.id.place_holder_nav_draw, fif).addToBackStack(null);
                 ft.commit();
+
+                getSupportActionBar().setTitle("Todas as instituições");
+
                 break;
 
             case R.id.nav_inst_pedidos:
                 FeedPedidosDoacaoFragment fpdf= new FeedPedidosDoacaoFragment();
                 ft.replace(R.id.place_holder_nav_draw, fpdf).addToBackStack(null);
                 ft.commit();
+
+                getSupportActionBar().setTitle("Feed de Pedidos de Doação");
+
                 break;
 
             case R.id.nav_config:
                 ConfiguracoesFragment cf= new ConfiguracoesFragment();
                 ft.replace(R.id.place_holder_nav_draw, cf).addToBackStack(null);
                 ft.commit();
+
+                getSupportActionBar().setTitle("Configurações");
+
                 break;
 
             case R.id.nav_sobre_app:
                 SobreAppFragment saf= new SobreAppFragment();
                 ft.replace(R.id.place_holder_nav_draw, saf);
                 ft.commit();
+
+                getSupportActionBar().setTitle("Sobre o App");
+
                 break;
 
             case R.id.nav_sair:

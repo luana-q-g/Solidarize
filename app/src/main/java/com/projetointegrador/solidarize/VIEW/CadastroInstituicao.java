@@ -21,6 +21,8 @@ public class CadastroInstituicao extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_instituicao);
 
+        getSupportActionBar().setTitle("Cadastro de Instituição");
+
         place_holder= findViewById(R.id.place_holder_info_cadastro_instituicao);
 
         FragmentManager fm= getSupportFragmentManager();
