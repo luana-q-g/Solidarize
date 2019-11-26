@@ -18,16 +18,20 @@ import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.projetointegrador.solidarize.BEAN.CadastroUsuarioEvento;
 import com.projetointegrador.solidarize.BEAN.Instituicao;
 import com.projetointegrador.solidarize.BEAN.Pessoa;
 import com.projetointegrador.solidarize.BEAN.SalvaEvento;
 import com.projetointegrador.solidarize.BEAN.UsuarioLogado;
 import com.projetointegrador.solidarize.DAO.SalvaEventoDAO;
 import com.projetointegrador.solidarize.R;
+import com.projetointegrador.solidarize.VIEW.NavDrawMenu;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 public class TabLayoutAcoesUsuarioEventosSalvosFragment extends Fragment {
     private ListView lista_eventos_salvos;
@@ -78,6 +82,24 @@ public class TabLayoutAcoesUsuarioEventosSalvosFragment extends Fragment {
 
         //context menu
         registerForContextMenu(lista_eventos_salvos);
+
+        lista_eventos_salvos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                SalvaEvento evento_selecionado = adapter.getItem(position);
+
+                //transfere o id do evento para o perfil
+                NavDrawMenu act= (NavDrawMenu) getActivity();
+                act.setIdEvento(evento_selecionado.getIdEvento());
+
+                FragmentManager fm= getActivity().getSupportFragmentManager();
+                FragmentTransaction ft= fm.beginTransaction();
+
+                PerfilEventoFragment perfil_evento= new PerfilEventoFragment();
+                ft.replace(R.id.place_holder_nav_draw, perfil_evento).addToBackStack(null);
+                ft.commit();
+            }
+        });
 
         return view;
     }

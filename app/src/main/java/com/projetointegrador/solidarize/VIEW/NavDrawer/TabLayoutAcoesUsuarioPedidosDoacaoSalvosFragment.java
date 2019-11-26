@@ -22,10 +22,13 @@ import com.projetointegrador.solidarize.BEAN.SalvaPedidoDeDoacao;
 import com.projetointegrador.solidarize.BEAN.UsuarioLogado;
 import com.projetointegrador.solidarize.DAO.SalvaPedidoDeDoacaoDAO;
 import com.projetointegrador.solidarize.R;
+import com.projetointegrador.solidarize.VIEW.NavDrawMenu;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 public class TabLayoutAcoesUsuarioPedidosDoacaoSalvosFragment extends Fragment {
     private ListView lista_pedidos_salvos;
@@ -76,6 +79,24 @@ public class TabLayoutAcoesUsuarioPedidosDoacaoSalvosFragment extends Fragment {
 
         //context menu
         registerForContextMenu(lista_pedidos_salvos);
+
+        lista_pedidos_salvos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                SalvaPedidoDeDoacao pedido_selecionado = adapter.getItem(position);
+
+                //transfere o id do pedido para o perfil
+                NavDrawMenu act= (NavDrawMenu) getActivity();
+                act.setIdPedidoDoacao(pedido_selecionado.getIdPedido());
+
+                FragmentManager fm= getActivity().getSupportFragmentManager();
+                FragmentTransaction ft= fm.beginTransaction();
+
+                PerfilPedidoDoacaoFragment perfil_pedido= new PerfilPedidoDoacaoFragment();
+                ft.replace(R.id.place_holder_nav_draw, perfil_pedido).addToBackStack(null);
+                ft.commit();
+            }
+        });
 
         return view;
     }

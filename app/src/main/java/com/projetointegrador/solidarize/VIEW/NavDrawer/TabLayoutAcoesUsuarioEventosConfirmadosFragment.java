@@ -22,10 +22,13 @@ import com.projetointegrador.solidarize.BEAN.Pessoa;
 import com.projetointegrador.solidarize.BEAN.UsuarioLogado;
 import com.projetointegrador.solidarize.DAO.ConfirmaEventoDAO;
 import com.projetointegrador.solidarize.R;
+import com.projetointegrador.solidarize.VIEW.NavDrawMenu;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 public class TabLayoutAcoesUsuarioEventosConfirmadosFragment extends Fragment {
     private ListView lista_eventos_confirmados;
@@ -76,6 +79,24 @@ public class TabLayoutAcoesUsuarioEventosConfirmadosFragment extends Fragment {
 
         //context menu
         registerForContextMenu(lista_eventos_confirmados);
+
+        lista_eventos_confirmados.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ConfirmaEvento evento_selecionado = adapter.getItem(position);
+
+                //transfere o id do evento para o perfil
+                NavDrawMenu act= (NavDrawMenu) getActivity();
+                act.setIdEvento(evento_selecionado.getIdEvento());
+
+                FragmentManager fm= getActivity().getSupportFragmentManager();
+                FragmentTransaction ft= fm.beginTransaction();
+
+                PerfilEventoFragment perfil_evento= new PerfilEventoFragment();
+                ft.replace(R.id.place_holder_nav_draw, perfil_evento).addToBackStack(null);
+                ft.commit();
+            }
+        });
 
         return view;
     }
