@@ -21,7 +21,7 @@
         <Spinner
             android:id="@+id/spin_estados"
             android:layout_width="180dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginEnd="24dp"
             android:layout_weight="1" />
 
@@ -45,7 +45,7 @@
         <Spinner
             android:id="@+id/spin_cidades"
             android:layout_width="180dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginEnd="24dp"
             android:layout_weight="1" />
 

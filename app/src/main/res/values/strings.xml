@@ -20,4 +20,23 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+
+    <string-array name="array_categorias_pedidos_doacao">
+        <item>Selecione uma categoria...</item>
+        <item>Alimentício</item>
+        <item>Vestimenta</item>
+        <item>Produto de limpeza</item>
+        <item>Higiene pessoal</item>
+        <item>Brinquedos</item>
+        <item>Outros</item>
+    </string-array>
+
+    <string-array name="array_unidades_medida">
+        <item>Selecione uma unidade de medida...</item>
+        <item>gramas</item>
+        <item>kilograma</item>
+        <item>litro</item>
+        <item>mL</item>
+        <item>unidades</item>
+    </string-array>
 </resources>

@@ -112,10 +112,9 @@ public class CadastroPedidosDeDoacaoEnderecoefimFragment extends Fragment {
                 public void onClick(View v) {
                     if(auth_usuario.getCurrentUser() != null){
                         String e, c, r, com, email_usuario;
-                        //e= txt_estado.getSelectedItem().toString();
-                        //c= txt_cidade.getSelectedItem().toString();
-                        e= "";
-                        c= "";
+
+                        e= spin_estado.getItemAtPosition(spin_estado.getSelectedItemPosition()).toString();
+                        c= spin_cidade.getItemAtPosition(spin_cidade.getSelectedItemPosition()).toString();
                         r= txt_rua.getText().toString();
                         com= txt_complemento.getText().toString();
 
@@ -162,8 +161,8 @@ public class CadastroPedidosDeDoacaoEnderecoefimFragment extends Fragment {
             btn_cadastrar.setText("Editar");
 
             final EdicaoCadastroPedidoDoacao act= (EdicaoCadastroPedidoDoacao) getActivity();
-            //txt_estado
-            //txt_cidade
+
+            //estado e cidade são definidos no LoadSpinner
             txt_rua.setText(act.getPedido_de_doacao().getRua());
             txt_complemento.setText(act.getPedido_de_doacao().getComplemento());
 
@@ -172,10 +171,9 @@ public class CadastroPedidosDeDoacaoEnderecoefimFragment extends Fragment {
                 public void onClick(View v) {
                     if(auth_usuario.getCurrentUser() != null){
                         String e, c, r, com, email_usuario;
-                        //e= txt_estado.getSelectedItem().toString();
-                        //c= txt_cidade.getSelectedItem().toString();
-                        e= "";
-                        c= "";
+
+                        e= spin_estado.getItemAtPosition(spin_estado.getSelectedItemPosition()).toString();
+                        c= spin_cidade.getItemAtPosition(spin_cidade.getSelectedItemPosition()).toString();
                         r= txt_rua.getText().toString();
                         com= txt_complemento.getText().toString();
 

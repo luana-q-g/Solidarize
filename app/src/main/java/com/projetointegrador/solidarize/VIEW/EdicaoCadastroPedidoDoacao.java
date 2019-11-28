@@ -35,9 +35,10 @@ public class EdicaoCadastroPedidoDoacao extends AppCompatActivity {
         ft.commit();
     }
 
-    public void setInfos(String item_pedido, String meta_qtd, String tipo_pedido, String dt_validade_pedido, int nivel_urgencia){
+    public void setInfos(String item_pedido, String meta_qtd, String tipo_meta_qtd, String tipo_pedido, String dt_validade_pedido, int nivel_urgencia){
         this.pedido_de_doacao.setItem(item_pedido);
         this.pedido_de_doacao.setMeta_qtd(meta_qtd);
+        this.pedido_de_doacao.setTipoMetaQtd(tipo_meta_qtd);
         this.pedido_de_doacao.setTipo_pedido(tipo_pedido);
         this.pedido_de_doacao.setDt_validade(dt_validade_pedido);
         this.pedido_de_doacao.setNivel_urgencia(nivel_urgencia);

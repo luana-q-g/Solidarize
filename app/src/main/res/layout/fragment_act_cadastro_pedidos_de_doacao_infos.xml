@@ -44,21 +44,18 @@
 
         <EditText
             android:id="@+id/txt_meta_qtd"
-            android:layout_width="100dp"
+            android:layout_width="65dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_weight="0"
             android:inputType="number" />
 
-        <EditText
-            android:id="@+id/txt_tipo_meta_qtd"
+        <Spinner
+            android:id="@+id/spin_tipo_meta_qtd"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginRight="24dp"
-            android:layout_weight="1"
-            android:ems="10"
-            android:hint="L, mL, kg, ..."
-            android:inputType="text" />
+            android:layout_weight="1" />
 
     </LinearLayout>
 
@@ -77,7 +74,7 @@
             android:text="Tipo: " />
 
         <Spinner
-            android:id="@+id/txt_tipo_pedido"
+            android:id="@+id/spin_tipo_pedido"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="24dp"

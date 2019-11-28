@@ -8,6 +8,7 @@ public class PedidoDeDoacao {
     private String email_usuario;
     private String item;
     private String meta_qtd;
+    private String tipo_meta_qtd;
     private String tipo_pedido;
     private String dt_validade;
     private int nivel_urgencia;
@@ -74,6 +75,14 @@ public class PedidoDeDoacao {
 
     public void setMeta_qtd(String meta_qtd) {
         this.meta_qtd = meta_qtd;
+    }
+
+    public String getTipoMetaQtd() {
+        return tipo_meta_qtd;
+    }
+
+    public void setTipoMetaQtd(String tipo_meta_qtd) {
+        this.tipo_meta_qtd = tipo_meta_qtd;
     }
 
     public String getDt_validade() {
