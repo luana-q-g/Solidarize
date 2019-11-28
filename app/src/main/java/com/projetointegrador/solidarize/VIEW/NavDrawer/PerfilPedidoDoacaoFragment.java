@@ -39,7 +39,9 @@ public class PerfilPedidoDoacaoFragment extends Fragment {
     private TextView lbl_titulo_item_pedido;
     private Button btn_salvar_pedido;
     private Button btn_confirmar_pedido;
+    private TextView txt_meta_pedido;
     private ProgressBar bar_meta_pedido;
+    private TextView lbl_max_quant_meta;
     private TextView txt_tipo_pedido;
     private ProgressBar bar_nivel_urgencia;
     private TextView lbl_data_validade;
@@ -64,7 +66,9 @@ public class PerfilPedidoDoacaoFragment extends Fragment {
         lbl_titulo_item_pedido= view.findViewById(R.id.lbl_item_pedido);
         btn_salvar_pedido= view.findViewById(R.id.btn_salvar_pedido);
         btn_confirmar_pedido= view.findViewById(R.id.btn_confirma_doacao);
+        txt_meta_pedido= view.findViewById(R.id.txt_meta_pedidos);
         bar_meta_pedido= view.findViewById(R.id.bar_meta_dos_pedidos);
+        lbl_max_quant_meta= view.findViewById(R.id.lbl_max_quant_meta);
         txt_tipo_pedido= view.findViewById(R.id.txt_tipo_item);
         bar_nivel_urgencia= view.findViewById(R.id.bar_nivel_urgencia_pedido);
         lbl_data_validade= view.findViewById(R.id.txt_dt_validade);
@@ -219,7 +223,9 @@ public class PerfilPedidoDoacaoFragment extends Fragment {
     public void setContentView (PedidoDeDoacao pedido){
         //definir meta
         lbl_titulo_item_pedido.setText(pedido.getItem());
+        txt_meta_pedido.setText(pedido.getMeta_qtd()+" "+pedido.getTipoMetaQtd());
         bar_nivel_urgencia.setProgress(pedido.getNivel_urgencia());
+        lbl_max_quant_meta.setText(pedido.getMeta_qtd());
         lbl_data_validade.setText(pedido.getDt_validade());
         txt_tipo_pedido.setText(pedido.getTipo_pedido());
         String endereco= pedido.getEstado()+", "+pedido.getCidade()+", "+pedido.getRua()+", "+pedido.getComplemento();

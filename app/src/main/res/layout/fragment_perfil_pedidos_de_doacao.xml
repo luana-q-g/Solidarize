@@ -70,6 +70,14 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/btn_salvar_pedido" />
 
+                <TextView
+                    android:id="@+id/txt_meta_pedidos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/lbl_meta_pedidos"
+                    app:layout_constraintStart_toEndOf="@+id/lbl_meta_pedidos" />
+
                 <ProgressBar
                     android:id="@+id/bar_meta_dos_pedidos"
                     style="@style/Widget.AppCompat.ProgressBar.Horizontal"
@@ -89,7 +97,7 @@
                     android:layout_marginTop="32dp"
                     android:text="Tipo:"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/bar_meta_dos_pedidos" />
+                    app:layout_constraintTop_toBottomOf="@+id/lbl_min_quant_meta" />
 
                 <TextView
                     android:id="@+id/txt_tipo_item"
@@ -112,7 +120,7 @@
                 <ProgressBar
                     android:id="@+id/bar_nivel_urgencia_pedido"
                     style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                    android:layout_width="157dp"
+                    android:layout_width="160dp"
                     android:layout_height="26dp"
                     android:layout_marginTop="8dp"
                     android:max="10"
@@ -230,6 +238,21 @@
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/lbl_urgencia_pouca"
                     app:layout_constraintTop_toBottomOf="@+id/bar_nivel_urgencia_pedido" />
+
+                <TextView
+                    android:id="@+id/lbl_min_quant_meta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    app:layout_constraintStart_toStartOf="@+id/bar_meta_dos_pedidos"
+                    app:layout_constraintTop_toBottomOf="@+id/bar_meta_dos_pedidos" />
+
+                <TextView
+                    android:id="@+id/lbl_max_quant_meta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="@+id/bar_meta_dos_pedidos"
+                    app:layout_constraintTop_toBottomOf="@+id/bar_meta_dos_pedidos" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
