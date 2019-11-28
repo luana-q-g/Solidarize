@@ -37,7 +37,7 @@
                     app:layout_constraintEnd_toStartOf="@+id/btn_confirma_presenca"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/lbl_titulo_evento"
-                    app:srcCompat="@drawable/salvar_evento" />
+                    app:srcCompat="@drawable/ic_salvar_evento" />
 
 
                 <ImageButton
@@ -50,7 +50,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/btn_salvar_evento"
                     app:layout_constraintTop_toBottomOf="@+id/lbl_titulo_evento"
-                    app:srcCompat="@drawable/confirmar_evento" />
+                    app:srcCompat="@drawable/ic_confirmar_evento" />
 
                 <TextView
                     android:id="@+id/lbl_titulo_evento"

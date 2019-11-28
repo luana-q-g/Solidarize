@@ -2,7 +2,6 @@ package com.projetointegrador.solidarize.VIEW.NavDrawer;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,9 +10,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.google.android.material.appbar.AppBarLayout;
-import com.google.android.material.tabs.TabLayout;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,14 +27,11 @@ import com.projetointegrador.solidarize.DAO.SalvaEventoDAO;
 import com.projetointegrador.solidarize.R;
 import com.projetointegrador.solidarize.VIEW.NavDrawMenu;
 
-import java.util.Iterator;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.viewpager.widget.ViewPager;
 
 public class PerfilEventoFragment extends Fragment {
     private TextView lbl_titulo_evento;
@@ -151,7 +144,7 @@ public class PerfilEventoFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
-                    btn_salvar_evento.setImageResource(R.drawable.salvo_evento);
+                    btn_salvar_evento.setImageResource(R.drawable.ic_salvo_evento);
                     btn_salvar_evento.setEnabled(false);
                 }
             }
@@ -168,7 +161,7 @@ public class PerfilEventoFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
-                    btn_confirmar_evento.setImageResource(R.drawable.confirmado_evento);
+                    btn_confirmar_evento.setImageResource(R.drawable.ic_confirmado_evento);
                     btn_confirmar_evento.setEnabled(false);
                 }
             }
@@ -194,7 +187,7 @@ public class PerfilEventoFragment extends Fragment {
                         SalvaEventoDAO salvaEventoDAO= new SalvaEventoDAO();
                         salvaEventoDAO.inserirEventoSalvo(evento_salvo);
 
-                        btn_salvar_evento.setImageResource(R.drawable.salvo_evento);
+                        btn_salvar_evento.setImageResource(R.drawable.ic_salvo_evento);
                         btn_salvar_evento.setEnabled(false);
                     }
                 });
@@ -226,7 +219,7 @@ public class PerfilEventoFragment extends Fragment {
                         ConfirmaEventoDAO confirmaEventoDAO= new ConfirmaEventoDAO();
                         confirmaEventoDAO.inserirEventoConfirmado(evento_confirmado);
 
-                        btn_confirmar_evento.setImageResource(R.drawable.confirmado_evento);
+                        btn_confirmar_evento.setImageResource(R.drawable.ic_confirmado_evento);
                         btn_confirmar_evento.setEnabled(false);
                     }
                 });
