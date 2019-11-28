@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.projetointegrador.solidarize.BEAN.Instituicao;
 import com.projetointegrador.solidarize.BEAN.UsuarioLogado;
@@ -16,10 +17,20 @@ import com.projetointegrador.solidarize.VIEW.EdicaoCadastroInstituicao;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
+import static android.app.Activity.RESULT_OK;
 
 public class TabLayoutPerfilInstituicaoPerfilFragment extends Fragment {
     private TextView txt_nome, txt_email, txt_cnpj, txt_descricao, txt_tel, txt_estado, txt_cidade, txt_rua, txt_complemento;
     private Button btn_editar;
+
+    //para o activity for result
+    //quando termina o editar, atualiza o perfil
+    public static final int EDITAR_PERFIL_INSTITUICAO = 8;
+    public static final String INSTITUICAO_EDITADA = "INSTITUICAO_EDITADA";
+
+    private boolean allowRefresh= false;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,11 +63,33 @@ public class TabLayoutPerfilInstituicaoPerfilFragment extends Fragment {
             public void onClick(View v) {
                 //abre activity com info de pessoa para editar
                 Intent i_inst= new Intent(getActivity().getApplicationContext(), EdicaoCadastroInstituicao.class);
-                startActivity(i_inst);
+                startActivityForResult(i_inst, EDITAR_PERFIL_INSTITUICAO);
             }
         });
 
         return view;
+    }
+
+    //depois de editar o perfil
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == EDITAR_PERFIL_INSTITUICAO){
+            if (resultCode == RESULT_OK) {
+                Instituicao instEditada = (Instituicao) data.getSerializableExtra(INSTITUICAO_EDITADA);
+                setDadosView(
+                        instEditada.getNome(),
+                        instEditada.getEmail(),
+                        instEditada.getCnpj(),
+                        instEditada.getTelefone(),
+                        instEditada.getDescricao(),
+                        instEditada.getEstado(),
+                        instEditada.getCidade(),
+                        instEditada.getRua(),
+                        instEditada.getNumero()
+                );
+            }
+        }
     }
 
     public void setDadosView(String n, String e, String c, String t, String dt, String es, String ci, String rua, String com) {

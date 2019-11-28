@@ -19,6 +19,7 @@ import com.projetointegrador.solidarize.BEAN.TelefoneUsuario;
 import com.projetointegrador.solidarize.BEAN.UsuarioLogado;
 import com.projetointegrador.solidarize.DAO.InstituicaoDAO;
 import com.projetointegrador.solidarize.R;
+import com.projetointegrador.solidarize.VIEW.NavDrawer.TabLayoutPerfilInstituicaoPerfilFragment;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -155,6 +156,9 @@ public class CadastroInstituicaoSenhaFragment extends Fragment {
 
                     UsuarioLogado.getInstance().setUsuario(instituicao);
 
+                    Intent intentRetorno = new Intent();
+                    intentRetorno.putExtra(TabLayoutPerfilInstituicaoPerfilFragment.INSTITUICAO_EDITADA, instituicao);
+                    act.setResult(RESULT_OK, intentRetorno);
                     act.finish();
                 }
             });

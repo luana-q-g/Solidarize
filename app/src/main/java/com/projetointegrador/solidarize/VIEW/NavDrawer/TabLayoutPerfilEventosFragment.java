@@ -102,8 +102,8 @@ public class TabLayoutPerfilEventosFragment extends Fragment {
 
                 FragmentManager fm= getActivity().getSupportFragmentManager();
                 FragmentTransaction ft= fm.beginTransaction();
-
                 PerfilEventoFragment perfil_evento= new PerfilEventoFragment();
+
                 ft.replace(R.id.place_holder_nav_draw, perfil_evento).addToBackStack(null);
                 ft.commit();
             }

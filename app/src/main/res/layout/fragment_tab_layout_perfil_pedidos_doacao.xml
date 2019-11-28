@@ -7,15 +7,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <Button
+    <ImageButton
         android:id="@+id/btn_criar_pedido_doacao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="Criar pedido de doação"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginBottom="32dp"
+        android:background="#00FFFFFF"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toTopOf="@+id/btn_gerenciar_doacoes"
         app:layout_constraintEnd_toEndOf="@+id/lista_pedido_doacao_criados"
-        app:layout_constraintStart_toStartOf="@+id/lista_pedido_doacao_criados" />
+        app:layout_constraintStart_toStartOf="@+id/lista_pedido_doacao_criados"
+        app:srcCompat="@drawable/ic_adicionar" />
 
     <ListView
         android:id="@+id/lista_pedido_doacao_criados"
@@ -25,7 +27,7 @@
         app:layout_constraintBottom_toTopOf="@+id/btn_criar_pedido_doacao"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/lbl_existencia_pedido_doacao"></ListView>
+        app:layout_constraintTop_toTopOf="@+id/lbl_existencia_pedido_doacao"/>
 
     <TextView
         android:id="@+id/lbl_pedido_doacao_criados"
@@ -50,5 +52,27 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lbl_pedido_doacao_criados" />
+
+    <Button
+        android:id="@+id/btn_gerenciar_doacoes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Gerenciar Doações"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/lbl_criar_pedido_doacao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Criar pedido de doação"
+        android:textColor="#30867D"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_criar_pedido_doacao" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

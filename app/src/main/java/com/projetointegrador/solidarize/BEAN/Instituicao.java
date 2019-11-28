@@ -1,6 +1,8 @@
 package com.projetointegrador.solidarize.BEAN;
 
-public class Instituicao extends Usuario{
+import java.io.Serializable;
+
+public class Instituicao extends Usuario implements Serializable {
     final private String tipo_usuario= "instituicao";
 
     private String id;

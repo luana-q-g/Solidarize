@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -41,7 +42,7 @@ import androidx.fragment.app.FragmentTransaction;
 public class TabLayoutPerfilPedidosDoacaoFragment extends Fragment {
     private TextView lbl_existencia_pedidos_doacao;
     private ListView lista_pedidos_criados;
-    private Button btn_criar_pedido;
+    private ImageButton btn_criar_pedido;
 
     private DatabaseReference BD= FirebaseDatabase.getInstance().getReference();
     private DatabaseReference cadastroUsuarioPedido= BD.child("cadastroUsuarioPedido");
