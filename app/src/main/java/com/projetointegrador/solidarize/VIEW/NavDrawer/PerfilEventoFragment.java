@@ -37,8 +37,7 @@ public class PerfilEventoFragment extends Fragment {
     private TextView lbl_titulo_evento;
     private ImageButton btn_salvar_evento;
     private ImageButton btn_confirmar_evento;
-    private TextView lbl_data_i;
-    private TextView lbl_data_f;
+    private TextView lbl_data;
     private TextView lbl_hora_i;
     private TextView lbl_hora_f;
     private TextView lbl_descricao;
@@ -66,8 +65,7 @@ public class PerfilEventoFragment extends Fragment {
         lbl_titulo_evento= view.findViewById(R.id.lbl_titulo_evento);
         btn_salvar_evento= view.findViewById(R.id.btn_salvar_evento);
         btn_confirmar_evento= view.findViewById(R.id.btn_confirma_presenca);
-        lbl_data_i= view.findViewById(R.id.lbl_data_inicio);
-        lbl_data_f= view.findViewById(R.id.lbl_data_final);
+        lbl_data= view.findViewById(R.id.txt_data);
         lbl_hora_i= view.findViewById(R.id.lbl_hora_inicial);
         lbl_hora_f= view.findViewById(R.id.lbl_hora_final);
         lbl_descricao= view.findViewById(R.id.lbl_descricao);
@@ -259,8 +257,7 @@ public class PerfilEventoFragment extends Fragment {
 
     public void setContentView (Evento evento){
         lbl_titulo_evento.setText(evento.getNome());
-        lbl_data_i.setText(evento.getDt_inicio());
-        lbl_data_f.setText(evento.getDt_fim());
+        lbl_data.setText(evento.getDt_inicio()+"   até   "+evento.getDt_fim());
         lbl_hora_i.setText(evento.getHra_inicio());
         lbl_hora_f.setText(evento.getHra_fim());
         lbl_descricao.setText(evento.getDescricao());

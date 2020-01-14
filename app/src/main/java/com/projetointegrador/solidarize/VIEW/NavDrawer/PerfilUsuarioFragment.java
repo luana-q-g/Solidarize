@@ -28,56 +28,27 @@ import com.projetointegrador.solidarize.R;
 import com.projetointegrador.solidarize.VIEW.NavDrawMenu;
 
 public class PerfilUsuarioFragment extends Fragment {
-    private Parcelable estadoAdapter;
     private FirebaseAuth auth_usuario= FirebaseAuth.getInstance();
 
     private ViewPager pager;
+    TabLayout tabLayout;
 
-    private static final String POSICAO_SALVA = "POSICAO_SALVA";
-    private int posicao = 0;
+    private int posicao;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
-    TabLayout tabLayout;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_perfil_usuario, container, false);
 
-        AppBarLayout appBarLayout = (AppBarLayout) view.findViewById(R.id.appBar_perfil_usuario);
         tabLayout = (TabLayout) view.findViewById(R.id.tab_layout_perfil_usuario);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         pager = (ViewPager) view.findViewById(R.id.view_pager_perfil_usuario);
-
-        if(auth_usuario.getCurrentUser() != null){
-            NavDrawMenu act = (NavDrawMenu) getActivity();
-
-            if (UsuarioLogado.getInstance().getUsuario().getTipo_usuario().contentEquals("pessoa")) {
-                //TabAdapterPerfilPessoa tabsAdapterPessoa = new TabAdapterPerfilPessoa(act.getSupportFragmentManager());
-                //pager.setAdapter(tabsAdapterPessoa);
-
-                // os dados são recuperados com:
-                // Pessoa usuario_pessoa = (Pessoa) UsuarioLogado.getInstance().getUsuario();
-            }
-            else{
-                //TabAdapterPerfilInstituicao tabsAdapterInstituicao = new TabAdapterPerfilInstituicao(act.getSupportFragmentManager());
-                //pager.setAdapter(tabsAdapterInstituicao);
-
-                // os dados são recuperados com:
-                // Instituicao i1 = (Instituicao) UsuarioLogado.getInstance().getUsuario();
-            }
-        }
-
-
-        return view;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
 
         tabLayout.setupWithViewPager(pager);
 
@@ -99,31 +70,24 @@ public class PerfilUsuarioFragment extends Fragment {
             }
         });
 
-
-        FragmentStatePagerAdapter fspa;
-        if(auth_usuario.getCurrentUser() != null){
-            NavDrawMenu act = (NavDrawMenu) getActivity();
-
-            if (UsuarioLogado.getInstance().getUsuario().getTipo_usuario().contentEquals("pessoa")) {
-                fspa = new TabAdapterPerfilPessoa(act.getSupportFragmentManager());
-
-                // os dados são recuperados com:
-                // Pessoa usuario_pessoa = (Pessoa) UsuarioLogado.getInstance().getUsuario();
-            }
-            else{
-                fspa = new TabAdapterPerfilInstituicao(act.getSupportFragmentManager());
-
-
-                // os dados são recuperados com:
-                // Instituicao i1 = (Instituicao) UsuarioLogado.getInstance().getUsuario();
-            }
-
-            pager.setAdapter(fspa);
-            pager.setCurrentItem(posicao);
-        }
-
-
+        return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
 
+        FragmentStatePagerAdapter fragment_adapter;
+        if(auth_usuario.getCurrentUser() != null){
+            if (UsuarioLogado.getInstance().getUsuario().getTipo_usuario().contentEquals("pessoa")) {
+                fragment_adapter = new TabAdapterPerfilPessoa(getChildFragmentManager());
+            }
+            else{
+                fragment_adapter = new TabAdapterPerfilInstituicao(getChildFragmentManager());
+            }
+
+            pager.setAdapter(fragment_adapter);
+            pager.setCurrentItem(posicao);
+        }
+    }
 }

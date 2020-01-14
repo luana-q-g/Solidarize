@@ -138,6 +138,7 @@
         android:id="@+id/intensidade_nivel_urgencia"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:orientation="horizontal">
 
         <TextView
@@ -161,7 +162,6 @@
         android:id="@+id/btn_continuar_infos_pedidos_doacao"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
         android:text="Continuar" />
 
 </LinearLayout>

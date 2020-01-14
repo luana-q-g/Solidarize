@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -38,7 +39,7 @@ import androidx.fragment.app.FragmentTransaction;
 public class TabLayoutPerfilEventosFragment extends Fragment {
     private TextView lbl_existencia_eventos;
     private ListView lista_eventos_criados;
-    private Button btn_criar_evento;
+    private ImageButton btn_criar_evento;
 
     private DatabaseReference BD= FirebaseDatabase.getInstance().getReference();
     private DatabaseReference cadastroUsuarioEvento= BD.child("cadastroUsuarioEvento");
